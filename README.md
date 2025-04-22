@@ -9,7 +9,7 @@ Instituto Mauá de Tecnologia
 
 ## 📌 Sobre o Projeto
 
-Este projeto visa criar uma **plataforma digital completa** para a Mauá eSports, reunindo informações sobre a liga acadêmica, seus membros, eventos e atividades. A proposta é oferecer um ambiente acessível, responsivo e fácil de manter, incentivando o engajamento da comunidade estudantil.
+Este projeto visa criar uma **plataforma digital** para a Mauá eSports, reunindo informações sobre a liga acadêmica, seus membros, eventos e atividades. A proposta é oferecer um ambiente acessível, responsivo e fácil de manter, incentivando o engajamento da comunidade estudantil.
 
 ### Funcionalidades previstas:
 - Seção "Quem Somos" e "O que Fazemos"
