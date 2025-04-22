@@ -34,3 +34,8 @@ Este projeto visa criar uma **plataforma digital completa** para a Mauá eSports
 ```bash
 git clone https://github.com/tokujiTO/PII3S-MauaEsports
 cd PII3S-MauaEsports
+pnpm i
+pnpm run dev
+```
+
+
