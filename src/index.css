@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+  --color-coolWhite: #fdfdfe;
+  --color-coolBlack: #000618;
+  --color-darkBlue: #021931;
+  --color-lightBlue: #05cfff;
+  --color-deepBlue: #034685;
+  --color-yellow: #e4b054;
+  --font-body: "Bebas Neue", sans-serif;
+}

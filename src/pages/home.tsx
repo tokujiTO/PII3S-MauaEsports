@@ -1,8 +1,13 @@
+import Footer from "../components/footer";
+import Navbar from "../components/navbar";
+
 export default function Home() {
   return (
-    <div>
+    <div className="pt-20">
+      <Navbar />
       <h1 className='text-3xl text-red-800 font-thin'>Home</h1>
       <p>Bem-vindo à página inicial!</p>
+      <Footer />
     </div>
   )
 }
