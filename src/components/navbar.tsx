@@ -1,11 +1,9 @@
 import { List } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-// import logo from "../assets/logo_black.svg"
+import logo from "../assets/logoColored.png"
 
 export default function Navbar() {
-  const logo = "https://i.imgur.com/0m1v2rD.png"
-  
   const navigate = useNavigate()
 
   const [isHamburguerOpen, setIsHamburguerOpen] = useState(false)
@@ -27,8 +25,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className='font-body text-oceanGreen fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between bg-white px-16 pl-4 text-2xl font-light shadow-lg max-lg:hidden'>
-        <img src={logo} alt='' />
+      <nav className='font-body bg-deepBlue fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between px-16 pl-4 text-3xl font-light text-white shadow-lg max-lg:hidden'>
+        <img src={logo} alt='' className='h-16 object-cover' />
         <ul className='flex items-center space-x-10'>
           <li
             className='duration-200 hover:cursor-pointer hover:text-gray-200'

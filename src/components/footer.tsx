@@ -11,10 +11,10 @@ export default function Footer() {
         <img
           src={logo}
           alt='Logo'
-          className='min-h-fit min-w-1/2 p-2'
+          className='min-h-fit min-w-1/2 p-2 opacity-40'
         />
       </div>
-      <div className='flex h-3/4 flex-col items-start justify-evenly gap-6 lg:flex-row lg:gap-16 lg:px-16 lg:pt-24'>
+      <div className='z-10 flex h-3/4 flex-col items-start justify-evenly gap-6 lg:flex-row lg:gap-16 lg:px-16 lg:pt-24'>
         <div className='flex w-full flex-col items-start gap-6 text-2xl lg:w-1/3'>
           <ul className='list-inside list-disc'>
             <li>mauaeSports@maua.br</li>
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className='mx-auto flex h-1/4 w-full flex-col gap-2 text-center text-xl'>
+      <div className='z-10 mx-auto flex h-1/4 w-full flex-col gap-2 justify-end text-center text-xl'>
         <p>
           <span className='font-bold'>
             Nosso site está sob constante mudança. Versão: 1.0.0
