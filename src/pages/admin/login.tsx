@@ -9,14 +9,16 @@ export default function Login() {
     const formData = new FormData(e.currentTarget);
     const email = formData.get('username') as string;
 
-    if (email) {
+    if (email && email.includes('@maua.br')) {
       localStorage.setItem('email', email);
-      navigate('/admin-home');
+      const role = email.split('@')[0];
+      localStorage.setItem('role', role);
+      navigate('/pi-home');
     } else {
       alert('Por favor, insira um e-mail válido.');
     }
   };
-  
+
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-100 font-thin">
       <div className="bg-darkBlue flex h-full w-2/5 items-center justify-center">
@@ -32,7 +34,10 @@ export default function Login() {
           <div className="z-10 flex items-center justify-between px-10 text-4xl">
             <h1>Mauá eSports</h1>
           </div>
-          <form className="z-10 flex w-full flex-col items-center justify-between gap-4" onSubmit={onSubmit}>
+          <form
+            className="z-10 flex w-full flex-col items-center justify-between gap-4"
+            onSubmit={onSubmit}
+          >
             <div className="flex w-full flex-col items-start justify-center px-10">
               <label htmlFor="username" className="text-2xl">
                 E-mail:
