@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Members from './members';
 import Teams from './teams';
+import Site from './site';
 
 export default function Admin() {
   const [menu, setMenu] = useState('gerenciar-membros');
@@ -36,7 +37,7 @@ export default function Admin() {
       </nav>
       {menu === 'gerenciar-membros' && <Members />}
       {menu === 'gerenciar-times' && <Teams />}
-      {/* {menu === 'gerenciar-site' && <Site />} */}
+      {menu === 'gerenciar-site' && <Site />}
     </div>
   );
 }
