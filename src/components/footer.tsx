@@ -14,14 +14,14 @@ export default function Footer() {
           className='min-h-fit min-w-1/2 p-2 opacity-40'
         />
       </div>
-      <div className='z-10 flex h-3/4 flex-col items-start justify-evenly gap-6 lg:flex-row lg:gap-16 lg:px-16 lg:pt-24'>
-        <div className='flex w-full flex-col items-start gap-6 text-2xl lg:w-1/3'>
-          <ul className='list-inside list-disc'>
+      <div className='z-10 flex h-3/4 flex-col items-start justify-evenly gap-6 md:flex-row lg:gap-16 lg:px-16 lg:pt-24'>
+        <div className='flex w-full flex-col items-center gap-6 text-sm md:w-1/3 md:items-start md:text-2xl'>
+          <ul className='flex w-full list-inside list-none justify-evenly md:list-disc md:flex-col'>
             <li>mauaeSports@maua.br</li>
             <li>11 11111-1111</li>
           </ul>
         </div>
-        <div className='flex w-full flex-col justify-evenly text-xl md:flex-row lg:w-1/3'>
+        <div className='flex w-full flex-row justify-evenly text-xl md:w-1/3'>
           <div className='flex items-center justify-center rounded-md bg-white p-1 text-black duration-300 hover:scale-110 hover:cursor-pointer'>
             <TwitchLogo size={42} />
           </div>
@@ -32,8 +32,8 @@ export default function Footer() {
             <InstagramLogo size={42} />
           </div>
         </div>
-        <div className='flex w-1/3 flex-col'>
-          <div className='flex flex-col items-end gap-2 text-3xl'>
+        <div className='flex w-full flex-col md:w-1/3'>
+          <div className='flex flex-col items-center gap-2 text-3xl md:items-end'>
             <p
               className='duration-300 hover:scale-125 hover:cursor-pointer hover:text-[#d1d1d1]'
               onClick={() => {
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className='z-10 mx-auto flex h-1/4 w-full flex-col gap-2 justify-end text-center text-xl'>
+      <div className='z-10 mx-auto flex h-1/4 w-full flex-col justify-end gap-2 text-center text-sm md:text-xl'>
         <p>
           <span className='font-bold'>
             Nosso site está sob constante mudança. Versão: 1.0.0
