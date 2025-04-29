@@ -47,12 +47,12 @@ export default function Login() {
                 id="username"
                 name="username"
                 placeholder="Coloque o Email Mauá"
-                className="flex h-12 w-full items-center rounded-lg border-2 border-black bg-white px-4 text-2xl outline-none"
+                className="flex h-12 w-full items-center rounded-lg border-2 border-black bg-white px-4 text-2xl shadow-xl outline-none"
               />
             </div>
             <button
               type="submit"
-              className="bg-deepBlue hover:bg-darkBlue h-12 w-4/5 rounded-lg text-white duration-300 outline-none hover:cursor-pointer"
+              className="bg-deepBlue hover:bg-darkBlue h-12 w-4/5 rounded-lg text-white shadow-xl duration-300 outline-none hover:cursor-pointer hover:shadow-2xl"
             >
               Login Microsoft
             </button>

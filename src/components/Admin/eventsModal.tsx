@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useEvents } from '../../hooks/useEvents';
+import EventCard from './eventCard';
 
 interface CampeonatosModalProps {
   isOpen: boolean;
@@ -10,6 +12,7 @@ export default function EventsModal({
   onClose,
 }: CampeonatosModalProps) {
   const [visible, setVisible] = useState(false);
+  const { events } = useEvents();
 
   useEffect(() => {
     setTimeout(() => {
@@ -36,8 +39,18 @@ export default function EventsModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full flex-col items-start justify-center">
-          <h1>Eventos</h1>
+          <div className="flex w-full items-center justify-between">
+            <h1>Eventos</h1>
+            <button className="bg-yellow flex h-10 w-10 justify-center rounded-xl shadow-xl hover:cursor-pointer">
+              +
+            </button>
+          </div>
           <div className="h-1 w-full rounded-full bg-black" />
+        </div>
+        <div className="flex w-full flex-col gap-2 px-4">
+          {events.map((event) => (
+            <EventCard event={event} />
+          ))}
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button className="flex w-1/5 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600">

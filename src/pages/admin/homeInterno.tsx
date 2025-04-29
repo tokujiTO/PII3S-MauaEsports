@@ -27,7 +27,7 @@ export default function homeInterno() {
       <img
         src={logo}
         alt=""
-        className="absolute top-1/5 left-1/2 z-0 w-4/5 -translate-x-1/2 opacity-10"
+        className="absolute top-1/8 left-1/2 z-0 w-4/5 -translate-x-1/2 opacity-10"
       />
       <SignOut
         size={64}
