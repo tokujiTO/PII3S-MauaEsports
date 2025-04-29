@@ -8,7 +8,10 @@
   --color-deepBlue: #034685;
   --color-yellow: #e4b054;
   --font-body: "Bebas Neue", sans-serif;
+  --font-5xl: 3rem;
+  --font-6xl: 4rem;
   --font-7xl: 5rem;
+  --font-8xl: 6rem;
 }
 
 @layer utilities {

@@ -26,7 +26,7 @@ const data = [
 
 export default function Diretoria() {
   return (
-    <div className='from-darkBlue font-body to-deepBlue flex flex-col items-center justify-center bg-gradient-to-t p-8 text-black'>
+    <div className='from-darkBlue font-body to-deepBlue flex flex-col items-center justify-center bg-gradient-to-t py-8 text-black'>
       <h1 className='mb-4 text-7xl font-bold text-white'>Diretoria</h1>
       <Carousel data={data} />
     </div>
