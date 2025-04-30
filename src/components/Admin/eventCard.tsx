@@ -6,11 +6,9 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event }: EventCardProps) {
-  const date = new Date(event.date).toLocaleDateString('pt-BR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  const date = new Date(Number(event.date)).toLocaleDateString('pt-BR');
+  console.log(event.date);
+  console.log(date);
 
   return (
     <div className="w-full">
