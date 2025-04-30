@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const connection = require('./backend/connection.cjs');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -108,3 +110,5 @@ app.patch('/modality', authenticate, (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+connection.connectToMongo();
