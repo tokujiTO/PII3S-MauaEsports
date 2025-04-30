@@ -1,10 +1,12 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useState } from 'react';
-import { useTeams } from '../../hooks/useTeams';
+import { Team, useTeams } from '../../hooks/useTeams';
 import TeamCard from './teamCard';
+import TeamModal from './teamModal';
 
 export default function Teams() {
   const { teams } = useTeams();
+  const [team, setTeam] = useState<Team | undefined>(undefined);
 
   const memberPageSize = 5;
   const totalPages = Math.ceil(teams.length / memberPageSize);
@@ -26,12 +28,17 @@ export default function Teams() {
 
   return (
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
+      <TeamModal
+        isOpen={team != undefined ? true : false}
+        onClose={() => setTeam(undefined)}
+        team={team}
+      />
       <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Times</h1>
       </div>
       <div className="flex flex-col gap-4 px-5">
         {currentTeams.map((team) => (
-          <TeamCard team={team} />
+          <TeamCard team={team} onClick={() => setTeam(team)} />
         ))}
       </div>
       {currentTeams.length === 0 && (

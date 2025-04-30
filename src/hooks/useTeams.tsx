@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Member } from './useMembers';
 
-interface Team {
+export interface Team {
   name: string;
   members: Member[];
 }

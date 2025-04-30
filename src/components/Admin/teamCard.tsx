@@ -1,13 +1,17 @@
 import { Trash } from '@phosphor-icons/react';
 import { Member } from '../../hooks/useMembers';
 
-export default function TeamCard({
-  team,
-}: {
+interface TeamCardProps {
   team: { name: string; members: Member[] };
-}) {
+  onClick: () => void;
+}
+
+export default function TeamCard({ team, onClick }: TeamCardProps) {
   return (
-    <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-2xl text-white">
+    <div
+      className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-2xl text-white hover:cursor-pointer"
+      onClick={onClick}
+    >
       <div className="flex flex-col gap-2">
         <h1 className="font-bold">{team.name}</h1>
       </div>

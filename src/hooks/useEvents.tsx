@@ -7,7 +7,7 @@ export interface Events {
   link?: string;
 }
 
-const mockEvents: Events[] = Array.from({ length: 38 }, (_, index) => ({
+const mockEvents: Events[] = Array.from({ length: 14 }, (_, index) => ({
   name: `Evento ${index + 1}`,
   date: `${new Date(2025, 0, 31).getTime()}`,
   description: `Descrição do evento ${index + 1}`,
