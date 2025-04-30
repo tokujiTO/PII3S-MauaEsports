@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Team } from '../../hooks/useTeams';
 import MemberCard from './memberCard';
+import { X } from '@phosphor-icons/react';
 
 interface TeamModalProps {
   isOpen: boolean;
@@ -36,7 +37,15 @@ export default function TeamModal({ isOpen, onClose, team }: TeamModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full flex-col items-start justify-center text-3xl">
-          <h1>{team?.name}</h1>
+          <div className="flex w-full items-center justify-between">
+            <h1>{team?.name}</h1>
+            <button
+              className="text-2xl text-red-500 duration-300 hover:cursor-pointer hover:text-red-700"
+              onClick={handleClose}
+            >
+              <X size={32} />
+            </button>
+          </div>
           <div className="h-1 w-full rounded-full bg-black" />
         </div>
         {team?.members.map((member) => <MemberCard member={member} />)}
