@@ -1,18 +1,22 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
-import AnimatedElement from './animatedElement';
+import AnimatedElement from '../animatedElement';
+import { cn } from '../../utils/cn';
 
 interface CarouselProps {
   clickable?: boolean;
   data: {
-    name: string;
     image: string;
-    role?: string;
-    linkedin?: string;
+    members?: {
+      name: string;
+      role?: string;
+      linkedin?: string;
+    }[];
+    color: string;
   }[];
 }
 
-export default function Carousel({ data, clickable }: CarouselProps) {
+export default function TeamCarousel({ data, clickable }: CarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [cardPositions, setCardPositions] = useState<number[]>([]);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -164,10 +168,14 @@ export default function Carousel({ data, clickable }: CarouselProps) {
     };
   }, [scrollContainerRef]);
 
+  const isCaptain = (member: { role?: string }) => {
+    return member.role?.toLowerCase() === 'capitão';
+  };
+
   return (
     <AnimatedElement
       direction="bottom"
-      className="relative flex h-[60vh] w-full flex-col"
+      className="relative flex h-[90vh] w-full flex-col"
     >
       <div
         ref={scrollContainerRef}
@@ -180,40 +188,51 @@ export default function Carousel({ data, clickable }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card hover:scale-[1.05] hover:shadow-xl ${clickable ? 'hover:cursor-pointer' : ''} flex h-3/5 max-w-56 min-w-56 flex-col items-center justify-center rounded-xl bg-white p-6 py-16 shadow-lg transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} relative flex h-3/5 max-w-56 min-w-56 rounded-xl bg-white shadow-lg transition-transform duration-75 ease-in-out hover:shadow-xl lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
-              opacity: 0.5 + (calculateScale(index) - 0.8) / 0.8,
               zIndex: Math.round(calculateScale(index) * 10),
             }}
-            onClick={() => {
-              if (clickable) {
-                if (item.linkedin) {
-                  window.open(item.linkedin, '_blank');
-                } else {
-                  alert('LinkedIn não disponível');
-                }
-              }
-            }}
           >
-            <img
-              src={item.image}
-              alt={item.name}
-              className="mb-2 h-32 w-32 rounded-full object-contain"
-            />
-            <h2 className="text-lightBlack/80 text-sm font-bold lg:text-lg">
-              {item.name}
-            </h2>
-            {item.role && (
-              <p className="lg:text-md text-lightBlack/60 text-center text-xs italic">
-                {item.role.split('<br />')[0]}
-              </p>
-            )}
-            {item.role && (
-              <p className="lg:text-md text-lightBlack/60 text-center text-xs italic">
-                {item.role.split('<br />')[1]}
-              </p>
-            )}
+            <div
+              className={cn(
+                `flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`,
+                item.color
+              )}
+            >
+              <img
+                src={item.image}
+                alt={'Team Logo'}
+                className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-20"
+              />
+
+              {item.members?.map((member, memberIndex) => (
+                <p
+                  key={memberIndex}
+                  className={cn(
+                    `text-lightBlack/60 z-10 text-center text-xl italic`,
+                    isCaptain(member) ? 'text-2xl font-bold' : 'font-normal'
+                  )}
+                  style={{
+                    marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
+                  }}
+                >
+                  {member.name}
+                  {member.role && ` - ${member.role}`}
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="z-10 text-blue-500 hover:underline"
+                    >
+                      {' '}
+                      (LinkedIn)
+                    </a>
+                  )}
+                </p>
+              ))}
+            </div>
           </div>
         ))}
       </div>
