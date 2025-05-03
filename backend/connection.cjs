@@ -1,9 +1,5 @@
-const express = require('express');
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
 
 const USUARIO = process.env.USUARIO;
 const SENHA = process.env.SENHA;
