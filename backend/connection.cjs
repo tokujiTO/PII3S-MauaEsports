@@ -9,8 +9,8 @@ const USUARIO = process.env.USUARIO;
 const SENHA = process.env.SENHA;
 
 const Player = mongoose.model("Player", mongoose.Schema({
-    nome: {type: String},
-    id: {type: String}
+    nome: {type: String, required: true},
+    id: {type: String, required: true, unique: true}
 }).plugin(uniqueValidator));
 
 async function connectToMongo() {
