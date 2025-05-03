@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const connection = require('./backend/connection.cjs');
+const mongoose = require('mongoose');
 
 
 const app = express();
@@ -104,6 +105,23 @@ app.patch('/modality', authenticate, (req, res) => {
 
   modalities[_id].ScheduledTrainings = ScheduledTrainings;
   res.json({ message: 'Item updated' });
+});
+
+// player
+app.get('/player', async (req, res) => {
+  const players = await connection.Player.find();
+  res.json(players);
+});
+
+app.post('/player', async (req, res) => {
+  const nome = req.body.nome;
+  const id = req.body.id;
+
+  const player = new connection.Player({nome: nome, id: id});
+  await player.save();
+  const players = await connection.Player.find();
+
+  res.json(players);
 });
 
 // --- Start Server ---
