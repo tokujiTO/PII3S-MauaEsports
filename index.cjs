@@ -108,9 +108,20 @@ app.patch('/modality', authenticate, (req, res) => {
 });
 
 // player
-app.get('/player', async (req, res) => {
+app.get('/players', async (req, res) => {
   const players = await connection.Player.find();
   res.json(players);
+});
+
+app.get('/player', async (req, res) => {
+  const id = req.body.id;
+
+  const playerExists = await connection.Player.findOne({id: id});
+  if(!playerExists){
+    return res.status(401).json({ mensagem: "Usuário não existe" });
+  }
+  
+  res.json(playerExists);
 });
 
 app.post('/player', async (req, res) => {
