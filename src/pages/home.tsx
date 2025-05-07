@@ -1,15 +1,12 @@
 import Footer from "../components/footer";
-import Section1 from "../components/Home/Section1";
+import InfoSection from "../components/Home/infosection"
 import Navbar from "../components/navbar";
 
 export default function Home() {
   return (
-    <div className="pt-20">
-      <Navbar />
-      <h1 className='text-3xl text-red-800 font-thin'>Home</h1>
-      <p>Bem-vindo à página inicial!</p>
-      <Section1 />
-      <Footer />
+    <div className="min-h-screen bg-gray-900 text-white font-sans">
+    {/* <Navbar/> */}
+    <InfoSection title="Quem Somos" description="A Mauá eSports é mais do que um grupo de jogadores. Somos uma comunidade apaixonada por games, tecnologia e competição saudável dentro do Instituto Mauá de Tecnologia. Nascemos da iniciativa de alunos que enxergam nos eSports uma ponte entre diversão, amizade e crescimento pessoal. Aqui, todo mundo tem espaço: dos casuais aos tryhards, do bronze ao challenger." />
     </div>
   )
 }
