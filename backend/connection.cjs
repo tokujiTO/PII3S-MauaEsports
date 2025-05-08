@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const USUARIO = process.env.USUARIO;
 const SENHA = process.env.SENHA;
 
 const Player = mongoose.model("Player", mongoose.Schema({
     nome: {type: String, required: true},
-    id: {type: String, required: true, unique: true}
-}).plugin(uniqueValidator));
+}).plugin(uniqueValidator).plugin(AutoIncrement, { inc_field: 'p_id' }));
+
+const Equipes = mongoose.model("Equipes", mongoose.Schema({
+    nome: {type: String, required: true, unique: true},
+    membros: {type: [String]}
+}).plugin(uniqueValidator).plugin(AutoIncrement, { inc_field: 'e_id' }));
 
 async function connectToMongo() {
     try{
@@ -21,3 +26,4 @@ async function connectToMongo() {
 
 module.exports.connectToMongo = connectToMongo;
 module.exports.Player = Player;
+module.exports.Equipes = Equipes;

@@ -114,9 +114,9 @@ app.get('/players', async (req, res) => {
 });
 
 app.get('/player', async (req, res) => {
-  const id = req.body.id;
+  const p_id = req.body.p_id;
 
-  const playerExists = await connection.Player.findOne({id: id});
+  const playerExists = await connection.Player.findOne({p_id: p_id});
   if(!playerExists){
     return res.status(401).json({ mensagem: "Usuário não existe" });
   }
@@ -126,13 +126,35 @@ app.get('/player', async (req, res) => {
 
 app.post('/player', async (req, res) => {
   const nome = req.body.nome;
-  const id = req.body.id;
 
-  const player = new connection.Player({nome: nome, id: id});
+  const player = new connection.Player({nome: nome});
   await player.save();
   const players = await connection.Player.find();
 
   res.json(players);
+});
+
+// equipes
+app.get("/equipes", async (req, res) => {
+  const e_id = req.body.e_id;
+
+  const equipeExists = await connection.Equipes.findOne({e_id:e_id});
+  if(!equipeExists){
+    return res.status(401).json({mensagem: "Equipe não existe"});
+  }
+
+  res.json(equipeExists);
+});
+
+app.post('/equipe', async (req, res) => {
+  const nome = req.body.nome;
+  const membros = req.body.membros;
+
+  const equipe = new connection.Equipes({nome:nome, membros:membros});
+  await equipe.save();
+  const equipes = await connection.Equipes.find();
+
+  res.json(equipes);
 });
 
 // --- Start Server ---
