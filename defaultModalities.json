@@ -1,0 +1,300 @@
+{
+	"6360944b04a823de3a359357": {
+		"_id": "6360944b04a823de3a359357",
+		"Name": "Valorant Feminino",
+		"Tag": "VALFEM",
+		"CommandChannelId": "1037134925050171402",
+		"VoiceChannelsIds": [
+			"1319407677402513520"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 18 * * 2",
+				"End": "0 00 20 * * 2"
+			},
+			{
+				"Start": "0 00 18 * * 3",
+				"End": "0 00 20 * * 3"
+			},
+			{
+				"Start": "0 00 18 * * 4",
+				"End": "0 00 20 * * 4"
+			}
+		],
+		"DiscordCategoryId": "812105131973541948"
+	},
+	"63641abd9328c1ab1e364c86": {
+		"_id": "63641abd9328c1ab1e364c86",
+		"Name": "Rocket League",
+		"Tag": "RL",
+		"CommandChannelId": "1037814589276033054",
+		"VoiceChannelsIds": [
+			"1278096735251595305",
+			"1278096737256341585"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [],
+		"DiscordCategoryId": "877700465834491924"
+	},
+	"641246ec14a24f13c339bb1f": {
+		"_id": "641246ec14a24f13c339bb1f",
+		"Name": "Counter-Strike: Global Offensive A",
+		"Tag": "CSA",
+		"CommandChannelId": "1085691312260513903",
+		"VoiceChannelsIds": [
+			"1320881152428343397"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 30 19 * * 1",
+				"End": "0 30 22 * * 1"
+			},
+			{
+				"Start": "0 00 21 * * 4",
+				"End": "0 00 23 * * 4"
+			},
+			{
+				"Start": "0 30 18 * * 5",
+				"End": "0 30 21 * * 5"
+			}
+		],
+		"DiscordCategoryId": "549956096652083215"
+	},
+	"64124b4c14a24f13c339bb20": {
+		"_id": "64124b4c14a24f13c339bb20",
+		"Name": "Valorant Misto Blue",
+		"Tag": "VALMISBLUE",
+		"CommandChannelId": "1085698664896405574",
+		"VoiceChannelsIds": [
+			"1320881152428343397",
+			"1320881154412249188"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 30 19 * * 1",
+				"End": "0 00 22 * * 1"
+			},
+			{
+				"Start": "0 30 19 * * 3",
+				"End": "0 00 22 * * 3"
+			},
+			{
+				"Start": "0 30 19 * * 4",
+				"End": "0 00 22 * * 4"
+			}
+		],
+		"DiscordCategoryId": "717565651241271317"
+	},
+	"64124b9114a24f13c339bb21": {
+		"_id": "64124b9114a24f13c339bb21",
+		"Name": "Valorant Misto Black",
+		"Tag": "VALMISBLACK",
+		"CommandChannelId": "1085698706201915503",
+		"VoiceChannelsIds": [
+			"1319437857630191637"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 20 * * 2",
+				"End": "0 00 23 * * 2"
+			},
+			{
+				"Start": "0 00 20 * * 3",
+				"End": "0 00 23 * * 3"
+			},
+			{
+				"Start": "0 00 20 * * 4",
+				"End": "0 00 23 * * 4"
+			}
+		],
+		"DiscordCategoryId": "717565651241271317"
+	},
+	"6418aa5f9dec6ec29dc77be9": {
+		"_id": "6418aa5f9dec6ec29dc77be9",
+		"Name": "League of Legends A",
+		"Tag": "LOLA",
+		"CommandChannelId": "1087446845351002273",
+		"VoiceChannelsIds": [
+			"1319437858473250816"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 20 * * 1",
+				"End": "0 00 23 * * 1"
+			},
+			{
+				"Start": "0 00 20 * * 2",
+				"End": "0 00 23 * * 2"
+			},
+			{
+				"Start": "0 00 20 * * 4",
+				"End": "0 00 23 * * 4"
+			}
+		],
+		"DiscordCategoryId": "549954996050067506"
+	},
+	"641902c127cd51b2d0f2bd92": {
+		"_id": "641902c127cd51b2d0f2bd92",
+		"Name": "Counter-Strike: Global Offensive B",
+		"Tag": "CSB",
+		"CommandChannelId": "1087542450475778249",
+		"VoiceChannelsIds": [
+			"1319437858745876545"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 20 * * 2",
+				"End": "0 00 23 * * 2"
+			},
+			{
+				"Start": "0 00 20 * * 3",
+				"End": "0 00 23 * * 3"
+			},
+			{
+				"Start": "0 00 20 * * 4",
+				"End": "0 00 23 * * 4"
+			}
+		],
+		"DiscordCategoryId": "549956096652083215"
+	},
+	"6429eebd5ee71b5d45436aa3": {
+		"_id": "6429eebd5ee71b5d45436aa3",
+		"Name": "Rainbow Six",
+		"Tag": "R6",
+		"CommandChannelId": "1092210785415073822",
+		"VoiceChannelsIds": [
+			"1319437858888482897"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 20 * * 1",
+				"End": "0 00 23 * * 1"
+			},
+			{
+				"Start": "0 00 20 * * 3",
+				"End": "0 00 23 * * 3"
+			},
+			{
+				"Start": "0 00 20 * * 4",
+				"End": "0 00 23 * * 4"
+			}
+		],
+		"DiscordCategoryId": "612810581061402624"
+	},
+	"642b6ac5bc274fddaadf57e3": {
+		"_id": "642b6ac5bc274fddaadf57e3",
+		"Name": "Rainbow Six Academy",
+		"Tag": "R6Ac",
+		"CommandChannelId": "1092601249884553286",
+		"VoiceChannelsIds": [
+			"1278096735251595305",
+			"1278096737256341585"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [],
+		"DiscordCategoryId": "612810581061402624"
+	},
+	"642cc2bf81b714e8f342ccfa": {
+		"_id": "642cc2bf81b714e8f342ccfa",
+		"Name": "Teamfight Tactics",
+		"Tag": "TFT",
+		"CommandChannelId": "1092981173875118152",
+		"VoiceChannelsIds": [
+			"1319437858871840788"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 20 * * 2",
+				"End": "0 00 23 * * 2"
+			},
+			{
+				"Start": "0 00 20 * * 3",
+				"End": "0 00 23 * * 3"
+			},
+			{
+				"Start": "0 00 20 * * 4",
+				"End": "0 00 23 * * 4"
+			}
+		],
+		"DiscordCategoryId": "688968057732726836"
+	},
+	"64408e2748ac52dbe2d7af62": {
+		"_id": "64408e2748ac52dbe2d7af62",
+		"Name": "EA SPORTS FC™ 25",
+		"Tag": "FC25",
+		"CommandChannelId": "1278505540099637248",
+		"VoiceChannelsIds": [
+			"1320872311691411487"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 14 * * 0",
+				"End": "0 00 17 * * 0"
+			},
+			{
+				"Start": "0 00 19 * * 1",
+				"End": "0 00 22 * * 1"
+			},
+			{
+				"Start": "0 00 14 * * 6",
+				"End": "0 00 17 * * 6"
+			}
+		],
+		"DiscordCategoryId": "883072035486588998"
+	},
+	"64e16a08639c17d83824cfa8": {
+		"_id": "64e16a08639c17d83824cfa8",
+		"Name": "League of Legends B",
+		"Tag": "LOLB",
+		"CommandChannelId": "1142628777705345117",
+		"VoiceChannelsIds": [
+			"1320533852384661534"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 30 20 * * 0",
+				"End": "59 59 23 * * 0"
+			},
+			{
+				"Start": "0 45 20 * * 1",
+				"End": "59 59 23 * * 1"
+			}
+		],
+		"DiscordCategoryId": "549954996050067506"
+	},
+	"64f62ee5257dd75e74425e0c": {
+		"_id": "64f62ee5257dd75e74425e0c",
+		"Name": "Teamfight Tactics B",
+		"Tag": "TFTB",
+		"CommandChannelId": "1092981173875118152",
+		"VoiceChannelsIds": [
+			"1319437858985214053"
+		],
+		"Logo": "",
+		"ScheduledTrainings": [
+			{
+				"Start": "0 00 20 * * 2",
+				"End": "0 00 23 * * 2"
+			},
+			{
+				"Start": "0 00 20 * * 3",
+				"End": "0 00 23 * * 3"
+			},
+			{
+				"Start": "0 00 20 * * 4",
+				"End": "0 00 23 * * 4"
+			}
+		],
+		"DiscordCategoryId": "688968057732726836"
+	}
+}

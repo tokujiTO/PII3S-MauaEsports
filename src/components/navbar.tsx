@@ -57,8 +57,8 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-      <nav className='text-oceanGreen fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between bg-white px-4 pr-8 text-2xl shadow-md lg:hidden'>
-        <img src={logo} alt='' />
+      <nav className='text-oceanGreen bg-deepBlue fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between px-[10%] text-2xl shadow-md lg:hidden'>
+        <img src={logo} alt='' className='h-16 object-cover' />
         <div className='hover:cursor-pointer' onClick={handleOpenMenu}>
           <List size={32} />
         </div>
@@ -68,7 +68,7 @@ export default function Navbar() {
             onClick={handleCloseMenu}
           >
             <div
-              className={`absolute top-0 left-full flex h-[100vh] w-[50vw] flex-col items-center justify-between gap-5 bg-white py-10 transition-transform duration-100 ${isMenuVisible ? "-translate-x-full" : "translate-x-0"}`}
+              className={`font-body bg-deepBlue absolute top-0 left-full flex h-[100vh] w-[50vw] flex-col items-center justify-between gap-5 py-10 text-white transition-transform duration-100 ${isMenuVisible ? "-translate-x-full" : "translate-x-0"}`}
             >
               <ul className='text-oceanGreen flex flex-col justify-center gap-10 text-center text-2xl font-thin'>
                 <li
@@ -99,6 +99,9 @@ export default function Navbar() {
                   Campeonatos
                 </li>
               </ul>
+              <div>
+                <img src={logo} alt='' className='h-20 object-cover' />
+              </div>
             </div>
           </div>
         )}
