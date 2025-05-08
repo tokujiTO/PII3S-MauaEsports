@@ -1,5 +1,6 @@
 import Footer from "../components/footer";
-import InfoSection from "../components/Home/infosection"
+import InfoSection from "../components/Home/infosection";
+import AnimatedElement from "../components/animatedElement";
 import Navbar from "../components/navbar";
 
 export default function Home() {
