@@ -5,7 +5,7 @@ interface InfoSectionProps {
   description: string
   logoSrc?: string
   altText?: string
-  reverse?: boolean
+git 
 }
 
 export default function InfoSection({
