@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useMembers } from '../../hooks/useMembers';
 import MemberCard from './memberCard';
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight, Plus } from '@phosphor-icons/react';
+import AddMemberModal from './addMemberModal';
 
 export default function Members() {
   const { members } = useMembers();
+  const [addModal, setAddModal] = useState(false);
 
   const memberPageSize = 5;
   const totalPages = Math.ceil(members.length / memberPageSize);
@@ -28,6 +30,12 @@ export default function Members() {
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
       <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
+        <div
+          className="text-deepBlue flex h-16 w-16 items-center justify-center rounded-full bg-white duration-300 hover:scale-125 hover:cursor-pointer"
+          onClick={() => setAddModal(true)}
+        >
+          <Plus size={32} />
+        </div>
       </div>
       <div className="flex flex-col gap-4 px-5">
         {currentMembers.map((member) => (
@@ -72,6 +80,14 @@ export default function Members() {
           </button>
         </div>
       </div>
+      <AddMemberModal
+        isOpen={addModal}
+        onClose={() => setAddModal(false)}
+        onSave={() => {
+          setAddModal(false);
+          window.location.reload();
+        }}
+      />
     </div>
   );
 }
