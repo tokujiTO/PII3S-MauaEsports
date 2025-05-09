@@ -1,12 +1,17 @@
 import { useState } from 'react';
-import { useMembers } from '../../hooks/useMembers';
+import { Member, useMembers } from '../../hooks/useMembers';
 import MemberCard from './memberCard';
-import { CaretLeft, CaretRight, Plus } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight, Funnel, Plus } from '@phosphor-icons/react';
 import AddMemberModal from './addMemberModal';
+import MemberConfirmDelete from './memberConfirmDelete';
+import MemberEditModal from './memberEditModal';
 
 export default function Members() {
   const { members } = useMembers();
   const [addModal, setAddModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selected, setSelected] = useState<Member | undefined>(undefined);
 
   const memberPageSize = 5;
   const totalPages = Math.ceil(members.length / memberPageSize);
@@ -28,18 +33,50 @@ export default function Members() {
 
   return (
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
+      <MemberConfirmDelete
+        isOpen={deleteModal}
+        member={selected}
+        onClose={() => setDeleteModal(false)}
+        onConfirm={() => {
+          console.log('confirm delete user:', selected);
+        }}
+      />
+      <MemberEditModal
+        isOpen={editModal}
+        member={selected}
+        onClose={() => setEditModal(false)}
+        onSave={() => {
+          console.log('save user:', selected);
+        }}
+      />
       <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
-        <div
-          className="text-deepBlue flex h-16 w-16 items-center justify-center rounded-full bg-white duration-300 hover:scale-125 hover:cursor-pointer"
-          onClick={() => setAddModal(true)}
-        >
-          <Plus size={32} />
+        <div className="flex items-center gap-4">
+          <button className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer">
+            <Funnel size={32} />
+          </button>
+          <button
+            className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer"
+            onClick={() => setAddModal(true)}
+          >
+            <Plus size={32} />
+          </button>
         </div>
       </div>
       <div className="flex flex-col gap-4 px-5">
         {currentMembers.map((member) => (
-          <MemberCard key={member.ra} member={member} />
+          <MemberCard
+            key={member.ra}
+            member={member}
+            onDelete={() => {
+              setSelected(member);
+              setDeleteModal(true);
+            }}
+            onEdit={() => {
+              setSelected(member);
+              setEditModal(true);
+            }}
+          />
         ))}
       </div>
       {currentMembers.length === 0 && (
