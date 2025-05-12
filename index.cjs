@@ -127,8 +127,12 @@ app.get('/player', async (req, res) => {
 
 app.post('/player', async (req, res) => {
   const nome = req.body.nome;
+  const nickname = req.body.nickname;
+  const ra = req.body.ra;
+  const area = req.body.area;
+  const cargo = req.body.cargo;
 
-  const player = new connection.Player({nome: nome});
+  const player = new connection.Player({nome: nome, nickname: nickname, ra: ra, area: area, cargo:cargo});
   await player.save();
   const players = await connection.Player.find();
 

@@ -32,9 +32,9 @@ export default function Members() {
     }
   };
 
-  async function cadastrarMembro(nome: string) {
+  async function cadastrarMembro(nome: string, nickname: string, ra: string, area: string, cargo: string) {
     const URL = `http://localhost:3000/player`;
-    (await axios.post(URL, {nome})).data;
+    (await axios.post(URL, {nome, nickname, ra, area, cargo})).data;
   }
 
   return (
@@ -129,6 +129,7 @@ export default function Members() {
         onSave={(membro) => {
           setAddModal(false);
           window.location.reload();
+          cadastrarMembro(membro.name, membro.nickName, membro.ra, membro.area, membro.role);
         }}
       />
     </div>
