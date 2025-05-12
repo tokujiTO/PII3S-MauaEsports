@@ -1,21 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logoColored.png';
-import { useMsal } from '@azure/msal-react';
+// import { useMsal } from '@azure/msal-react';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { instance } = useMsal();
+  // const { instance } = useMsal();
 
-  const handleLogin = () => {
-    instance
-      .loginPopup({ scopes: ['User.Read'] })
-      .then((response: unknown) => {
-        console.log('Login successful:', response);
-      })
-      .catch((error: unknown) => {
-        console.error('Login error:', error);
-      });
-  };
+  // const handleLogin = () => {
+  //   instance
+  //     .loginPopup({ scopes: ['User.Read'] })
+  //     .then((response: unknown) => {
+  //       console.log('Login successful:', response);
+  //     })
+  //     .catch((error: unknown) => {
+  //       console.error('Login error:', error);
+  //     });
+  // };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

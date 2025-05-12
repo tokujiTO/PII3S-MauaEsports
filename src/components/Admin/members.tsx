@@ -17,12 +17,12 @@ export default function Members() {
   const memberPageSize = 5;
   const totalPages = Math.ceil(members.length / memberPageSize);
   const [currentPage, setCurrentPage] = useState(0);
-  const startIndex = currentPage * memberPageSize;
-  const endIndex = startIndex + memberPageSize;
+  // const startIndex = currentPage * memberPageSize;
+  // const endIndex = startIndex + memberPageSize;
   // const currentMembers = members.slice(startIndex, endIndex);
 
   const [membros, setMembros] = useState<Member[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
 
   const handlePrevious = () => {
     if (currentPage > 0) {
@@ -51,7 +51,17 @@ export default function Members() {
       finally{
         setLoading(false);
       }
-    }
+  }
+
+  async function editarMembro(ra: string, novosDados:{
+    nome?: string;
+    ra?: string;
+    area?: string;
+    cargo?: string;
+  }){
+    const URL = `http://localhost:3000/player`;
+    await axios.put(URL, {ra, ...novosDados});
+  }
 
   useEffect(() => {
     fetchMembros();

@@ -139,6 +139,33 @@ app.post('/player', async (req, res) => {
   res.json(players);
 });
 
+app.put('/player', async (req, res) =>{
+  console.log("Rota /player [PUT] foi chamada");
+  const { ra, nome, cargo } = req.body;
+
+  if (!ra) {
+    return res.status(400).json({ erro: 'RA é obrigatório.' });
+  }
+
+  try {
+    const membroAtualizado = await connection.Player.findOneAndUpdate(
+      { ra },
+      { $set: {nome, cargo} },
+      { new: true }
+    );
+
+    if (!membroAtualizado) {
+      return res.status(404).json({ erro: 'Membro não encontrado.' });
+    }
+
+    res.status(200).json(membroAtualizado);
+  } 
+  catch (error) {
+    console.error("Erro ao atualizar o membro:", error); // <-- Isso é o que vai mostrar o erro real
+    res.status(500).json({ erro: 'Erro ao atualizar o membro.' });
+  }
+});
+
 // equipes
 app.get("/equipes", async (req, res) => {
   const e_id = req.body.e_id;

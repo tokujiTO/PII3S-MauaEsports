@@ -18,7 +18,7 @@ const mockMembers: Member[] = Array.from({ length: 38 }, (_, index) => ({
 
 export const useMembers = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [members, setMembers] = useState<Member[]>(mockMembers);
+  const [members] = useState<Member[]>(mockMembers);
 
   return { members };
 };

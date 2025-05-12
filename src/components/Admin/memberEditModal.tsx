@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Member } from '../../hooks/useMembers';
+import axios from 'axios';
 
 interface MemberEditModalProps {
   isOpen: boolean;
@@ -15,9 +16,9 @@ export default function MemberEditModal({
   member,
 }: MemberEditModalProps) {
   const [visible, setVisible] = useState(false);
-  const [name, setName] = useState(member?.name || '');
+  const [nome, setNome] = useState(member?.nome || '');
   const [ra, setRa] = useState(member?.ra || '');
-  const [role, setRole] = useState(member?.role || '');
+  const [cargo, setcargo] = useState(member?.cargo || '');
   const [hours, setHours] = useState(member?.hours || 0);
 
   useEffect(() => {
@@ -28,9 +29,9 @@ export default function MemberEditModal({
 
   useEffect(() => {
     if (member) {
-      setName(member.name);
+      setNome(member.nome);
       setRa(member.ra);
-      setRole(member.role);
+      setcargo(member.cargo);
       setHours(member.hours);
     }
   }, [member]);
@@ -44,8 +45,10 @@ export default function MemberEditModal({
     }, 100);
   };
 
-  const handleSave = () => {
-    onSave({ name, ra, role, hours });
+  const handleSave = async() => {
+    onSave({ nome, ra, cargo, hours });
+    const URL = `http://localhost:3000/player`;
+    await axios.put(URL, {ra, nome, cargo});
     handleClose();
   };
 
@@ -67,15 +70,15 @@ export default function MemberEditModal({
           <div className="h-1 w-full rounded-full bg-black" />
         </div>
         <div className="flex w-full flex-col gap-4">
-          <label className="text-xl font-medium" htmlFor="name">
+          <label className="text-xl font-medium" htmlFor="nome">
             Nome
           </label>
           <input
-            id="name"
+            id="nome"
             type="text"
             placeholder="Nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
           <label className="text-xl font-medium" htmlFor="ra">
@@ -89,15 +92,15 @@ export default function MemberEditModal({
             onChange={(e) => setRa(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
-          <label className="text-xl font-medium" htmlFor="role">
+          <label className="text-xl font-medium" htmlFor="cargo">
             Função
           </label>
           <input
-            id="role"
+            id="cargo"
             type="text"
             placeholder="Função"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
+            value={cargo}
+            onChange={(e) => setcargo(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
           <label className="text-xl font-medium" htmlFor="hours">
