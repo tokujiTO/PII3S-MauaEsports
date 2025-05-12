@@ -164,8 +164,8 @@ export default function Members() {
         onClose={() => setAddModal(false)}
         onSave={async (membro) => {
           setAddModal(false);
-          // window.location.reload();
           cadastrarMembro(membro.name, membro.nickName, membro.ra, membro.area, membro.role);
+          window.location.reload();
           fetchMembros();
         }}
       />
