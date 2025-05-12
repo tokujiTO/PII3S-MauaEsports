@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const connection = require('./backend/connection.cjs');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 // --- Authentication Middleware ---
 function authenticate(req, res, next) {

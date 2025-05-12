@@ -5,6 +5,7 @@ import { CaretLeft, CaretRight, Funnel, Plus } from '@phosphor-icons/react';
 import AddMemberModal from './addMemberModal';
 import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
+import axios from 'axios';
 
 export default function Members() {
   const { members } = useMembers();
@@ -30,6 +31,11 @@ export default function Members() {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  async function cadastrarMembro(nome: string) {
+    const URL = `http://localhost:3000/player`;
+    (await axios.post(URL, {nome})).data;
+  }
 
   return (
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
@@ -120,7 +126,7 @@ export default function Members() {
       <AddMemberModal
         isOpen={addModal}
         onClose={() => setAddModal(false)}
-        onSave={() => {
+        onSave={(membro) => {
           setAddModal(false);
           window.location.reload();
         }}
