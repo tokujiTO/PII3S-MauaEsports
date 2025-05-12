@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Member, useMembers } from '../../hooks/useMembers';
 import MemberCard from './memberCard';
 import { CaretLeft, CaretRight, Funnel, Plus } from '@phosphor-icons/react';
@@ -19,7 +19,10 @@ export default function Members() {
   const [currentPage, setCurrentPage] = useState(0);
   const startIndex = currentPage * memberPageSize;
   const endIndex = startIndex + memberPageSize;
-  const currentMembers = members.slice(startIndex, endIndex);
+  // const currentMembers = members.slice(startIndex, endIndex);
+
+  const [membros, setMembros] = useState<Member[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const handlePrevious = () => {
     if (currentPage > 0) {
@@ -36,6 +39,25 @@ export default function Members() {
     const URL = `http://localhost:3000/player`;
     (await axios.post(URL, {nome, nickname, ra, area, cargo})).data;
   }
+
+  async function fetchMembros() {
+      try{
+        const res = await axios.get(`http://localhost:3000/players`);
+        setMembros(res.data);
+      }
+      catch(err){
+        console.log(err);
+      }
+      finally{
+        setLoading(false);
+      }
+    }
+
+  useEffect(() => {
+    fetchMembros();
+  }, []);
+
+  console.log(membros);
 
   return (
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
@@ -70,10 +92,14 @@ export default function Members() {
         </div>
       </div>
       <div className="flex flex-col gap-4 px-5">
-        {currentMembers.map((member) => (
+        {membros.map((member) => (
           <MemberCard
             key={member.ra}
-            member={member}
+            member={{
+              nome: member.nome,
+              cargo: member.cargo,
+              ra: member.ra
+            }}
             onDelete={() => {
               setSelected(member);
               setDeleteModal(true);
@@ -85,7 +111,7 @@ export default function Members() {
           />
         ))}
       </div>
-      {currentMembers.length === 0 && (
+      {membros.length === 0 && (
         <div className="flex h-96 w-full items-center justify-center">
           <h1 className="text-4xl font-bold text-gray-500">
             Nenhum membro encontrado
@@ -126,10 +152,11 @@ export default function Members() {
       <AddMemberModal
         isOpen={addModal}
         onClose={() => setAddModal(false)}
-        onSave={(membro) => {
+        onSave={async (membro) => {
           setAddModal(false);
-          window.location.reload();
+          // window.location.reload();
           cadastrarMembro(membro.name, membro.nickName, membro.ra, membro.area, membro.role);
+          fetchMembros();
         }}
       />
     </div>
