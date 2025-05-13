@@ -53,16 +53,6 @@ export default function Members() {
       }
   }
 
-  async function editarMembro(ra: string, novosDados:{
-    nome?: string;
-    ra?: string;
-    area?: string;
-    cargo?: string;
-  }){
-    const URL = `http://localhost:3000/player`;
-    await axios.put(URL, {ra, ...novosDados});
-  }
-
   useEffect(() => {
     fetchMembros();
   }, []);

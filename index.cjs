@@ -140,7 +140,6 @@ app.post('/player', async (req, res) => {
 });
 
 app.put('/player', async (req, res) =>{
-  console.log("Rota /player [PUT] foi chamada");
   const { ra, nome, cargo } = req.body;
 
   if (!ra) {
@@ -161,7 +160,7 @@ app.put('/player', async (req, res) =>{
     res.status(200).json(membroAtualizado);
   } 
   catch (error) {
-    console.error("Erro ao atualizar o membro:", error); // <-- Isso é o que vai mostrar o erro real
+    console.error("Erro ao atualizar o membro:", error); 
     res.status(500).json({ erro: 'Erro ao atualizar o membro.' });
   }
 });
