@@ -3,8 +3,9 @@ import { useState } from 'react';
 export interface Member {
   cargo: string;
   nome: string;
-  // name: string;
+  nickname: string;
   ra: string;
+  area: string;
   hours: number;
   // role: string;
 }
@@ -17,7 +18,6 @@ export interface Member {
 // }));
 
 export const useMembers = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [members, setMembers] = useState<Member[]>();
 
   return { members, setMembers };

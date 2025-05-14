@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
+import { addMember } from '../../api/user';
 
 interface AddMemberModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (member: {
-    name: string;
-    nickName: string;
-    ra: string;
-    role: string;
-    area: string;
-  }) => void;
+  onSave: () => void;
 }
 
 export default function AddMemberModal({
@@ -37,8 +32,15 @@ export default function AddMemberModal({
     }, 100);
   };
 
-  const handleSave = () => {
-    onSave({ name, nickName, area, ra, role });
+  const handleSave = async () => {
+    addMember({
+      nome: name,
+      nickname: nickName,
+      ra,
+      area,
+      cargo: role,
+    });
+    onSave();
     handleClose();
   };
 

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Member } from '../../hooks/useMembers';
-import axios from 'axios';
+import { updateMember } from '../../api/user';
+import { Spinner } from '@phosphor-icons/react';
 
 interface MemberEditModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (updatedMember: Member) => void;
+  onSave: () => void;
   member?: Member;
 }
 
@@ -19,7 +20,7 @@ export default function MemberEditModal({
   const [nome, setNome] = useState(member?.nome || '');
   const [ra, setRa] = useState(member?.ra || '');
   const [cargo, setcargo] = useState(member?.cargo || '');
-  const [hours, setHours] = useState(member?.hours || 0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -32,7 +33,6 @@ export default function MemberEditModal({
       setNome(member.nome);
       setRa(member.ra);
       setcargo(member.cargo);
-      setHours(member.hours);
     }
   }, [member]);
 
@@ -40,15 +40,23 @@ export default function MemberEditModal({
 
   const handleClose = () => {
     setVisible(false);
+    setLoading(false);
     setTimeout(() => {
       onClose();
     }, 100);
   };
 
-  const handleSave = async() => {
-    onSave({ nome, ra, cargo, hours });
-    const URL = `http://localhost:3000/player`;
-    await axios.put(URL, {ra, nome, cargo});
+  const handleSave = async () => {
+    setLoading(true);
+    await updateMember({
+      nome: nome,
+      nickname: member?.nickname || '',
+      ra: ra || '',
+      area: member?.area || '',
+      cargo: cargo || '',
+    });
+    setLoading(false);
+    onSave();
     handleClose();
   };
 
@@ -103,17 +111,6 @@ export default function MemberEditModal({
             onChange={(e) => setcargo(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
-          <label className="text-xl font-medium" htmlFor="hours">
-            Horas
-          </label>
-          <input
-            id="hours"
-            type="number"
-            placeholder="Horas"
-            value={hours}
-            onChange={(e) => setHours(Number(e.target.value))}
-            className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-          />
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button
@@ -126,7 +123,11 @@ export default function MemberEditModal({
             onClick={handleSave}
             className="flex w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
           >
-            Salvar
+            {loading ? (
+              <Spinner size={32} className="animate-spin" />
+            ) : (
+              'Salvar'
+            )}
           </button>
         </div>
       </div>

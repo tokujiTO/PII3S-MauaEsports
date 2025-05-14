@@ -5,7 +5,7 @@ import { CaretLeft, CaretRight, Funnel, Plus } from '@phosphor-icons/react';
 import AddMemberModal from './addMemberModal';
 import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
-import axios from 'axios';
+import { fetchMembers } from '../../api/user';
 
 export default function Members() {
   const { members, setMembers } = useMembers();
@@ -13,8 +13,6 @@ export default function Members() {
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [selected, setSelected] = useState<Member | undefined>(undefined);
-
-  const [, setLoading] = useState(true);
 
   const handlePrevious = () => {
     if (currentPage > 0) {
@@ -26,28 +24,6 @@ export default function Members() {
       setCurrentPage(currentPage + 1);
     }
   };
-
-  async function cadastrarMembro(
-    nome: string,
-    nickname: string,
-    ra: string,
-    area: string,
-    cargo: string
-  ) {
-    const URL = `http://localhost:3000/player`;
-    (await axios.post(URL, { nome, nickname, ra, area, cargo })).data;
-  }
-
-  async function fetchMembros() {
-    try {
-      const res = await axios.get(`http://localhost:3000/players`);
-      setMembers(res.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   let totalPages = 0;
   const [currentPage, setCurrentPage] = useState(0);
@@ -62,7 +38,7 @@ export default function Members() {
   }
 
   useEffect(() => {
-    fetchMembros();
+    fetchMembers(setMembers);
   }, []);
 
   console.log(members);
@@ -81,9 +57,7 @@ export default function Members() {
         isOpen={editModal}
         member={selected}
         onClose={() => setEditModal(false)}
-        onSave={() => {
-          console.log('save user:', selected);
-        }}
+        onSave={() => window.location.reload()}
       />
       <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
@@ -99,7 +73,7 @@ export default function Members() {
           </button>
         </div>
       </div>
-      <div className='flex w-full items-center justify-between rounded-2xl bg-deepBlue p-4 text-4xl font-bold text-white'>
+      <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
         <h1>Nome</h1>
         <h1>RA</h1>
         <h1>Função</h1>
@@ -166,18 +140,7 @@ export default function Members() {
       <AddMemberModal
         isOpen={addModal}
         onClose={() => setAddModal(false)}
-        onSave={async (membro) => {
-          setAddModal(false);
-          cadastrarMembro(
-            membro.name,
-            membro.nickName,
-            membro.ra,
-            membro.area,
-            membro.role
-          );
-          window.location.reload();
-          fetchMembros();
-        }}
+        onSave={() => window.location.reload}
       />
     </div>
   );
