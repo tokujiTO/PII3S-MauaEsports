@@ -19,8 +19,12 @@ export default function MemberCard({
   return (
     <div className="bg-deepBlue flex h-24 w-full items-center justify-between rounded-lg p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
       <h1 className="mt-auto mb-auto flex w-1/5">{member.nome}</h1>
-      <h2 className="mt-auto mb-auto flex w-1/5">{member.ra}</h2>
-      <h2 className="mt-auto mb-auto flex w-1/5">{member.cargo}</h2>
+      <h2 className="mt-auto mb-auto flex w-1/5">
+        {member.ra || 'sem RA cadastrado'}
+      </h2>
+      <h2 className="mt-auto mb-auto flex w-1/5">
+        {member.cargo || 'sem cargo cadastrado'}
+      </h2>
 
       <div className="flex h-full w-1/5 items-center justify-between gap-2">
         <button

@@ -8,20 +8,12 @@ import MemberEditModal from './memberEditModal';
 import axios from 'axios';
 
 export default function Members() {
-  const { members } = useMembers();
+  const { members, setMembers } = useMembers();
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [selected, setSelected] = useState<Member | undefined>(undefined);
 
-  const memberPageSize = 5;
-  const totalPages = Math.ceil(members.length / memberPageSize);
-  const [currentPage, setCurrentPage] = useState(0);
-  // const startIndex = currentPage * memberPageSize;
-  // const endIndex = startIndex + memberPageSize;
-  // const currentMembers = members.slice(startIndex, endIndex);
-
-  const [membros, setMembros] = useState<Member[]>([]);
   const [, setLoading] = useState(true);
 
   const handlePrevious = () => {
@@ -35,29 +27,45 @@ export default function Members() {
     }
   };
 
-  async function cadastrarMembro(nome: string, nickname: string, ra: string, area: string, cargo: string) {
+  async function cadastrarMembro(
+    nome: string,
+    nickname: string,
+    ra: string,
+    area: string,
+    cargo: string
+  ) {
     const URL = `http://localhost:3000/player`;
-    (await axios.post(URL, {nome, nickname, ra, area, cargo})).data;
+    (await axios.post(URL, { nome, nickname, ra, area, cargo })).data;
   }
 
   async function fetchMembros() {
-      try{
-        const res = await axios.get(`http://localhost:3000/players`);
-        setMembros(res.data);
-      }
-      catch(err){
-        console.log(err);
-      }
-      finally{
-        setLoading(false);
-      }
+    try {
+      const res = await axios.get(`http://localhost:3000/players`);
+      setMembers(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  let totalPages = 0;
+  const [currentPage, setCurrentPage] = useState(0);
+  let currentMembers: Member[] = [];
+
+  if (members) {
+    const memberPageSize = 5;
+    totalPages = Math.ceil(members.length / memberPageSize);
+    const startIndex = currentPage * memberPageSize;
+    const endIndex = startIndex + memberPageSize;
+    currentMembers = members.slice(startIndex, endIndex);
   }
 
   useEffect(() => {
     fetchMembros();
   }, []);
 
-  console.log(membros);
+  console.log(members);
 
   return (
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
@@ -91,14 +99,20 @@ export default function Members() {
           </button>
         </div>
       </div>
+      <div className='flex w-full items-center justify-between rounded-2xl bg-deepBlue p-4 text-4xl font-bold text-white'>
+        <h1>Nome</h1>
+        <h1>RA</h1>
+        <h1>Função</h1>
+        <h1>Horas</h1>
+      </div>
       <div className="flex flex-col gap-4 px-5">
-        {membros.map((member) => (
+        {currentMembers.map((member) => (
           <MemberCard
             key={member.ra}
             member={{
               nome: member.nome,
               cargo: member.cargo,
-              ra: member.ra
+              ra: member.ra,
             }}
             onDelete={() => {
               setSelected(member);
@@ -111,7 +125,7 @@ export default function Members() {
           />
         ))}
       </div>
-      {membros.length === 0 && (
+      {currentMembers.length === 0 && (
         <div className="flex h-96 w-full items-center justify-center">
           <h1 className="text-4xl font-bold text-gray-500">
             Nenhum membro encontrado
@@ -154,7 +168,13 @@ export default function Members() {
         onClose={() => setAddModal(false)}
         onSave={async (membro) => {
           setAddModal(false);
-          cadastrarMembro(membro.name, membro.nickName, membro.ra, membro.area, membro.role);
+          cadastrarMembro(
+            membro.name,
+            membro.nickName,
+            membro.ra,
+            membro.area,
+            membro.role
+          );
           window.location.reload();
           fetchMembros();
         }}
