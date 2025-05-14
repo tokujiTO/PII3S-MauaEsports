@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { deleteMember} from '../../api/user';
 import { Member } from '../../hooks/useMembers';
 
 interface MemberConfirmDeleteProps {
@@ -15,12 +16,20 @@ export default function MemberConfirmDelete({
   member,
 }: MemberConfirmDeleteProps) {
   const [visible, setVisible] = useState(false);
+  const [ra, setRa] = useState(member?.ra || '');
+  console.log("BBB" + member);
 
   useEffect(() => {
     setTimeout(() => {
       setVisible(isOpen);
     }, 100);
   }, [isOpen]);
+
+   useEffect(() => {
+      if (member) {
+        setRa(member.ra);
+      }
+    }, [member]);
 
   if (!isOpen) return null;
 
@@ -31,8 +40,10 @@ export default function MemberConfirmDelete({
     }, 100);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     onConfirm();
+    console.log("AAA" + ra);
+    await deleteMember(ra);
     handleClose();
   };
 
@@ -51,7 +62,7 @@ export default function MemberConfirmDelete({
       >
         <h1 className="text-2xl font-bold">Confirmar Exclusão</h1>
         <p className="text-center text-lg text-gray-600">
-          Tem certeza de que deseja excluir {member?.name}? Esta ação não pode
+          Tem certeza de que deseja excluir {member?.nome}? Esta ação não pode
           ser desfeita.
         </p>
         <div className="flex w-full justify-center gap-4">

@@ -165,9 +165,27 @@ app.put('/player', async (req, res) =>{
 
     res.status(200).json(membroAtualizado);
   } 
-  catch (error) {
-    console.error("Erro ao atualizar o membro:", error); 
+  catch (err) {
+    console.error("Erro ao atualizar o membro:", err); 
     res.status(500).json({ erro: 'Erro ao atualizar o membro.' });
+  }
+});
+
+app.delete('/player', async (req, res) => {
+  const { _id } = req.body;
+  const playerExists = await connection.Player.findById(_id);
+
+  if (!playerExists) {
+    return res.status(404).json({ erro: 'Membro com esse RA não foi encontrado.' });
+  }
+
+  try{
+    await connection.Player.findByIdAndDelete(_id);
+    res.status(200)
+  }
+  catch(err){
+    console.error("Erro em apagar o membro:", err); 
+    res.status(500).json({ erro: 'Erro em apagar o membro.' });
   }
 });
 
