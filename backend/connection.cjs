@@ -18,6 +18,12 @@ const Equipes = mongoose.model("Equipes", mongoose.Schema({
     membros: {type: [String]}
 }).plugin(uniqueValidator).plugin(AutoIncrement, { inc_field: 'e_id' }));
 
+const Evento = mongoose.model("Evento", mongoose.Schema({
+    titulo: {type: String, required: true},
+    data: {type: Date, required: true},
+    descricao: {type: String, required: true}
+}));
+
 async function connectToMongo() {
     try{
         await mongoose.connect(`mongodb+srv://${USUARIO}:${SENHA}@cluster0.efzawfk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
@@ -31,3 +37,4 @@ async function connectToMongo() {
 module.exports.connectToMongo = connectToMongo;
 module.exports.Player = Player;
 module.exports.Equipes = Equipes;
+module.exports.Evento = Evento;

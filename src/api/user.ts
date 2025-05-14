@@ -61,7 +61,6 @@ export const updateMember = async (member: {
 export const deleteMember = async (ra: string) => {
   const response = await axios.get(`/player`, {params: {ra}});
   const _id = response.data._id;
-  console.log("aqui foi" + _id);
   try {
     const response = await axios.delete(`/player`, {data: {_id}});
     return response.data;

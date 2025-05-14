@@ -50,7 +50,7 @@ export default function Members() {
         member={selected}
         onClose={() => setDeleteModal(false)}
         onConfirm={() => {
-          console.log('confirm delete user:', selected);
+          // console.log('confirm delete user:', selected);
         }}
       />
       <MemberEditModal
