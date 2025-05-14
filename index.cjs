@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json());
 
 // --- Authentication Middleware ---
 function authenticate(req, res, next) {
@@ -115,9 +116,9 @@ app.get('/players', async (req, res) => {
 });
 
 app.get('/player', async (req, res) => {
-  const p_id = req.body.p_id;
+  const ra = req.query.ra || req.query.raAntigo;
 
-  const playerExists = await connection.Player.findOne({p_id: p_id});
+  const playerExists = await connection.Player.findOne({ra: ra});
   if(!playerExists){
     return res.status(401).json({ mensagem: "Usuário não existe" });
   }
@@ -140,16 +141,21 @@ app.post('/player', async (req, res) => {
 });
 
 app.put('/player', async (req, res) =>{
-  const { ra, nome, cargo } = req.body;
+  const { _id, ra, nome, cargo } = req.body;
+  const playerExists = await connection.Player.findById(_id);
 
+  if (!playerExists) {
+    return res.status(404).json({ erro: 'Membro com esse RA não foi encontrado.' });
+  }
+  
   if (!ra) {
     return res.status(400).json({ erro: 'RA é obrigatório.' });
   }
 
   try {
-    const membroAtualizado = await connection.Player.findOneAndUpdate(
-      { ra },
-      { $set: {nome, cargo} },
+    const membroAtualizado = await connection.Player.findByIdAndUpdate(
+      _id ,
+      { $set: {ra, nome, cargo} },
       { new: true }
     );
 

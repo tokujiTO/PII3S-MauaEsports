@@ -24,7 +24,7 @@ export const addMember = async (member: {
   cargo: string;
 }) => {
   try {
-    const response = await axios.post(API_URL, member);
+    const response = await axios.post(`/player`, member);
     return response.data;
   } catch (error) {
     console.error('Error adding member:', error);
@@ -38,10 +38,20 @@ export const updateMember = async (member: {
   ra: string;
   area: string;
   cargo: string;
+  raAntigo: string;
 }) => {
+  // estamos procurando o membro por RA, logo não podemos alterar o RA
+  // para alterar o ra precisamos procurar o membro pelo _id
+  // para pegar o id temos que fazer um /get palyer pelo RA antigo que retorna o _id
+  // enviamos o _id ao backend e poderemos alterar o RA
+
   try {
-    const response = await axios.put(`${API_URL}/${member.ra}`, member);
-    return response.data;
+    const { ra, nome, cargo, raAntigo } = member;
+    const response = await axios.get(`/player`, {params: {raAntigo}});
+    const _id = response.data._id;
+    
+    const response2 = await axios.put(`/player`, {_id, ra, nome, cargo });
+    return response2.data;
   } catch (error) {
     console.error('Error updating member:', error);
     throw error;

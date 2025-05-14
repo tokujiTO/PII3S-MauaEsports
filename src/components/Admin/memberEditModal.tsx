@@ -19,6 +19,7 @@ export default function MemberEditModal({
   const [visible, setVisible] = useState(false);
   const [nome, setNome] = useState(member?.nome || '');
   const [ra, setRa] = useState(member?.ra || '');
+  const [raAntigo, setRaAntigo] = useState(member?.ra || '');
   const [cargo, setcargo] = useState(member?.cargo || '');
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +32,7 @@ export default function MemberEditModal({
   useEffect(() => {
     if (member) {
       setNome(member.nome);
+      setRaAntigo(member.ra);
       setRa(member.ra);
       setcargo(member.cargo);
     }
@@ -54,6 +56,7 @@ export default function MemberEditModal({
       ra: ra || '',
       area: member?.area || '',
       cargo: cargo || '',
+      raAntigo: raAntigo
     });
     setLoading(false);
     onSave();

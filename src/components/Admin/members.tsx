@@ -87,6 +87,7 @@ export default function Members() {
               nome: member.nome,
               cargo: member.cargo,
               ra: member.ra,
+              // raAntigo: member.raAntigo
             }}
             onDelete={() => {
               setSelected(member);

@@ -9,7 +9,7 @@ const Player = mongoose.model("Player", mongoose.Schema({
     nome: {type: String, required: true},
     nickname: {type: String},
     ra: {type: String, required: true},
-    area: {type: String, required: true},
+    area: {type: String, required: false},
     cargo: {type: String, required: true}
 }).plugin(uniqueValidator).plugin(AutoIncrement, { inc_field: 'p_id' }));
 
