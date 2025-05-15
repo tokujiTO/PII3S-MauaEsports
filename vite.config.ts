@@ -11,7 +11,7 @@ export default defineConfig({
         changeOrigin: true,
       },
       '/api': {
-        target: 'https://api-esports.lcstuber.net',
+        target: import.meta.env.VITE_API_MAUAE,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
