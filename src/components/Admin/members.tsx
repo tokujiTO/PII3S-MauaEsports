@@ -50,7 +50,6 @@ export default function Members() {
         member={selected}
         onClose={() => setDeleteModal(false)}
         onConfirm={() => {
-          setDeleteModal(false);
           fetchMembers(setMembers);
         }}
       />

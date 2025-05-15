@@ -41,7 +41,8 @@ export default function MemberConfirmDelete({
   };
 
   const handleConfirm = async () => {
-    await deleteMember(ra);
+    const response = await deleteMember(ra);
+    console.log(response);
     onConfirm();
     handleClose();
   };
