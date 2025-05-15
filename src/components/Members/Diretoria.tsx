@@ -1,34 +1,33 @@
-import Carousel from "../Carousel"
+import { Member } from '../../hooks/useMembers';
+import CarouselMember from '../CarouselMember';
 
-const data = [
-  {
-    name: "John Doe",
-    image: "/images/john_doe.jpg",
-    role: "President",
-    linkedin: "https://www.linkedin.com/in/johndoe"
-  },
-  {
-    name: "Jane Smith",
-    image: "/images/jane_smith.jpg",
-    role: "Vice President",
-    linkedin: "https://www.linkedin.com/in/janesmith"
-  },
-  {
-    name: "Alice Johnson",
-    image: "/images/alice_johnson.jpg",
-    role: "Treasurer"
-  },
-  {
-    name: "Bob Brown",
-    image: "/images/bob_brown.jpg"
-  }
-]
+interface DiretoriaProps {
+  diretoria: Member[] | undefined;
+}
 
-export default function Diretoria() {
+export default function Diretoria({ diretoria }: DiretoriaProps) {
   return (
-    <div className='from-darkBlue font-body to-deepBlue flex flex-col items-center justify-center bg-gradient-to-t py-8 text-black'>
-      <h1 className='mb-4 text-7xl font-bold text-white'>Diretoria</h1>
-      <Carousel data={data} />
+    <div className="from-darkBlue font-body to-deepBlue flex flex-col items-center justify-center bg-gradient-to-t py-8 text-black">
+      <h1 className="mb-4 text-7xl font-bold text-white">Diretoria</h1>
+      {diretoria != undefined ? (
+        diretoria.length > 0 ? (
+          <div className="mb-8 flex w-full items-center justify-center">
+            <CarouselMember data={diretoria} />
+          </div>
+        ) : (
+          <div className="mb-8 flex w-full items-center justify-center">
+            <h2 className="text-3xl font-bold text-white">
+              Nenhum membro encontrado
+            </h2>
+          </div>
+        )
+      ) : (
+        <div className="flex h-96 w-full items-center justify-center">
+          <div className="h-16 w-16 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
+          <p className="ml-4 text-white">Carregando...</p>
+        </div>
+      )}
+      <div className="mb-8 flex w-full items-center justify-center"></div>
     </div>
-  )
+  );
 }

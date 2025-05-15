@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export interface Member {
+  image?: string;
   cargo: string;
   nome: string;
   nickname: string;
