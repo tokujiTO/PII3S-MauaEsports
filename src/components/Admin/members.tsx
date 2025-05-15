@@ -141,7 +141,7 @@ export default function Members() {
       <AddMemberModal
         isOpen={addModal}
         onClose={() => setAddModal(false)}
-        onSave={() => window.location.reload()}
+        onSave={() => fetchMembers(setMembers)}
       />
     </div>
   );

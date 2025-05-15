@@ -48,13 +48,17 @@ app.get('/trains/all', authenticate, (req, res) => {
   const status = req.query['Status'];
 
   if (startTimestampGt) {
-    filteredTrains = filteredTrains.filter(t => t.StartTimestamp > Number(startTimestampGt));
+    filteredTrains = filteredTrains.filter(
+      (t) => t.StartTimestamp > Number(startTimestampGt)
+    );
   }
   if (startTimestampLt) {
-    filteredTrains = filteredTrains.filter(t => t.StartTimestamp < Number(startTimestampLt));
+    filteredTrains = filteredTrains.filter(
+      (t) => t.StartTimestamp < Number(startTimestampLt)
+    );
   }
   if (status) {
-    filteredTrains = filteredTrains.filter(t => t.Status === status);
+    filteredTrains = filteredTrains.filter((t) => t.Status === status);
   }
 
   res.json(filteredTrains);
@@ -87,21 +91,30 @@ app.patch('/modality', authenticate, (req, res) => {
     return res.status(404).json({ error: 'Modality not found' });
   }
   if (!Array.isArray(ScheduledTrainings)) {
-    return res.status(400).json({ error: 'ScheduledTrainings must be an array' });
+    return res
+      .status(400)
+      .json({ error: 'ScheduledTrainings must be an array' });
   }
-  
+
   // Simple regex to validate a 6-field CRON expression (seconds, minutes, hours, day-of-month, month, day-of-week)
-  const cronRegex = /^(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)$/;
-  
+  const cronRegex =
+    /^(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)\s+(\d{1,2}|\*)$/;
+
   for (const training of ScheduledTrainings) {
     if (!training.Start || !training.End) {
-      return res.status(400).json({ error: 'Each ScheduledTraining must have Start and End' });
+      return res
+        .status(400)
+        .json({ error: 'Each ScheduledTraining must have Start and End' });
     }
     if (!cronRegex.test(training.Start)) {
-      return res.status(400).json({ error: `Invalid CRON expression for Start: ${training.Start}` });
+      return res.status(400).json({
+        error: `Invalid CRON expression for Start: ${training.Start}`,
+      });
     }
     if (!cronRegex.test(training.End)) {
-      return res.status(400).json({ error: `Invalid CRON expression for End: ${training.End}` });
+      return res
+        .status(400)
+        .json({ error: `Invalid CRON expression for End: ${training.End}` });
     }
   }
 
@@ -118,11 +131,11 @@ app.get('/players', async (req, res) => {
 app.get('/player', async (req, res) => {
   const ra = req.query.ra || req.query.raAntigo;
 
-  const playerExists = await connection.Player.findOne({ra: ra});
-  if(!playerExists){
-    return res.status(401).json({ mensagem: "Usuário não existe" });
+  const playerExists = await connection.Player.findOne({ ra: ra });
+  if (!playerExists) {
+    return res.status(401).json({ mensagem: 'Usuário não existe' });
   }
-  
+
   res.json(playerExists);
 });
 
@@ -133,29 +146,37 @@ app.post('/player', async (req, res) => {
   const area = req.body.area;
   const cargo = req.body.cargo;
 
-  const player = new connection.Player({nome: nome, nickname: nickname, ra: ra, area: area, cargo:cargo});
+  const player = new connection.Player({
+    nome: nome,
+    nickname: nickname,
+    ra: ra,
+    area: area,
+    cargo: cargo,
+  });
   await player.save();
   const players = await connection.Player.find();
 
   res.json(players);
 });
 
-app.put('/player', async (req, res) =>{
+app.put('/player', async (req, res) => {
   const { _id, ra, nome, cargo } = req.body;
   const playerExists = await connection.Player.findById(_id);
 
   if (!playerExists) {
-    return res.status(404).json({ erro: 'Membro com esse RA não foi encontrado.' });
+    return res
+      .status(404)
+      .json({ erro: 'Membro com esse RA não foi encontrado.' });
   }
-  
+
   if (!ra) {
     return res.status(400).json({ erro: 'RA é obrigatório.' });
   }
 
   try {
     const membroAtualizado = await connection.Player.findByIdAndUpdate(
-      _id ,
-      { $set: {ra, nome, cargo} },
+      _id,
+      { $set: { ra, nome, cargo } },
       { new: true }
     );
 
@@ -164,9 +185,8 @@ app.put('/player', async (req, res) =>{
     }
 
     res.status(200).json(membroAtualizado);
-  } 
-  catch (err) {
-    console.error("Erro ao atualizar o membro:", err); 
+  } catch (err) {
+    console.error('Erro ao atualizar o membro:', err);
     res.status(500).json({ erro: 'Erro ao atualizar o membro.' });
   }
 });
@@ -176,26 +196,27 @@ app.delete('/player', async (req, res) => {
   const playerExists = await connection.Player.findById(_id);
 
   if (!playerExists) {
-    return res.status(404).json({ erro: 'Membro com esse RA não foi encontrado.' });
+    return res
+      .status(404)
+      .json({ erro: 'Membro com esse RA não foi encontrado.' });
   }
 
-  try{
+  try {
     await connection.Player.findByIdAndDelete(_id);
-    res.status(200)
-  }
-  catch(err){
-    console.error("Erro em apagar o membro:", err); 
+    res.status(200).json({ mensagem: 'Membro deletado com sucesso', id: _id });
+  } catch (err) {
+    console.error('Erro em apagar o membro:', err);
     res.status(500).json({ erro: 'Erro em apagar o membro.' });
   }
 });
 
 // equipes
-app.get("/equipes", async (req, res) => {
+app.get('/equipes', async (req, res) => {
   const e_id = req.body.e_id;
 
-  const equipeExists = await connection.Equipes.findOne({e_id:e_id});
-  if(!equipeExists){
-    return res.status(401).json({mensagem: "Equipe não existe"});
+  const equipeExists = await connection.Equipes.findOne({ e_id: e_id });
+  if (!equipeExists) {
+    return res.status(401).json({ mensagem: 'Equipe não existe' });
   }
 
   res.json(equipeExists);
@@ -205,7 +226,7 @@ app.post('/equipe', async (req, res) => {
   const nome = req.body.nome;
   const membros = req.body.membros;
 
-  const equipe = new connection.Equipes({nome:nome, membros:membros});
+  const equipe = new connection.Equipes({ nome: nome, membros: membros });
   await equipe.save();
   const equipes = await connection.Equipes.find();
 

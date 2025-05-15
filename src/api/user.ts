@@ -47,10 +47,10 @@ export const updateMember = async (member: {
 
   try {
     const { ra, nome, cargo, raAntigo } = member;
-    const response = await axios.get(`/player`, {params: {raAntigo}});
+    const response = await axios.get(`/player`, { params: { raAntigo } });
     const _id = response.data._id;
 
-    const response2 = await axios.put(`/player`, {_id, ra, nome, cargo });
+    const response2 = await axios.put(`/player`, { _id, ra, nome, cargo });
     return response2.data;
   } catch (error) {
     console.error('Error updating member:', error);
@@ -58,11 +58,9 @@ export const updateMember = async (member: {
   }
 };
 
-export const deleteMember = async (ra: string) => {
-  const response = await axios.get(`/player`, {params: {ra}});
-  const _id = response.data._id;
+export const deleteMember = async (_id: string) => {
   try {
-    const response = await axios.delete(`/player`, {data: {_id}});
+    const response = await axios.delete(`/player`, { data: { _id } });
     return response.data;
   } catch (error) {
     console.error('Error deleting member:', error);

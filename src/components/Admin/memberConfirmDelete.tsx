@@ -16,8 +16,7 @@ export default function MemberConfirmDelete({
   member,
 }: MemberConfirmDeleteProps) {
   const [visible, setVisible] = useState(false);
-  const [ra, setRa] = useState(member?.ra || '');
-  console.log('BBB' + member);
+  const [id, setId] = useState(member?._id || '');
 
   useEffect(() => {
     setTimeout(() => {
@@ -26,8 +25,8 @@ export default function MemberConfirmDelete({
   }, [isOpen]);
 
   useEffect(() => {
-    if (member) {
-      setRa(member.ra);
+    if (member?._id) {
+      setId(member._id);
     }
   }, [member]);
 
@@ -41,7 +40,7 @@ export default function MemberConfirmDelete({
   };
 
   const handleConfirm = async () => {
-    const response = await deleteMember(ra);
+    const response = await deleteMember(id);
     console.log(response);
     onConfirm();
     handleClose();

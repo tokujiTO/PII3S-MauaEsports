@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { addMember } from '../../api/user';
+import { Spinner } from '@phosphor-icons/react';
 
 interface AddMemberModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export default function AddMemberModal({
   const [ra, setRa] = useState('');
   const [area, setArea] = useState('');
   const [role, setRole] = useState('user');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -33,7 +35,8 @@ export default function AddMemberModal({
   };
 
   const handleSave = async () => {
-    addMember({
+    setLoading(true);
+    await addMember({
       nome: name,
       nickname: nickName,
       ra,
@@ -42,6 +45,7 @@ export default function AddMemberModal({
     });
     onSave();
     handleClose();
+    setLoading(false);
   };
 
   if (!isOpen) return null;
@@ -147,7 +151,11 @@ export default function AddMemberModal({
             onClick={handleSave}
             className="flex w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
           >
-            Salvar
+            {loading ? (
+              <Spinner size={32} className="animate-spin" />
+            ) : (
+              'Salvar'
+            )}
           </button>
         </div>
       </div>
