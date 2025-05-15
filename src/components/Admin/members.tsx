@@ -86,6 +86,7 @@ export default function Members() {
             member={{
               nome: member.nome,
               cargo: member.cargo,
+              nickname: member.nickname,
               ra: member.ra,
               horas: member.horas,
             }}

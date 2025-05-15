@@ -74,13 +74,36 @@ export const updateMember = async (member: {
   }
 };
 
-export const getPlayerHours = async (playerId: string) => {
+export const getEvents = async () => {
   try {
     const response = await axios.get(
-      `${apiMauaE}/trains/all?StartTimestamp=1704092400`
+      `${apiMauaE}/trains/all?StartTimestamp=1704092400`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+        },
+      }
     );
 
     const events: Events[] = response.data;
+    return events;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw error;
+  }
+};
+
+export const getPlayerHours = async (playerId: string) => {
+  try {
+    const response = await axios.get(`/api/trains/all`, {
+      params: { StartTimestamp: 1704092400 },
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
+
+    const events: Events[] = response.data;
+    console.log('PlayerId:', playerId);
     let totalMilliseconds = 0;
 
     // Calcula o tempo total em milissegundos
