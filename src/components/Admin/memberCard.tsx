@@ -4,7 +4,7 @@ interface MemberCardProps {
   member: {
     nome: string;
     cargo: string;
-    // horas: number;
+    horas: number;
     ra: string;
   };
   onDelete: () => void;
@@ -18,7 +18,7 @@ export default function MemberCard({
 }: MemberCardProps) {
   return (
     <div className="bg-deepBlue flex h-24 w-full items-center justify-between rounded-lg p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
-      <h1 className="mt-auto mb-auto flex w-1/5">{member.nome}</h1>
+      <h1 className="mt-auto mb-auto flex w-1/5">{member.nome.split(" ")[0]}</h1>
       <h2 className="mt-auto mb-auto flex w-1/5">
         {member.ra || 'sem RA cadastrado'}
       </h2>
@@ -42,7 +42,7 @@ export default function MemberCard({
         <div className="flex h-full w-3/4 items-center justify-center rounded-lg bg-white text-4xl text-black">
           <div className="flex items-end gap-2 text-black">
             <p>
-              {/*{member.horas} */} <span className="text-xl">horas</span>
+              {member.horas} <span className="text-xl">horas</span>
             </p>
           </div>
         </div>

@@ -6,7 +6,7 @@ export interface Member {
   nickname: string;
   ra: string;
   area: string;
-  hours: number;
+  horas: number;
   // role: string;
 }
 

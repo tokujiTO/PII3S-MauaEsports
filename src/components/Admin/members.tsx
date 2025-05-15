@@ -50,7 +50,8 @@ export default function Members() {
         member={selected}
         onClose={() => setDeleteModal(false)}
         onConfirm={() => {
-          // console.log('confirm delete user:', selected);
+          setDeleteModal(false);
+          window.location.reload();
         }}
       />
       <MemberEditModal
@@ -76,7 +77,7 @@ export default function Members() {
       <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
         <h1>Nome</h1>
         <h1>RA</h1>
-        <h1>Função</h1>
+        <h1>Cargo</h1>
         <h1>Horas</h1>
       </div>
       <div className="flex flex-col gap-4 px-5">
@@ -87,7 +88,7 @@ export default function Members() {
               nome: member.nome,
               cargo: member.cargo,
               ra: member.ra,
-              // raAntigo: member.raAntigo
+              horas: member.horas,
             }}
             onDelete={() => {
               setSelected(member);
@@ -141,7 +142,7 @@ export default function Members() {
       <AddMemberModal
         isOpen={addModal}
         onClose={() => setAddModal(false)}
-        onSave={() => window.location.reload}
+        onSave={() => window.location.reload()}
       />
     </div>
   );

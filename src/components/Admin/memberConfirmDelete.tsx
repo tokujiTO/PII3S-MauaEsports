@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { deleteMember} from '../../api/user';
+import { deleteMember } from '../../api/user';
 import { Member } from '../../hooks/useMembers';
 
 interface MemberConfirmDeleteProps {
@@ -17,7 +17,7 @@ export default function MemberConfirmDelete({
 }: MemberConfirmDeleteProps) {
   const [visible, setVisible] = useState(false);
   const [ra, setRa] = useState(member?.ra || '');
-  console.log("BBB" + member);
+  console.log('BBB' + member);
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,11 +25,11 @@ export default function MemberConfirmDelete({
     }, 100);
   }, [isOpen]);
 
-   useEffect(() => {
-      if (member) {
-        setRa(member.ra);
-      }
-    }, [member]);
+  useEffect(() => {
+    if (member) {
+      setRa(member.ra);
+    }
+  }, [member]);
 
   if (!isOpen) return null;
 
@@ -41,10 +41,9 @@ export default function MemberConfirmDelete({
   };
 
   const handleConfirm = async () => {
-    onConfirm();
-    console.log("AAA" + ra);
     await deleteMember(ra);
     handleClose();
+    onConfirm();
   };
 
   return (
