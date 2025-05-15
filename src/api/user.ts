@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Member } from '../hooks/useMembers';
 
-interface Events {
+export interface Events {
   _id: string;
   StartTimestamp: number;
   ScheduledStart: string;
@@ -11,14 +11,13 @@ interface Events {
   Status: string;
 }
 
-interface Player {
+export interface Player {
   PlayerId: string;
   EntranceTimestamp: number;
   ExitTimestamp: number;
 }
 
 const API_URL = 'http://localhost:3000/players';
-const apiMauaE = import.meta.env.VITE_API_MAUAE;
 // Removed the top-level useMembers call as it violates React Hook rules.
 
 export const fetchMembers = async (setMembers: (members: Member[]) => void) => {
@@ -76,14 +75,12 @@ export const updateMember = async (member: {
 
 export const getEvents = async () => {
   try {
-    const response = await axios.get(
-      `${apiMauaE}/trains/all?StartTimestamp=1704092400`,
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-        },
-      }
-    );
+    const response = await axios.get(`/api/trains/all`, {
+      params: { StartTimestamp: 1704092400 },
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
 
     const events: Events[] = response.data;
     return events;

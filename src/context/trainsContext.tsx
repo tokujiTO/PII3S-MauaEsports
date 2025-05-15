@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { getEvents } from '../api/user';
 
 interface Events {
@@ -20,6 +20,7 @@ interface Player {
 interface TrainsContextProps {
   events: Events[];
   loading: boolean;
+  fetchEvents: () => Promise<void>;
 }
 
 export const TrainsContext = createContext<TrainsContextProps | undefined>(
@@ -32,23 +33,19 @@ export const TrainsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [events, setEvents] = useState<Events[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const fetchedEvents = await getEvents();
-        setEvents(fetchedEvents);
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvents();
-  }, []);
+  const fetchEvents = async () => {
+    try {
+      const fetchedEvents = await getEvents();
+      setEvents(fetchedEvents);
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <TrainsContext.Provider value={{ events, loading }}>
+    <TrainsContext.Provider value={{ events, loading, fetchEvents }}>
       {children}
     </TrainsContext.Provider>
   );

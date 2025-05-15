@@ -1,6 +1,7 @@
 import { Pen, Trash } from '@phosphor-icons/react';
-import { getPlayerHours } from '../../api/user';
+import { Events, Player } from '../../api/user';
 import { useEffect, useState } from 'react';
+import { useTrains } from '../../hooks/useTrains';
 
 interface MemberCardProps {
   member: {
@@ -20,20 +21,30 @@ export default function MemberCard({
   onEdit,
 }: MemberCardProps) {
   const [horas, setHoras] = useState<number | null>(null);
+  const { events } = useTrains();
+  console.log('Events:', events);
 
   const fetchHours = async () => {
-    try {
-      console.log('Fetching hours for:', member.nickname);
-      const horas = await getPlayerHours(member.nickname);
-      setHoras(Number(horas));
-    } catch (error) {
-      console.error('Failed to fetch player hours:', error);
-    }
+    let totalMilliseconds = 0;
+
+    events.forEach((event: Events) => {
+      event.AttendedPlayers?.forEach((player: Player) => {
+        if (player.PlayerId === member.nickname) {
+          totalMilliseconds += player.ExitTimestamp - player.EntranceTimestamp;
+        }
+      });
+    });
+
+    // Converte para horas
+    const totalHours = totalMilliseconds / (1000 * 60 * 60);
+    setHoras(parseFloat(totalHours.toFixed(2)));
   };
 
   useEffect(() => {
-    fetchHours();
-  }, []);
+    if (events && events.length > 0) {
+      fetchHours();
+    }
+  }, [events]);
 
   return (
     <div className="bg-deepBlue flex h-24 w-full items-center justify-between rounded-lg p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
