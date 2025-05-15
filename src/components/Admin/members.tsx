@@ -51,7 +51,7 @@ export default function Members() {
         onClose={() => setDeleteModal(false)}
         onConfirm={() => {
           setDeleteModal(false);
-          window.location.reload();
+          fetchMembers(setMembers);
         }}
       />
       <MemberEditModal
