@@ -199,11 +199,11 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
                 className="mb-2 h-32 w-32 rounded-full object-contain"
               />
             )}
-            <h2 className="text-lightBlack/80 text-sm font-bold lg:text-lg">
-              {item.nome}
+            <h2 className="text-lightBlack/80 text-sm font-bold lg:text-3xl">
+              {item.nome.split(' ')[0] + ' ' + item.nome.split(' ')[1]}
             </h2>
             {item.cargo && (
-              <p className="lg:text-md text-lightBlack/60 text-center text-xs italic">
+              <p className="lg:text-xl text-lightBlack/60 text-center text-xs italic">
                 {item.cargo.split('<br />')[0]}
               </p>
             )}

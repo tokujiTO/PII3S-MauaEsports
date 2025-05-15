@@ -15,8 +15,10 @@ export default function Members() {
     return members;
   };
 
-  const diretoria = members?.filter((member) => member.area === 'director');
-  const marketing = members?.filter((member) => member.area === 'marketing');
+  const diretoria =
+    members?.filter((member) => member.area === 'director') || [];
+  const marketing =
+    members?.filter((member) => member.area === 'marketing') || [];
 
   useEffect(() => {
     fetchMembersData();
@@ -25,8 +27,8 @@ export default function Members() {
   return (
     <div className="bg-deepBlue overflow-hidden pt-20">
       <Navbar />
-      <Diretoria diretoria={diretoria} />
-      <Marketing marketing={marketing} />
+      {diretoria?.length > 0 && <Diretoria diretoria={diretoria} />}
+      {marketing?.length > 0 && <Marketing marketing={marketing} />}
       <Teams />
       <Footer />
     </div>
