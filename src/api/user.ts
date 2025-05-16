@@ -1,8 +1,23 @@
 import axios from 'axios';
 import { Member } from '../hooks/useMembers';
 
-const API_URL = 'http://localhost:3000/players';
+export interface Events {
+  _id: string;
+  StartTimestamp: number;
+  ScheduledStart: string;
+  EndTimestamp: number;
+  AttendedPlayers: Player[];
+  modalityId: string;
+  Status: string;
+}
 
+export interface Player {
+  PlayerId: string;
+  EntranceTimestamp: number;
+  ExitTimestamp: number;
+}
+
+const API_URL = 'http://localhost:3000/players';
 // Removed the top-level useMembers call as it violates React Hook rules.
 
 export const fetchMembers = async (setMembers: (members: Member[]) => void) => {
@@ -54,6 +69,55 @@ export const updateMember = async (member: {
     return response2.data;
   } catch (error) {
     console.error('Error updating member:', error);
+    throw error;
+  }
+};
+
+export const getEvents = async () => {
+  try {
+    const response = await axios.get(`/api/trains/all`, {
+      params: { StartTimestamp: 1704092400 },
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
+
+    const events: Events[] = response.data;
+    return events;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw error;
+  }
+};
+
+export const getPlayerHours = async (playerId: string) => {
+  try {
+    const response = await axios.get(`/api/trains/all`, {
+      params: { StartTimestamp: 1704092400 },
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
+
+    const events: Events[] = response.data;
+    console.log('PlayerId:', playerId);
+    let totalMilliseconds = 0;
+
+    // Calcula o tempo total em milissegundos
+    events.forEach((event: Events) => {
+      event.AttendedPlayers?.forEach((player: Player) => {
+        if (player.PlayerId === playerId) {
+          totalMilliseconds += player.ExitTimestamp - player.EntranceTimestamp;
+        }
+      });
+    });
+
+    // Converte para horas
+    const totalHours = totalMilliseconds / (1000 * 60 * 60);
+
+    return totalHours.toFixed(2); // Retorna as horas com 2 casas decimais
+  } catch (error) {
+    console.error('Error fetching player hours:', error);
     throw error;
   }
 };

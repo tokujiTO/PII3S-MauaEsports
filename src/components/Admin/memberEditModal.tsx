@@ -103,6 +103,17 @@ export default function MemberEditModal({
             onChange={(e) => setRa(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
+          <label htmlFor="discord" className='text-xl font-medium'>
+            Discord
+          </label>
+          <input 
+          className='w-full rounded-lg border border-gray-300 p-2 text-xl'
+          id="discord"
+          type="text"
+          placeholder="Discord"
+          value={member?.nickname}
+          onChange={(e) => setRa(e.target.value)}
+          />
           <label className="text-xl font-medium" htmlFor="cargo">
             Função
           </label>

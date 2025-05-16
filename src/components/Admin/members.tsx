@@ -6,10 +6,12 @@ import AddMemberModal from './addMemberModal';
 import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
 import { fetchMembers } from '../../api/user';
+import { useTrains } from '../../hooks/useTrains';
 
 export default function Members() {
   const { members, setMembers } = useMembers();
   const [addModal, setAddModal] = useState(false);
+  const { fetchEvents } = useTrains();
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [selected, setSelected] = useState<Member | undefined>(undefined);
@@ -39,6 +41,7 @@ export default function Members() {
 
   useEffect(() => {
     fetchMembers(setMembers);
+    fetchEvents();
   }, []);
 
   console.log(members);
@@ -86,6 +89,7 @@ export default function Members() {
             member={{
               nome: member.nome,
               cargo: member.cargo,
+              nickname: member.nickname,
               ra: member.ra,
               horas: member.horas,
             }}

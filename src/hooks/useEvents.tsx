@@ -18,5 +18,5 @@ export const useEvents = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [events, setEvents] = useState<Events[]>(mockEvents);
 
-  return { events };
+  return { events, setEvents };
 };
