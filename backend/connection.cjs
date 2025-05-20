@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const USUARIO = process.env.USUARIO;
@@ -11,12 +10,12 @@ const Player = mongoose.model("Player", mongoose.Schema({
     ra: {type: String, required: true},
     area: {type: String, required: false},
     cargo: {type: String, required: true}
-}).plugin(uniqueValidator).plugin(AutoIncrement, { inc_field: 'p_id' }));
+}).plugin(AutoIncrement, { inc_field: 'p_id' }));
 
 const Equipes = mongoose.model("Equipes", mongoose.Schema({
-    nome: {type: String, required: true, unique: true},
+    nome: {type: String, required: true},
     membros: {type: [String]}
-}).plugin(uniqueValidator).plugin(AutoIncrement, { inc_field: 'e_id' }));
+}).plugin(AutoIncrement, { inc_field: 'e_id' }));
 
 const Evento = mongoose.model("Evento", mongoose.Schema({
     titulo: {type: String, required: true},
