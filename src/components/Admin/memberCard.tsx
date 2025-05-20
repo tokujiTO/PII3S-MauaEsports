@@ -11,8 +11,8 @@ interface MemberCardProps {
     ra: string;
     nickname: string;
   };
-  onDelete: () => void;
-  onEdit: () => void;
+  onDelete?: () => void;
+  onEdit?: () => void;
 }
 
 export default function MemberCard({
