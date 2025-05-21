@@ -1,11 +1,11 @@
-import AnimatedElement from "../animatedElement"
+import AnimatedElement from "../animatedElement";
 
 interface InfoSectionProps {
-  title: string
-  description: string
-  logoSrc?: string
-  altText?: string
-git 
+  title: string;
+  description: string;
+  logoSrc?: string;
+  altText?: string;
+  reverse?: boolean;
 }
 
 export default function InfoSection({
@@ -17,11 +17,11 @@ export default function InfoSection({
 }: InfoSectionProps) {
   return (
     <div className="flex h-screen w-full bg-white font-['Inter']">
-      <div className={`flex w-full h-full px-20 ${reverse ? 'flex-row-reverse' : ''}`}>
+      <div className={`flex w-full h-full px-20 items-center ${reverse ? 'flex-row-reverse' : ''}`}>
         
         {/* Imagem */}
-        <div className="flex h-full items-center justify-start pr-12">
-          <AnimatedElement>
+        <div className={`flex h-full items-center ${reverse ? 'justify-end pl-12' : 'justify-start pr-12'}`}>
+          <AnimatedElement direction={reverse ? 'left' : 'right'}>
             <img 
               src={logoSrc} 
               alt={altText}
@@ -31,15 +31,15 @@ export default function InfoSection({
         </div>
 
         {/* Texto */}
-        <div className="flex h-full items-center justify-start ml-35">
-          <div className="max-w-2xl mr-12">
-            <AnimatedElement delay={0.2}>
+        <div className={`flex h-full items-center ${reverse ? 'justify-start pr-20' : 'justify-start ml-20'}`}>
+          <div className="max-w-2xl">
+            <AnimatedElement delay={0.2} direction={reverse ? 'left' : 'right'}>
               <h1 className="mb-10 text-7xl font-bold uppercase tracking-tight text-black drop-shadow-[0_4px_8px_rgba(0,80,255,0.8)]">
                 {title}
               </h1>
             </AnimatedElement>
 
-            <AnimatedElement delay={0.4}>
+            <AnimatedElement delay={0.4} direction={reverse ? 'left' : 'right'}>
               <p className="text-justify text-3xl leading-relaxed text-black font-[brush-script-mt]">
                 {description}
               </p>
