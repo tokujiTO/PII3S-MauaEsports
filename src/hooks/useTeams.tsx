@@ -53,8 +53,7 @@ const mockTeams: Team[] = Array.from({ length: 14 }, (_, index) => ({
 }));
 
 export const useTeams = () => {
-  const [teams, setTeams] = useState<Team[]>();
-  setTeams(mockTeams);
+  const [teams, setTeams] = useState<Team[]>(mockTeams);
 
   return { teams };
 };

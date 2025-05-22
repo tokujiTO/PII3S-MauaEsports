@@ -22,7 +22,6 @@ export default function MemberCard({
 }: MemberCardProps) {
   const [horas, setHoras] = useState<number | null>(null);
   const { events } = useTrains();
-  console.log('Events:', events);
 
   const fetchHours = async () => {
     let totalMilliseconds = 0;

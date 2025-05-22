@@ -52,9 +52,11 @@ export default function homeInterno() {
           <h1 className="font-bold">bem vindo</h1>
           <h2 className="font-semibold">{NickName}!</h2>
         </div>
-        <div className="z-10 flex h-full w-1/2 flex-col items-center justify-center gap-4">
-          <HourCard hour={'30'} />
-        </div>
+        {isUser && (
+          <div className="z-10 flex h-full w-1/2 flex-col items-center justify-center gap-4">
+            <HourCard hour={'30'} />
+          </div>
+        )}
       </div>
       {isCap && <Captain />}
       {isAdmin && <Admin />}

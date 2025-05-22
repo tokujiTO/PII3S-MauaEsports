@@ -7,6 +7,8 @@ import Login from './pages/admin/login';
 import HomeInterno from './pages/admin/homeInterno';
 import Cadastrar from './pages/admin/cadastrar';
 import { useIsAuthenticated } from '@azure/msal-react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const auth = useIsAuthenticated();
@@ -15,6 +17,17 @@ export default function App() {
   }
   return (
     <BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/membros" element={<Members />} />

@@ -1,7 +1,7 @@
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { Team, useTeams } from '../../hooks/useTeams';
 import TeamCard from './teamCard';
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 export default function Teams() {
   const { teams } = useTeams();
@@ -24,7 +24,7 @@ export default function Teams() {
     }
   };
   const handleNext = () => {
-    if (currentPage < totalPages) {
+    if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -35,8 +35,8 @@ export default function Teams() {
         <h1 className="b">Gerenciar Times</h1>
       </div>
       <div className="flex flex-col gap-4 px-5">
-        {currentTeams.map((team) => (
-          <TeamCard team={team} />
+        {currentTeams.map((team, index) => (
+          <TeamCard team={team} key={index} />
         ))}
       </div>
       {currentTeams.length === 0 && (
