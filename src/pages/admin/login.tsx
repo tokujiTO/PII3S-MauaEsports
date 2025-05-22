@@ -1,35 +1,21 @@
 import logo from '../../assets/logoColored.png';
 import { useIsAuthenticated, useMsal } from '@azure/msal-react';
-import { loginRequest } from '../../auth/auth-config.ts';
+import { loginRequest } from '../../auth/auth-config';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const navigate = useNavigate();
   const { instance } = useMsal();
   const auth = useIsAuthenticated();
-
-  const fetchAccessToken = async () => {
-    const accounts = instance.getAllAccounts();
-    const accessToken = (
-      await instance.acquireTokenSilent({
-        ...loginRequest,
-        account: accounts[0],
-      })
-    ).accessToken;
-    localStorage.setItem('accessToken', accessToken);
-    return accessToken;
-  };
+  const navigate = useNavigate();
 
   if (auth) {
     console.log('User is authenticated');
-    fetchAccessToken();
     navigate('/pi-home');
-    return;
   }
 
   const handleLogin = () => {
     instance
-      .loginPopup({ scopes: ['User.Read'] })
+      .loginPopup(loginRequest)
       .then((response: unknown) => {
         console.log('Login successful:', response);
       })
@@ -85,7 +71,7 @@ export default function Login() {
               />
             </div>
             <button
-              type="submit"
+              type="button"
               className="bg-deepBlue hover:bg-darkBlue h-12 w-4/5 rounded-lg text-white shadow-xl duration-300 outline-none hover:cursor-pointer hover:shadow-2xl"
               onClick={handleLogin}
             >

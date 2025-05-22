@@ -1,8 +1,33 @@
+import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
 import InfoSection from '../components/Home/infoSection';
 import Navbar from '../components/navbar';
+import { useIsAuthenticated, useMsal } from '@azure/msal-react';
+import { loginRequest } from '../auth/auth-config';
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { instance } = useMsal();
+  const auth = useIsAuthenticated();
+
+  const fetchAccessToken = async () => {
+    const accounts = instance.getAllAccounts();
+    const accessToken = (
+      await instance.acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+    ).accessToken;
+    localStorage.setItem('accessToken', accessToken);
+    return accessToken;
+  };
+
+  if (auth) {
+    console.log('User is authenticated');
+    navigate('/pi-home');
+    fetchAccessToken();
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 pt-20 font-sans text-white">
       <Navbar />

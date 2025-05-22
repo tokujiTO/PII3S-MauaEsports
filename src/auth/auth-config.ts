@@ -6,7 +6,7 @@ export const msalConfig = {
     authority:
       'https://login.microsoftonline.com/' +
       import.meta.env.VITE_TENANT_ID,
-    redirectUri: '/',
+    redirectUri: '/pi-home',
   },
   cache: {
     cacheLocation: 'localStorage', // Armazena o token na LocalStorage
