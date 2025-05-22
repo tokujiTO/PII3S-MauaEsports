@@ -6,8 +6,13 @@ import Tournments from './pages/tournments';
 import Login from './pages/admin/login';
 import HomeInterno from './pages/admin/homeInterno';
 import Cadastrar from './pages/admin/cadastrar';
+import { useIsAuthenticated } from '@azure/msal-react';
 
 export default function App() {
+  const auth = useIsAuthenticated();
+  if (auth) {
+    console.log('User is authenticated');
+  }
   return (
     <BrowserRouter>
       <Routes>
@@ -16,7 +21,7 @@ export default function App() {
         <Route path="/campeonatos" element={<Tournments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pi-home" element={<HomeInterno />} />
-        <Route path='/cadastrar' element={<Cadastrar/>} />
+        <Route path="/cadastrar" element={<Cadastrar />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
