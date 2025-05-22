@@ -15,6 +15,25 @@ export default function Members() {
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [selected, setSelected] = useState<Member | undefined>(undefined);
+  const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
+
+  let filteredMembers = members;
+  if (search && members) {
+    filteredMembers = members.filter((member) =>
+      member.nome.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  const memberPageSize = 5;
+  const totalPages = filteredMembers
+    ? Math.ceil(filteredMembers.length / memberPageSize)
+    : 0;
+  const startIndex = currentPage * memberPageSize;
+  const endIndex = startIndex + memberPageSize;
+  const currentMembers = filteredMembers
+    ? filteredMembers.slice(startIndex, endIndex)
+    : [];
 
   const handlePrevious = () => {
     if (currentPage > 0) {
@@ -26,18 +45,6 @@ export default function Members() {
       setCurrentPage(currentPage + 1);
     }
   };
-
-  let totalPages = 0;
-  const [currentPage, setCurrentPage] = useState(0);
-  let currentMembers: Member[] = [];
-
-  if (members) {
-    const memberPageSize = 5;
-    totalPages = Math.ceil(members.length / memberPageSize);
-    const startIndex = currentPage * memberPageSize;
-    const endIndex = startIndex + memberPageSize;
-    currentMembers = members.slice(startIndex, endIndex);
-  }
 
   useEffect(() => {
     fetchMembers(setMembers);
@@ -65,6 +72,12 @@ export default function Members() {
       <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
         <div className="flex items-center gap-4">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="text-deepBlue rounded-lg bg-white px-4 py-2 text-lg outline-none focus:ring-2"
+          />
           <button className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer">
             <Funnel size={32} />
           </button>
