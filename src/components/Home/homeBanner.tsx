@@ -10,8 +10,8 @@ export default function HomeBanner({
   altText = "logo_maua_esports",
 }: HomeBannerProps) {
   return (
-    <div className="relative h-[87vh] w-screen bg-blue-900 overflow-hidden">
-
+    <div className="relative h-[87vh] w-screen bg-blue-900 overflow-hidden font-['Inter']">
+      
       <div className="absolute inset-0 flex items-center justify-center">
         <img 
           src={logoSrc} 
@@ -25,8 +25,8 @@ export default function HomeBanner({
       </div>
 
       <div className="relative h-full flex items-center justify-center">
-      <h1 className="mb-10 text-7xl font-bold uppercase tracking-tight text-white font-sans">          
-        {title}
+        <h1 className="mb-10 text-7xl font-bold uppercase tracking-tight text-white]">
+          {title}
         </h1>
       </div>
     </div>

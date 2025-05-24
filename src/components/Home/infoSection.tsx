@@ -15,13 +15,17 @@ export default function InfoSection({
   altText = "logo_maua_esports",
   reverse = false,
 }: InfoSectionProps) {
+  // Direção da animação baseada na posição real dos elementos
+  const imageDirection = reverse ? 'right' : 'left';
+  const textDirection = reverse ? 'left' : 'right';
+
   return (
     <div className="flex h-screen w-full bg-white font-['Inter']">
       <div className={`flex w-full h-full px-20 items-center ${reverse ? 'flex-row-reverse' : ''}`}>
         
         {/* Imagem */}
         <div className={`flex h-full items-center ${reverse ? 'justify-end pl-12' : 'justify-start pr-12'}`}>
-          <AnimatedElement direction={reverse ? 'left' : 'right'}>
+          <AnimatedElement direction={imageDirection}>
             <img 
               src={logoSrc} 
               alt={altText}
@@ -33,13 +37,10 @@ export default function InfoSection({
         {/* Texto */}
         <div className={`flex h-full items-center ${reverse ? 'justify-start pr-20' : 'justify-start ml-20'}`}>
           <div className="max-w-2xl">
-            <AnimatedElement delay={0.2} direction={reverse ? 'left' : 'right'}>
+            <AnimatedElement direction={textDirection}>
               <h1 className="mb-10 text-7xl font-bold uppercase tracking-tight text-black drop-shadow-[0_4px_8px_rgba(0,80,255,0.8)]">
                 {title}
               </h1>
-            </AnimatedElement>
-
-            <AnimatedElement delay={0.4} direction={reverse ? 'left' : 'right'}>
               <p className="text-justify text-3xl leading-relaxed text-black font-[brush-script-mt]">
                 {description}
               </p>

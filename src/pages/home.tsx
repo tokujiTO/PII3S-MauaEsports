@@ -5,10 +5,10 @@ import HomeBanner from "../components/Home/homeBanner";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans pt-20">
+    <div className="min-h-screen bg-blue-900 text-white font-sans pt-20">
       <Navbar />
 
-      <div className="text-white"> {/* Container extra para garantir a cor do texto */}
+      <div className="text-white"> 
         <HomeBanner 
           title="NA MAUÁ, O JOGO NUNCA PARA!" 
         />
