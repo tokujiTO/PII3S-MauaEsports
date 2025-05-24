@@ -1,17 +1,15 @@
-import Footer from "../components/footer";
-import InfoSection from "../components/Home/infoSection"; 
-import Navbar from "../components/navbar";
-import HomeBanner from "../components/Home/homeBanner";
+import Footer from '../components/footer';
+import InfoSection from '../components/Home/infoSection';
+import Navbar from '../components/navbar';
+import HomeBanner from '../components/Home/homeBanner';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-blue-900 text-white font-sans pt-20">
+    <div className="min-h-screen overflow-x-hidden bg-blue-900 pt-20 font-sans text-white">
       <Navbar />
 
-      <div className="text-white"> 
-        <HomeBanner 
-          title="NA MAUÁ, O JOGO NUNCA PARA!" 
-        />
+      <div className="text-white">
+        <HomeBanner title="NA MAUÁ, O JOGO NUNCA PARA!" />
 
         <InfoSection
           title="Quem Somos"
