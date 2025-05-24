@@ -25,6 +25,7 @@ Este projeto visa criar uma **plataforma digital** para a Mauá eSports, reunind
 - **TailwindCSS** – Estilização utilitária e eficiente
 - **Prettier** + `prettier-plugin-tailwindcss` – Código limpo e organizado
 - **PNPM** – Gerenciador de pacotes rápido e leve
+- **MongoDB** - Banco de dados
 
 ---
 
@@ -40,6 +41,11 @@ cd PII3S-MauaEsports
 ```bash
 pnpm i
 pnpm run dev
+```
+
+### 3. Inicie o servidor
+```bash
+node index.cjs
 ```
 
 

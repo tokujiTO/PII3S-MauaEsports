@@ -29,12 +29,12 @@ export default function homeInterno() {
         alt=""
         className={`absolute ${isCap ? 'top-1/38' : isAdmin ? 'top-1/8' : 'top-1/4'} left-1/2 z-0 w-4/5 -translate-x-1/2 opacity-10`}
       />
-      <SignOut
-        size={64}
-        color="white"
-        className="absolute top-2 left-[98%] -translate-x-full duration-300 hover:scale-125 hover:cursor-pointer"
+      <div
+        className="absolute top-2 left-[94%] flex justify-center items-center h-fit w-fit rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer"
         onClick={logout}
-      />
+      >
+        <SignOut size={56} className='text-yellow' />
+      </div>
       <div
         className={`flex w-full items-center justify-center gap-10 ${isUser ? 'h-full' : 'h-3/5'}`}
       >

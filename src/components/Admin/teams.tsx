@@ -1,17 +1,22 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useState } from 'react';
-import { useTeams } from '../../hooks/useTeams';
+import { Team, useTeams } from '../../hooks/useTeams';
 import TeamCard from './teamCard';
 
 export default function Teams() {
   const { teams } = useTeams();
-
-  const memberPageSize = 5;
-  const totalPages = Math.ceil(teams.length / memberPageSize);
   const [currentPage, setCurrentPage] = useState(0);
-  const startIndex = currentPage * memberPageSize;
-  const endIndex = startIndex + memberPageSize;
-  const currentTeams = teams.slice(startIndex, endIndex);
+
+  let totalPages = 0;
+  let currentTeams: Team[] = [];
+
+  if (teams) {
+    const memberPageSize = 5;
+    totalPages = Math.ceil(teams.length / memberPageSize);
+    const startIndex = currentPage * memberPageSize;
+    const endIndex = startIndex + memberPageSize;
+    currentTeams = teams.slice(startIndex, endIndex);
+  }
 
   const handlePrevious = () => {
     if (currentPage > 0) {
