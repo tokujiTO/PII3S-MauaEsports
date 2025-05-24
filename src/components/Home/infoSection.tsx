@@ -23,7 +23,6 @@ export default function InfoSection({
     <div className="flex h-screen w-full bg-white font-['Inter']">
       <div className={`flex w-full h-full px-20 items-center ${reverse ? 'flex-row-reverse' : ''}`}>
         
-        {/* Imagem */}
         <div className={`flex h-full items-center ${reverse ? 'justify-end pl-12' : 'justify-start pr-12'}`}>
           <AnimatedElement direction={imageDirection}>
             <img 
@@ -34,7 +33,6 @@ export default function InfoSection({
           </AnimatedElement>
         </div>
 
-        {/* Texto */}
         <div className={`flex h-full items-center ${reverse ? 'justify-start pr-20' : 'justify-start ml-20'}`}>
           <div className="max-w-2xl">
             <AnimatedElement direction={textDirection}>
