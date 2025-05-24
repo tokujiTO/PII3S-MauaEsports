@@ -43,7 +43,7 @@ export default function HomeBanner() {
 
       <div className="relative z-10 flex h-screen w-full items-center justify-center">
         <h1
-          className="mb-10 neon-text-pink text-7xl font-bold text-white uppercase"
+          className="mb-10 neon-text-pink text-5xl 2xl:text-7xl font-bold text-white uppercase"
           style={{
             transform: `translateY(${parallaxY}px)`,
             transition: 'opacity 0.3s, transform 0.3s',

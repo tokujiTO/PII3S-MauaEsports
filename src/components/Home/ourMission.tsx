@@ -3,7 +3,7 @@ import AnimatedElement from '../animatedElement';
 export default function OurMission() {
   return (
     <div className="bg-darkBlue z-20 flex min-h-screen items-center justify-evenly overflow-x-hidden pt-20 font-sans text-white">
-      <div className="flex w-1/2 flex-col items-center justify-center p-4 pl-36">
+      <div className="flex w-1/2 flex-col items-center justify-center p-4 pl-20 2xl:pl-36">
         <AnimatedElement
           duration={400}
           delay={500}
@@ -15,7 +15,7 @@ export default function OurMission() {
         <AnimatedElement
           duration={200}
           delay={200}
-          className="font-futurist text-justify text-3xl leading-relaxed text-white"
+          className="font-futurist text-justify text-xl leading-relaxed text-white 2xl:text-3xl"
         >
           Transformar paixão em propósito. Usamos os eSports como uma ferramenta
           de evolução: técnica, tática e social. Queremos desenvolver líderes,

@@ -3,7 +3,7 @@ import AnimatedElement from '../animatedElement';
 export default function WhatWeDo() {
   return (
     <div className="bg-darkBlue z-20 flex min-h-screen flex-row-reverse items-center justify-evenly overflow-x-hidden pt-20 font-sans text-white">
-      <div className="flex w-1/2 flex-col items-center justify-center p-4 pr-36">
+      <div className="flex w-1/2 flex-col items-center justify-center p-4 pr-20 2xl:pr-36">
         <AnimatedElement
           duration={400}
           delay={500}
@@ -16,7 +16,7 @@ export default function WhatWeDo() {
           duration={200}
           delay={200}
           direction="right"
-          className="font-futurist text-justify text-3xl leading-relaxed text-white"
+          className="font-futurist text-justify text-xl leading-relaxed text-white 2xl:text-3xl"
         >
           Criamos experiências. Organizamos torneios internos que viram
           clássicos, treinamentos que desafiam o meta e eventos que conectam

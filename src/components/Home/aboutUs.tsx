@@ -3,7 +3,7 @@ import AnimatedElement from '../animatedElement';
 export default function AboutUs() {
   return (
     <div className="bg-darkBlue neon-box-duo z-20 flex min-h-screen items-center justify-evenly overflow-x-hidden rounded-t-[10rem] pt-20 font-sans text-white">
-      <div className="flex w-1/2 flex-col items-center justify-center p-4 pl-36">
+      <div className="p-4 pl-20 flex w-1/2 flex-col items-center justify-center 2xl:pl-36">
         <AnimatedElement
           duration={400}
           delay={500}
@@ -15,7 +15,7 @@ export default function AboutUs() {
         <AnimatedElement
           duration={200}
           delay={200}
-          className="font-futurist text-justify text-3xl leading-relaxed text-white"
+          className="font-futurist text-justify text-xl leading-relaxed text-white 2xl:text-3xl"
         >
           A Mauá eSports é mais do que um grupo de jogadores. Somos uma
           comunidade apaixonada por games, tecnologia e competição saudável

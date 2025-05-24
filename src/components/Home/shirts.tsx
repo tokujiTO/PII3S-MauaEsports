@@ -24,19 +24,19 @@ export default function Shirts() {
   return (
     <div
       ref={ref}
-      className={`flex items-center justify-center overflow-x-hidden bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-500 text-white transition-all duration-700 ease-out ${show ? 'h-[80vh]' : 'h-0'}`}
+      className={`flex overflow-hidden items-center justify-center overflow-x-hidden bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-500 text-white transition-all duration-700 ease-out ${show ? 'h-[80vh]' : 'h-0'}`}
       style={{ minHeight: show ? '80vh' : 0 }}
     >
       <div
         className={`bg-coolBlack neon-box-duo mx-auto flex w-3/4 max-w-3xl transform flex-col items-center justify-center gap-8 rounded-3xl p-10 shadow-xl transition-all duration-700 ease-out ${show ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
       >
-        <h1 className="font-futurist neon-shadow-duo text-coolWhite mb-6 text-center text-6xl font-bold tracking-tight uppercase">
+        <h1 className="font-futurist neon-shadow-duo text-coolWhite mb-0  2xl:mb-6 text-center text-6xl font-bold tracking-tight uppercase">
           Camisas
         </h1>
         <img
           src={shirts}
           alt="Camisas Mauá eSports"
-          className="mb-6 h-auto w-2/3 max-w-md rounded-xl shadow-lg"
+          className="mb-0 2xl:mb-6 h-auto w-2/3 max-w-md rounded-xl shadow-lg"
         />
         <button
           onClick={() =>
