@@ -1,0 +1,33 @@
+interface HomeBannerProps {
+  title?: string;
+  logoSrc?: string;
+  altText?: string;
+}
+
+export default function HomeBanner({
+  title,
+  logoSrc = './src/assets/logoBW.png',
+  altText = 'logo_maua_esports',
+}: HomeBannerProps) {
+  return (
+    <div className="relative h-[87vh] w-screen overflow-hidden bg-blue-900 font-['Inter']">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <img
+          src={logoSrc}
+          alt={altText}
+          className="h-[100vh] w-auto object-contain opacity-10 "
+          style={{
+            maxWidth: '85%',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
+
+      <div className="relative flex h-full items-center justify-center">
+        <h1 className="text-white] mb-10 text-7xl font-bold tracking-tight uppercase">
+          {title}
+        </h1>
+      </div>
+    </div>
+  );
+}
