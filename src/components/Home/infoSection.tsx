@@ -1,19 +1,11 @@
 import AnimatedElement from "../animatedElement";
 
 interface InfoSectionProps {
-<<<<<<< HEAD
-  title: string;
-  description: string;
-  logoSrc?: string;
-  altText?: string;
-  reverse?: boolean;
-=======
   title: string
   description: string
   logoSrc?: string
   altText?: string
   reverse?: boolean 
->>>>>>> dev
 }
 
 export default function InfoSection({
