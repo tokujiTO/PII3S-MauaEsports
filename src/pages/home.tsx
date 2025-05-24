@@ -4,6 +4,7 @@ import HomeBanner from '../components/Home/homeBanner';
 import AboutUs from '../components/Home/aboutUs';
 import WhatWeDo from '../components/Home/whatWeDo';
 import OurMission from '../components/Home/ourMission';
+import Shirts from '../components/Home/shirts';
 
 export default function Home() {
   return (
@@ -13,8 +14,11 @@ export default function Home() {
       <AboutUs />
       <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 via-pink-500 to-purple-500 shadow-[0_0_20px_2px_rgba(236,72,153,0.7)]" />
       <WhatWeDo />
-      <div className="h-1 w-full rounded-full bg-gradient-to-l from-cyan-400 via-pink-500 to-purple-500 shadow-[0_0_20px_2px_rgba(236,72,153,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-l to-purple-500 from-pink-500 shadow-[0_0_20px_2px_rgba(236,72,153,0.7)]" />
+      <Shirts />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(236,72,153,0.7)]" />
       <OurMission />
+      <div className="h-1 w-full rounded-full bg-gradient-to-l from-cyan-400 via-pink-500 to-purple-500 shadow-[0_0_20px_2px_rgba(236,72,153,0.7)]" />
       <Footer />
     </div>
   );
