@@ -38,8 +38,8 @@ export default function InfoSection({
         <div className={`flex h-full items-center ${reverse ? 'justify-start pr-20' : 'justify-start ml-20'}`}>
           <div className="max-w-2xl">
             <AnimatedElement direction={textDirection}>
-              <h1 className="mb-10 text-7xl font-bold uppercase tracking-tight text-black drop-shadow-[0_4px_8px_rgba(0,80,255,0.8)]">
-                {title}
+              <h1 className="mb-10 text-7xl font-bold uppercase tracking-tight text-black drop-shadow-[2px_2px_4px_#0055ff]">
+              {title}
               </h1>
               <p className="text-justify text-3xl leading-relaxed text-black font-[brush-script-mt]">
                 {description}
