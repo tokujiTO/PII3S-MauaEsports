@@ -24,19 +24,19 @@ export default function Shirts() {
   return (
     <div
       ref={ref}
-      className={`flex overflow-hidden items-center justify-center overflow-x-hidden bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-500 text-white transition-all duration-700 ease-out ${show ? 'h-[80vh]' : 'h-0'}`}
+      className={`flex items-center justify-center overflow-hidden overflow-x-hidden bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-500 text-white transition-all duration-700 ease-out ${show ? 'h-[80vh]' : 'h-0'}`}
       style={{ minHeight: show ? '80vh' : 0 }}
     >
       <div
         className={`bg-coolBlack neon-box-duo mx-auto flex w-3/4 max-w-3xl transform flex-col items-center justify-center gap-8 rounded-3xl p-10 shadow-xl transition-all duration-700 ease-out ${show ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}`}
       >
-        <h1 className="font-futurist neon-shadow-duo text-coolWhite mb-0  2xl:mb-6 text-center text-6xl font-bold tracking-tight uppercase">
-          Camisas
+        <h1 className="font-futurist neon-shadow-duo text-coolWhite mb-0 text-center text-6xl font-bold tracking-tight uppercase 2xl:mb-6">
+          Camisetas
         </h1>
         <img
           src={shirts}
           alt="Camisas Mauá eSports"
-          className="mb-0 2xl:mb-6 h-auto w-2/3 max-w-md rounded-xl shadow-lg"
+          className="mb-0 h-auto w-2/3 max-w-md rounded-xl shadow-lg 2xl:mb-6"
         />
         <button
           onClick={() =>
@@ -45,9 +45,9 @@ export default function Shirts() {
               '_blank'
             )
           }
-          className="font-futurist rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-300 px-10 py-4 text-2xl font-bold text-white uppercase shadow-lg transition duration-300 hover:scale-105 hover:cursor-pointer hover:from-cyan-300 hover:via-pink-500 hover:to-purple-500 hover:shadow-2xl"
+          className="font-futurist neon-box-duo rounded-xl border-2 border-cyan-300 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-300 px-10 py-4 text-2xl font-bold text-white uppercase shadow-lg transition duration-300 hover:scale-105 hover:cursor-pointer hover:from-cyan-300 hover:via-pink-500 hover:to-purple-500 hover:shadow-2xl"
         >
-          Compre
+          Comprar
         </button>
       </div>
     </div>
