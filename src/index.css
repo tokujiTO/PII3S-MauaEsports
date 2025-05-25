@@ -69,9 +69,9 @@
 
   .neon-box-duo {
     box-shadow:
-      0 0 5px theme('colors.lightBlue'),
-      0 0 10px theme('colors.lightBlue'),
-      0 0 20px theme('colors.lightBlue'),
-      0 0 40px theme('colors.deepBlue');
+      0 0 5px #05cfff,
+      0 0 10px #05cfff,
+      0 0 20px #05cfff,
+      0 0 40px #034685;
   }
 }

@@ -26,12 +26,12 @@ export default function HomeBanner() {
   }, []);
 
   return (
-    <div className="bg-deepBlue font-futurist relative h-[90vh] mb-[10vh] w-screen overflow-hidden">
+    <div className="bg-deepBlue font-futurist relative h-[78vh] mb-[10vh] w-screen overflow-hidden">
       <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center">
         <img
           src={logoSrc}
           alt="logo_maua_esports"
-          className="h-auto w-[66vw] object-contain"
+          className="h-auto w-[60vw] object-contain"
           style={{
             maxWidth: '85%',
             opacity,
