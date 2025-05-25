@@ -9,6 +9,10 @@ export default function Navbar() {
   const [isHamburguerOpen, setIsHamburguerOpen] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
+  const isSelected = (page: string) => {
+    return window.location.pathname === page;
+  };
+
   const handleOpenMenu = () => {
     setIsHamburguerOpen(true);
     setTimeout(() => {
@@ -25,11 +29,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="font-body bg-deepBlue fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between rounded-b-lg px-16 pl-4 text-3xl font-light text-white shadow-lg max-lg:hidden">
+      <nav className="font-body bg-deepBlue neon-text-blue fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between rounded-b-lg px-16 pl-4 text-5xl font-light text-white shadow-lg max-lg:hidden">
         <img src={logo} alt="" className="h-16 object-cover" />
         <ul className="flex items-center space-x-10">
           <li
-            className="duration-200 hover:cursor-pointer hover:text-gray-200"
+            className={`duration-200 hover:scale-105 hover:cursor-pointer ${isSelected('/') ? 'neon-text-pink' : ''}`}
             onClick={() => {
               navigate('/');
               scrollTo(0, 0);
@@ -38,7 +42,7 @@ export default function Navbar() {
             Home
           </li>
           <li
-            className="duration-200 hover:cursor-pointer hover:text-gray-200"
+            className={`duration-200 hover:scale-105 hover:cursor-pointer ${isSelected('/membros') ? 'neon-text-pink' : ''}`}
             onClick={() => {
               navigate('/membros');
               scrollTo(0, 0);
@@ -47,7 +51,7 @@ export default function Navbar() {
             Membros
           </li>
           <li
-            className="duration-200 hover:cursor-pointer hover:text-gray-200"
+            className={`duration-200 hover:scale-105 hover:cursor-pointer ${isSelected('/campeonatos') ? 'neon-text-pink' : ''}`}
             onClick={() => {
               navigate('/campeonatos');
               scrollTo(0, 0);
