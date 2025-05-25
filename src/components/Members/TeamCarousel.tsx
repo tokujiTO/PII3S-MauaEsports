@@ -188,7 +188,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} relative flex h-3/5 max-w-56 min-w-56 rounded-xl bg-white shadow-lg transition-transform duration-75 ease-in-out hover:shadow-xl lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} relative flex h-3/5 max-w-56 min-w-56 rounded-xl bg-white neon-box-duo border-2 border-cyan-300 transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
