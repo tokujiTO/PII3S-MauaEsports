@@ -37,20 +37,30 @@
 
   .neon-shadow-duo {
     text-shadow:
-      0 0 5px #05cfff,
-      0 0 10px #05cfff,
-      0 0 20px #05cfff,
-      0 0 40px #034685,
-      0 0 80px #034685;
+      -4px 4px 5px #05cfff,
+      -4px 4px 10px #05cfff,
+      -4px 4px 20px #05cfff,
+      -4px 4px 40px #034685,
+      -4px 4px 80px #034685,
+      -10px 10px 5px #ff0080,
+      -10px 10px 10px #ff0080,
+      -10px 10px 20px #ff0080,
+      -10px 10px 40px #ff0080,
+      -10px 10px 80px #ff0080;
   }
 
   .neon-text-pink {
     text-shadow:
-      0 0 5px #ff0080,
-      0 0 10px #ff0080,
-      0 0 20px #ff0080,
-      0 0 40px #ff0080,
-      0 0 80px #ff0080;
+      -4px 4px 5px #ff0080,
+      -4px 4px 10px #ff0080,
+      -4px 4px 20px #ff0080,
+      -4px 4px 40px #ff0080,
+      -4px 4px 80px #ff0080,
+      -10px 10px 5px #05cfff,
+      -10px 10px 10px #05cfff,
+      -10px 10px 20px #05cfff,
+      -10px 10px 40px #034685,
+      -10px 10px 80px #034685;
   }
 
   .neon-box-duo {
