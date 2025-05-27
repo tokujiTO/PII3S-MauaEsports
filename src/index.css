@@ -78,9 +78,9 @@ body {
 
   .neon-text-yellow {
     text-shadow:
-      -4px 4px 5px #f0d000,
+      -4px 4px 5px #e4b054,
       -4px 4px 10px oklch(70.5% 0.213 47.604),
-      -4px 4px 20px #f0d000,
+      -4px 4px 20px #e4b054,
       -4px 4px 40px oklch(70.5% 0.213 47.604),
       -4px 4px 80px oklch(70.5% 0.213 47.604);
   }

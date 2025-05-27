@@ -2,13 +2,13 @@ import AnimatedElement from '../animatedElement';
 
 export default function WhatWeDo() {
   return (
-    <div className="bg-darkBlue z-20 flex min-h-screen flex-col items-center justify-evenly overflow-x-hidden md:pt-20 font-sans text-white md:flex-row-reverse">
-      <div className="flex w-full flex-col items-center justify-center p-4 md:pr-20 md:w-1/2 2xl:pr-36">
+    <div className="bg-darkBlue z-20 flex min-h-screen flex-col items-center justify-evenly overflow-x-hidden xl:pt-20 font-sans text-white xl:flex-row-reverse">
+      <div className="flex w-full flex-col items-center justify-center p-4 xl:pr-20 xl:w-1/2 2xl:pr-36">
         <AnimatedElement
           duration={400}
           delay={500}
           direction="top"
-          className="bg-coolBlack neon-box-duo text-coolWhite font-futurist neon-shadow-duo mb-10 w-full rounded-lg p-6 text-center text-2xl font-bold tracking-tight uppercase md:text-7xl"
+          className="bg-coolBlack neon-box-duo text-coolWhite font-futurist neon-shadow-duo mb-10 w-full rounded-lg p-6 text-center text-2xl font-bold tracking-tight uppercase xl:text-7xl"
         >
           O Que Fazemos
         </AnimatedElement>
@@ -16,7 +16,7 @@ export default function WhatWeDo() {
           duration={200}
           delay={200}
           direction="right"
-          className="font-futurist px-8 text-justify text-lg leading-relaxed text-white md:px-0 md:text-xl 2xl:text-3xl"
+          className="font-futurist px-8 text-justify text-lg leading-relaxed text-white xl:px-0 xl:text-xl 2xl:text-3xl"
         >
           Criamos experiências. Organizamos torneios internos que viram
           clássicos, treinamentos que desafiam o meta e eventos que conectam
@@ -28,7 +28,7 @@ export default function WhatWeDo() {
       <AnimatedElement
         duration={200}
         delay={100}
-        className="hidden w-full items-center justify-center p-4 md:flex md:w-1/2"
+        className="hidden w-full items-center justify-center p-4 xl:flex xl:w-1/2"
         direction="left"
       >
         <img

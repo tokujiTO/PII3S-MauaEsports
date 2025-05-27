@@ -72,11 +72,11 @@ export default function Navbar() {
             onClick={handleCloseMenu}
           >
             <div
-              className={`font-body bg-deepBlue absolute top-0 left-full flex h-[100vh] w-[50vw] flex-col items-center justify-between gap-5 py-10 text-white transition-transform duration-100 ${isMenuVisible ? '-translate-x-full' : 'translate-x-0'}`}
+              className={`font-body neon-shadow-duo  bg-darkBlue neon-box-duo absolute top-0 left-full flex h-[100vh] w-[50vw] flex-col items-center justify-between gap-5 py-10 text-white transition-transform duration-100 ${isMenuVisible ? '-translate-x-full' : 'translate-x-0'}`}
             >
               <ul className="text-oceanGreen flex flex-col justify-center gap-10 text-center text-2xl font-thin">
                 <li
-                  className={`delay-200 duration-300 hover:cursor-pointer hover:text-gray-200 ${isMenuVisible ? 'translate-x-0' : 'translate-x-[100vw]'}`}
+                  className={`delay-200 duration-300 hover:cursor-pointer hover:text-gray-200 ${isMenuVisible ? 'translate-x-0' : 'translate-x-[100vw]'} ${isSelected('/') ? 'neon-text-yellow scale-125' : ''}`}
                   onClick={() => {
                     navigate('/');
                     scrollTo(0, 0);
@@ -85,7 +85,7 @@ export default function Navbar() {
                   Home
                 </li>
                 <li
-                  className={`delay-100 duration-300 hover:cursor-pointer hover:text-gray-200 ${isMenuVisible ? 'translate-x-0' : 'translate-x-[100vw]'}`}
+                  className={`delay-100 duration-300 hover:cursor-pointer hover:text-gray-200 ${isMenuVisible ? 'translate-x-0' : 'translate-x-[100vw]'} ${isSelected('/membros') ? 'neon-text-yellow scale-125' : ''}`}
                   onClick={() => {
                     navigate('/membros');
                     scrollTo(0, 0);
@@ -94,7 +94,7 @@ export default function Navbar() {
                   Membros
                 </li>
                 <li
-                  className={`delay-100 duration-300 hover:cursor-pointer hover:text-gray-200 ${isMenuVisible ? 'translate-x-0' : 'translate-x-[100vw]'}`}
+                  className={`delay-100 duration-300 hover:cursor-pointer hover:text-gray-200 ${isMenuVisible ? 'translate-x-0' : 'translate-x-[100vw]'} ${isSelected('/campeonatos') ? 'neon-text-yellow scale-125' : ''}`}
                   onClick={() => {
                     navigate('/campeonatos');
                     scrollTo(0, 0);
