@@ -27,7 +27,6 @@ export default function Home() {
   };
 
   if (auth) {
-    console.log('User is authenticated');
     navigate('/pi-home');
     fetchAccessToken();
   }
