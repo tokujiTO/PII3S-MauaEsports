@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "start": "node index.cjs",
+    "dev": "vite & node index.cjs",
+    "start": "node index.cjs;",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
