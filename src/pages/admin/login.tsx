@@ -8,8 +8,20 @@ export default function Login() {
   const auth = useIsAuthenticated();
   const navigate = useNavigate();
 
+  const fetchAccessToken = async () => {
+    const accounts = instance.getAllAccounts();
+    const accessToken = (
+      await instance.acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+    ).accessToken;
+    localStorage.setItem('accessToken', accessToken);
+    return accessToken;
+  };
+
   if (auth) {
-    console.log('User is authenticated');
+    fetchAccessToken();
     navigate('/pi-home');
   }
 

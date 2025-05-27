@@ -3,6 +3,8 @@ import logo from '../../assets/logoBW.png';
 import Captain from '../../components/Admin/captain';
 import Admin from '../../components/Admin/admin';
 import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../auth/auth-config';
+import { useEffect } from 'react';
 
 export default function homeInterno() {
   // const NickName = localStorage.getItem('email')?.split('@')[0];
@@ -21,6 +23,21 @@ export default function homeInterno() {
   // }
 
   const { instance } = useMsal();
+  const fetchAccessToken = async () => {
+    const accounts = instance.getAllAccounts();
+    const accessToken = (
+      await instance.acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+    ).accessToken;
+    localStorage.setItem('accessToken', accessToken);
+    return accessToken;
+  };
+
+  useEffect(() => {
+    fetchAccessToken();
+  }, []);
 
   const logout = () => {
     localStorage.removeItem('user_id');
@@ -40,7 +57,7 @@ export default function homeInterno() {
         className={`absolute ${isCap ? 'top-1/38' : isAdmin ? 'top-1/8' : 'top-1/4'} left-1/2 z-0 w-4/5 -translate-x-1/2 opacity-10`}
       />
       <div
-        className="absolute top-4 left-[92%] p-4 flex h-fit w-fit items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer"
+        className="absolute top-4 left-[92%] flex h-fit w-fit items-center justify-center rounded-lg bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer"
         onClick={logout}
       >
         <p className="text-4xl text-red-400">Sair</p>
