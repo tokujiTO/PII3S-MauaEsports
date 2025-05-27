@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-coolWhite: #fdfdfe;
@@ -7,7 +7,9 @@
   --color-lightBlue: #05cfff;
   --color-deepBlue: #034685;
   --color-yellow: #e4b054;
-  --font-body: "Bebas Neue", sans-serif;
+  --font-body: 'Bebas Neue', sans-serif;
+  --font-futurist: 'Audiowide', sans-serif;
+  --drop-shadow-neon: 0px 5px 10px 0px rgba(0, 255, 255, 0.7);
   --font-5xl: 3rem;
   --font-6xl: 4rem;
   --font-7xl: 5rem;
@@ -19,6 +21,7 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none; /* Chrome, Safari e Opera */
   }
@@ -30,5 +33,45 @@
   .carousel-card {
     scroll-snap-align: center;
     flex: none; /* Evita que os cards se estiquem */
+  }
+
+  .neon-shadow-duo {
+    text-shadow:
+      -4px 4px 5px #05cfff,
+      -4px 4px 10px #05cfff,
+      -4px 4px 20px #05cfff,
+      -4px 4px 40px #034685,
+      -4px 4px 80px #034685,
+      -12px 12px 5px #ff0080,
+      -12px 12px 10px #ff0080,
+      -12px 12px 20px #ff0080,
+      -12px 12px 40px #ff0080,
+      -12px 12px 80px #ff0080;
+  }
+
+  .neon-text-blue {
+    text-shadow:
+      -4px 4px 5px #05cfff,
+      -4px 4px 10px #05cfff,
+      -4px 4px 20px #05cfff,
+      -4px 4px 40px #034685,
+      -4px 4px 80px #034685;
+  }
+
+  .neon-text-pink {
+    text-shadow:
+      -4px 4px 5px #ff0080,
+      -4px 4px 10px #ff0080,
+      -4px 4px 20px #ff0080,
+      -4px 4px 40px #ff0080,
+      -4px 4px 80px #ff0080;
+  }
+
+  .neon-box-duo {
+    box-shadow:
+      0 0 5px #05cfff,
+      0 0 10px #05cfff,
+      0 0 20px #05cfff,
+      0 0 40px #034685;
   }
 }

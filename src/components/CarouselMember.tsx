@@ -176,7 +176,7 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card hover:scale-[1.05] hover:shadow-xl ${clickable ? 'hover:cursor-pointer' : ''} flex h-3/5 max-w-56 min-w-56 flex-col items-center justify-center rounded-xl bg-white p-6 py-16 shadow-lg transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card ${clickable ? 'hover:cursor-pointer' : ''} neon-box-duo flex h-3/5 max-w-56 min-w-56 flex-col items-center justify-center rounded-xl border-2 border-cyan-300 bg-white p-6 py-16 transition-transform duration-150 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               opacity: 0.5 + (calculateScale(index) - 0.8) / 0.8,
@@ -203,7 +203,7 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
               {item.nome.split(' ')[0] + ' ' + item.nome.split(' ')[1]}
             </h2>
             {item.cargo && (
-              <p className="lg:text-xl text-lightBlack/60 text-center text-xs italic">
+              <p className="text-lightBlack/60 text-center text-xs italic lg:text-xl">
                 {item.cargo.split('<br />')[0]}
               </p>
             )}

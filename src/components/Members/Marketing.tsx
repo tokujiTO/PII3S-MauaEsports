@@ -8,7 +8,9 @@ interface MarketingProps {
 export default function Marketing({ marketing }: MarketingProps) {
   return (
     <div className="font-body bg-darkBlue flex flex-col items-center justify-center py-8 text-black">
-      <h1 className="mb-4 text-7xl font-bold text-white">Marketing</h1>
+      <h1 className="neon-shadow-duo mb-4 text-7xl font-bold text-white">
+        Marketing
+      </h1>
       {marketing != undefined ? (
         marketing.length > 0 ? (
           <div className="mb-8 flex w-full items-center justify-center">
