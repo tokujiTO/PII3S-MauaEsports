@@ -24,7 +24,7 @@ export default function Shirts() {
   return (
     <div
       ref={ref}
-      className={`flex items-center justify-center overflow-hidden overflow-x-hidden bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-500 text-white transition-all duration-700 ease-out ${show ? 'h-[80vh]' : 'h-0'}`}
+      className={`flex items-center justify-center overflow-hidden overflow-x-hidden bg-gradient-to-tr from-cyan-300 to-purple-500 text-white transition-all duration-700 ease-out ${show ? 'h-[80vh]' : 'h-0'}`}
       style={{ minHeight: show ? '80vh' : 0 }}
     >
       <div
@@ -45,7 +45,7 @@ export default function Shirts() {
               '_blank'
             )
           }
-          className="font-futurist neon-box-duo rounded-xl border-2 border-cyan-300 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-300 px-10 py-4 text-2xl font-bold text-white uppercase shadow-lg transition duration-300 hover:scale-105 hover:cursor-pointer hover:from-cyan-300 hover:via-pink-500 hover:to-purple-500 hover:shadow-2xl"
+          className="font-futurist neon-box-duo rounded-xl border-2 border-cyan-300 bg-gradient-to-r from-purple-500 to-cyan-300 px-10 py-4 text-2xl font-bold text-white uppercase shadow-lg transition duration-300 hover:scale-105 hover:cursor-pointer hover:from-cyan-300 hover:to-purple-500 hover:shadow-2xl"
         >
           Comprar
         </button>

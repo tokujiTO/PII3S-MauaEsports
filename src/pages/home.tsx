@@ -12,13 +12,13 @@ export default function Home() {
       <Navbar />
       <HomeBanner />
       <AboutUs />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 shadow-[0_0_20px_2px_rgba(250,204,21,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
       <WhatWeDo />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 shadow-[0_0_20px_2px_rgba(250,204,21,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
       <Shirts />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 shadow-[0_0_20px_2px_rgba(250,204,21,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
       <OurMission />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 shadow-[0_0_20px_2px_rgba(250,204,21,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
       <Footer />
     </div>
   );

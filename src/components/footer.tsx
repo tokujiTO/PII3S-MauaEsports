@@ -26,13 +26,13 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex w-full flex-row justify-evenly text-xl md:w-1/3">
-          <div className="neon-box-duo flex items-center justify-center rounded-md bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-400 p-1 text-black text-white duration-300 hover:scale-110 hover:cursor-pointer border-cyan-300 border-2">
+          <div className="neon-box-duo flex items-center justify-center rounded-md border-2 border-cyan-300 bg-gradient-to-tr from-cyan-300 to-purple-500 p-1 text-black text-white duration-300 hover:scale-110 hover:cursor-pointer">
             <TwitchLogo size={42} />
           </div>
-          <div className="neon-box-duo flex items-center justify-center rounded-md bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-400 p-1 text-black text-white duration-300 hover:scale-110 hover:cursor-pointer border-cyan-300 border-2">
+          <div className="neon-box-duo flex items-center justify-center rounded-md border-2 border-cyan-300 bg-gradient-to-tr from-cyan-300 to-purple-500 p-1 text-black text-white duration-300 hover:scale-110 hover:cursor-pointer">
             <LinkedinLogo size={42} />
           </div>
-          <div className="neon-box-duo flex items-center justify-center rounded-md bg-gradient-to-tr from-cyan-300 via-purple-500 to-pink-400 p-1 text-black text-white duration-300 hover:scale-110 hover:cursor-pointer border-cyan-300 border-2">
+          <div className="neon-box-duo flex items-center justify-center rounded-md border-2 border-cyan-300 bg-gradient-to-tr from-cyan-300 to-purple-500 p-1 text-black text-white duration-300 hover:scale-110 hover:cursor-pointer">
             <InstagramLogo size={42} />
           </div>
         </div>
