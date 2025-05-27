@@ -2,6 +2,7 @@ import logo from '../../assets/logoColored.png';
 import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../auth/auth-config';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Login() {
   const { instance } = useMsal();
@@ -20,20 +21,36 @@ export default function Login() {
     return accessToken;
   };
 
+  const checkUser = async (accessToken: string) => {
+    try {
+      const response = await axios.post('http://localhost:3000/auth/check', {
+        accessToken,
+      });
+      console.log(response.data);
+      if (response.data.existe) {
+        // Usuário existe, prossiga normalmente
+        localStorage.setItem('user', JSON.stringify(response.data.usuario));
+        navigate('/pi-home');
+      } 
+    } catch (err) {
+      alert('Erro ao verificar usuário.');
+    }
+  };
+
   if (auth) {
     fetchAccessToken();
     navigate('/pi-home');
   }
 
-  const handleLogin = () => {
-    instance
-      .loginPopup(loginRequest)
-      .then((response: unknown) => {
-        console.log('Login successful:', response);
-      })
-      .catch((error: unknown) => {
-        console.error('Login error:', error);
-      });
+  const handleLogin = async () => {
+    try {
+      await instance.loginPopup(loginRequest);
+      const accessToken = await fetchAccessToken();
+      await checkUser(accessToken);
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Erro ao fazer login.');
+    }
   };
 
   // const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

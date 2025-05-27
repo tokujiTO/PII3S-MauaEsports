@@ -1,16 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
-<<<<<<< HEAD
 import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { loginRequest } from '../auth/auth-config';
-=======
 import HomeBanner from '../components/Home/homeBanner';
 import AboutUs from '../components/Home/aboutUs';
 import WhatWeDo from '../components/Home/whatWeDo';
 import OurMission from '../components/Home/ourMission';
 import Shirts from '../components/Home/shirts';
->>>>>>> dev
 
 export default function Home() {
   const navigate = useNavigate();

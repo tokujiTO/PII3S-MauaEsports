@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('./connection.cjs');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const PORT = process.env.PORT || 3000;
 
@@ -120,6 +121,39 @@ app.post('/equipe', async (req, res) => {
   const equipes = await connection.Equipes.find();
 
   res.json(equipes);
+});
+
+app.post('/auth/check', async (req, res) => {
+  const { accessToken } = req.body;
+  if (!accessToken) {
+    return res.status(400).json({ erro: 'Token não enviado.' });
+  }
+  try {
+    const decoded = jwt.decode(accessToken);
+    if (!decoded) {
+      return res.status(400).json({ erro: 'Token inválido.' });
+    }
+
+    // O campo do RA pode variar, ajuste conforme o token da sua instituição
+    // Exemplos comuns: preferred_username, unique_name, upn, email
+    const ra = decoded.unique_name.split('@')[0];
+    if (!ra) {
+      return res.status(400).json({ erro: 'RA não encontrado no token.' });
+    }
+
+    // Procura o usuário pelo RA
+    const user = await connection.Player.findOne({ ra: ra });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ existe: false, mensagem: 'Usuário não encontrado.' });
+    }
+
+    return res.json({ existe: true, usuario: user });
+  } catch (err) {
+    console.error('Erro ao checar token:', err);
+    return res.status(500).json({ erro: 'Erro interno ao checar token.' });
+  }
 });
 
 module.exports = app;
