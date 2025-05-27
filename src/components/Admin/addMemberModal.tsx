@@ -120,6 +120,7 @@ export default function AddMemberModal({
                     Selecione uma opção
                   </option>
                   <option value="player">Jogador</option>
+                  <option value="event">Eventos</option>
                   <option value="marketing">Marketing</option>
                   <option value="director">Diretoria</option>
                 </select>
@@ -128,14 +129,21 @@ export default function AddMemberModal({
                 <label className="text-3xl font-medium" htmlFor="role">
                   Cargo
                 </label>
-                <input
-                  id="ra"
-                  type="text"
-                  placeholder="Capitão, mid, suporte, etc"
+                <select
+                  id="role"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
+                  defaultValue={'none'}
                   className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-                />
+                >
+                  <option value="none" disabled>
+                    Selecione uma opção
+                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="cap">Capitão</option>
+                  <option value="dna">Não se aplica</option>
+                  <option value="player">Jogador</option>
+                </select>
               </div>
             </div>
           </div>

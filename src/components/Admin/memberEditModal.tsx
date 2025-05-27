@@ -19,8 +19,9 @@ export default function MemberEditModal({
   const [visible, setVisible] = useState(false);
   const [nome, setNome] = useState(member?.nome || '');
   const [ra, setRa] = useState(member?.ra || '');
+  const [area, setArea] = useState(member?.area || '');
   const [raAntigo, setRaAntigo] = useState(member?.ra || '');
-  const [cargo, setcargo] = useState(member?.cargo || '');
+  const [role, setRole] = useState(member?.cargo || '');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function MemberEditModal({
       setNome(member.nome);
       setRaAntigo(member.ra);
       setRa(member.ra);
-      setcargo(member.cargo);
+      setRole(member.cargo);
     }
   }, [member]);
 
@@ -55,8 +56,8 @@ export default function MemberEditModal({
       nickname: member?.nickname || '',
       ra: ra || '',
       area: member?.area || '',
-      cargo: cargo || '',
-      raAntigo: raAntigo
+      cargo: role || '',
+      raAntigo: raAntigo,
     });
     setLoading(false);
     onSave();
@@ -65,7 +66,7 @@ export default function MemberEditModal({
 
   return (
     <div
-      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${
+      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 text-black backdrop-blur-md ${
         visible ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-200`}
       onClick={handleClose}
@@ -103,28 +104,59 @@ export default function MemberEditModal({
             onChange={(e) => setRa(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
-          <label htmlFor="discord" className='text-xl font-medium'>
-            Discord
-          </label>
-          <input 
-          className='w-full rounded-lg border border-gray-300 p-2 text-xl'
-          id="discord"
-          type="text"
-          placeholder="Discord"
-          value={member?.nickname}
-          onChange={(e) => setRa(e.target.value)}
-          />
-          <label className="text-xl font-medium" htmlFor="cargo">
-            Função
-          </label>
-          <input
-            id="cargo"
-            type="text"
-            placeholder="Função"
-            value={cargo}
-            onChange={(e) => setcargo(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-          />
+          <div className="mb-20 flex w-4/5 justify-between">
+            <div className="flex flex-col">
+              <label htmlFor="discord" className="text-xl font-medium">
+                Discord
+              </label>
+              <input
+                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+                id="discord"
+                type="text"
+                placeholder="Discord"
+                value={member?.nickname}
+                onChange={(e) => setRa(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-xl font-medium" htmlFor="cargo">
+                Area
+              </label>
+              <select
+                id="area"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+              >
+                <option value="none" disabled>
+                  Selecione uma opção
+                </option>
+                <option value="player">Jogador</option>
+                <option value="event">Eventos</option>
+                <option value="marketing">Marketing</option>
+                <option value="director">Diretoria</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-xl font-medium" htmlFor="cargo">
+                Cargo
+              </label>
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+              >
+                <option value="none" disabled>
+                  Selecione uma opção
+                </option>
+                <option value="admin">Admin</option>
+                <option value="cap">Capitão</option>
+                <option value="dna">Não se aplica</option>
+                <option value="player">Jogador</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button

@@ -59,11 +59,17 @@ export const updateMember = async (member: {
   raAntigo: string;
 }) => {
   try {
-    const { ra, nome, cargo, raAntigo } = member;
+    const { ra, nome, cargo, area, raAntigo } = member;
     const response = await axios.get(`/player`, { params: { raAntigo } });
     const _id = response.data._id;
 
-    const response2 = await axios.put(`/player`, { _id, ra, nome, cargo });
+    const response2 = await axios.put(`/player`, {
+      _id,
+      area,
+      ra,
+      nome,
+      cargo,
+    });
     toast.success('Membro atualizado com sucesso!');
     return response2.data;
   } catch (error) {

@@ -67,7 +67,7 @@ export default function Members() {
         isOpen={editModal}
         member={selected}
         onClose={() => setEditModal(false)}
-        onSave={() => window.location.reload()}
+        onSave={() => fetchMembers(setMembers)}
       />
       <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>

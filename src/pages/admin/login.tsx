@@ -3,11 +3,13 @@ import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../auth/auth-config';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { UseUser } from '../../hooks/useUser';
 
 export default function Login() {
   const { instance } = useMsal();
   const auth = useIsAuthenticated();
   const navigate = useNavigate();
+  const { setUser } = UseUser();
 
   const fetchAccessToken = async () => {
     const accounts = instance.getAllAccounts();
@@ -29,9 +31,10 @@ export default function Login() {
       console.log(response.data);
       if (response.data.existe) {
         // Usuário existe, prossiga normalmente
+        setUser(response.data.usuario);
         localStorage.setItem('user', JSON.stringify(response.data.usuario));
         navigate('/pi-home');
-      } 
+      }
     } catch (err) {
       alert('Erro ao verificar usuário.');
     }
