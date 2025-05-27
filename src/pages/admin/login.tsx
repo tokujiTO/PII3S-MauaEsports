@@ -4,6 +4,8 @@ import { loginRequest } from '../../auth/auth-config';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UseUser } from '../../hooks/useUser';
+import { fetchUser } from '../../api/user';
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const { instance } = useMsal();
@@ -23,23 +25,6 @@ export default function Login() {
     return accessToken;
   };
 
-  const checkUser = async (accessToken: string) => {
-    try {
-      const response = await axios.post('http://localhost:3000/auth/check', {
-        accessToken,
-      });
-      console.log(response.data);
-      if (response.data.existe) {
-        // Usuário existe, prossiga normalmente
-        setUser(response.data.usuario);
-        localStorage.setItem('user', JSON.stringify(response.data.usuario));
-        navigate('/pi-home');
-      }
-    } catch (err) {
-      alert('Erro ao verificar usuário.');
-    }
-  };
-
   if (auth) {
     fetchAccessToken();
     navigate('/pi-home');
@@ -48,11 +33,11 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await instance.loginPopup(loginRequest);
-      const accessToken = await fetchAccessToken();
-      await checkUser(accessToken);
+      await fetchAccessToken();
+      await fetchUser(setUser);
     } catch (error) {
       console.error('Login error:', error);
-      alert('Erro ao fazer login.');
+      toast('Erro ao fazer login.');
     }
   };
 
@@ -72,7 +57,7 @@ export default function Login() {
   // };
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-gray-100 font-thin">
+    <div className="flex h-screen w-full items-center justify-center bg-gray-100 font-thin text-black">
       <div className="bg-darkBlue flex h-full w-2/5 items-center justify-center">
         image
       </div>

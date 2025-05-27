@@ -1,6 +1,7 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedElement from './animatedElement';
+import { toast } from 'react-toastify';
 
 interface CarouselProps {
   clickable?: boolean;
@@ -191,7 +192,7 @@ export default function Carousel({ data, clickable }: CarouselProps) {
                 if (item.linkedin) {
                   window.open(item.linkedin, '_blank');
                 } else {
-                  alert('LinkedIn não disponível');
+                  toast('LinkedIn não disponível');
                 }
               }
             }}

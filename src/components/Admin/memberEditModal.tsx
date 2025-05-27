@@ -24,6 +24,7 @@ export default function MemberEditModal({
   const [role, setRole] = useState(member?.cargo || '');
   const [loading, setLoading] = useState(false);
 
+
   useEffect(() => {
     setTimeout(() => {
       setVisible(isOpen);
@@ -31,13 +32,18 @@ export default function MemberEditModal({
   }, [isOpen]);
 
   useEffect(() => {
-    if (member) {
+    if (isOpen && member) {
       setNome(member.nome);
       setRaAntigo(member.ra);
       setRa(member.ra);
+      setArea(member.area);
       setRole(member.cargo);
     }
-  }, [member]);
+    if (!isOpen) {
+      setVisible(false);
+      setLoading(false);
+    }
+  }, [isOpen, member]);
 
   if (!isOpen) return null;
 
@@ -55,7 +61,7 @@ export default function MemberEditModal({
       nome: nome,
       nickname: member?.nickname || '',
       ra: ra || '',
-      area: member?.area || '',
+      area: area || '',
       cargo: role || '',
       raAntigo: raAntigo,
     });

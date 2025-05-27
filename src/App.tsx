@@ -9,6 +9,7 @@ import Cadastrar from './pages/admin/cadastrar';
 import { useIsAuthenticated } from '@azure/msal-react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from './context/userContext';
 
 export default function App() {
   const auth = useIsAuthenticated();
@@ -17,26 +18,28 @@ export default function App() {
   }
   return (
     <BrowserRouter>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/membros" element={<Members />} />
-        <Route path="/campeonatos" element={<Tournments />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/pi-home" element={<HomeInterno />} />
-        <Route path="/cadastrar" element={<Cadastrar />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <UserProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/membros" element={<Members />} />
+          <Route path="/campeonatos" element={<Tournments />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/pi-home" element={<HomeInterno />} />
+          <Route path="/cadastrar" element={<Cadastrar />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </UserProvider>
     </BrowserRouter>
   );
 }

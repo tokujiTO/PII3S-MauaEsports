@@ -33,6 +33,22 @@ export const fetchMembers = async (setMembers: (members: Member[]) => void) => {
   }
 };
 
+export const fetchUser = async (setUser: (User: any) => void) => {
+  const accessToken = localStorage.getItem('accessToken');
+  try {
+    const response = await axios.post('http://localhost:3000/auth/check', {
+      accessToken,
+    });
+    console.log(response.data);
+    if (response.data.existe) {
+      setUser(response.data.usuario);
+      localStorage.setItem('user', JSON.stringify(response.data.usuario));
+    }
+  } catch (err) {
+    toast('Erro ao verificar usuário.');
+  }
+};
+
 export const addMember = async (member: {
   nome: string;
   nickname: string;

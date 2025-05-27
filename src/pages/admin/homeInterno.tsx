@@ -5,24 +5,33 @@ import Admin from '../../components/Admin/admin';
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../auth/auth-config';
 import { useEffect } from 'react';
+import { UseUser } from '../../hooks/useUser';
+import { fetchUser } from '../../api/user';
 
 export default function homeInterno() {
-  // const NickName = localStorage.getItem('email')?.split('@')[0];
   // const role = localStorage.getItem('role');
   // const isAdmin = role === 'admin';
   // const isCap = role === 'cap';
   // const isUser = !isAdmin && !isCap;
-  const NickName = 'admin';
-  const role = 'admin';
+  const { user, setUser } = UseUser();
+  const { instance } = useMsal();
+
+  const logout = () => {
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('accessToken');
+    instance.logoutRedirect({ postLogoutRedirectUri: '/' }).catch((error) => {
+      console.error('Logout error:', error);
+    });
+  };
+
+  const role = user?.cargo;
   const isAdmin = role === 'admin';
-  const isCap = false;
+  const isCap = role === 'cap';
   const isUser = !isAdmin && !isCap;
 
   // if (!NickName) {
   //   window.location.href = '/';
   // }
-
-  const { instance } = useMsal();
   const fetchAccessToken = async () => {
     const accounts = instance.getAllAccounts();
     const accessToken = (
@@ -37,15 +46,8 @@ export default function homeInterno() {
 
   useEffect(() => {
     fetchAccessToken();
+    fetchUser(setUser);
   }, []);
-
-  const logout = () => {
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('accessToken');
-    instance.logoutRedirect({ postLogoutRedirectUri: '/' }).catch((error) => {
-      console.error('Logout error:', error);
-    });
-  };
 
   return (
     <div
@@ -57,7 +59,7 @@ export default function homeInterno() {
         className={`absolute ${isCap ? 'top-1/38' : isAdmin ? 'top-1/8' : 'top-1/4'} left-1/2 z-0 w-4/5 -translate-x-1/2 opacity-10`}
       />
       <div
-        className="absolute top-4 left-[92%] flex h-fit w-fit items-center justify-center rounded-lg bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer"
+        className="absolute top-4 left-[92%] z-50 flex h-fit w-fit items-center justify-center rounded-lg bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer"
         onClick={logout}
       >
         <p className="text-4xl text-red-400">Sair</p>
@@ -67,7 +69,9 @@ export default function homeInterno() {
       >
         <div className="z-10 flex w-1/2 flex-col items-center justify-center gap-4 text-7xl text-white">
           <h1 className="font-bold">bem vindo</h1>
-          <h2 className="font-semibold">{NickName}!</h2>
+          <h2 className="font-semibold">
+            {user?.nome.split(' ')[0] + ' ' + user?.nome.split(' ')[1]}!
+          </h2>
         </div>
         {isUser && (
           <div className="z-10 flex h-full w-1/2 flex-col items-center justify-center gap-4">
