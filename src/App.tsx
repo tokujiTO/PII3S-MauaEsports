@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/campeonatos" element={<Tournments />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pi-home" element={<HomeInterno />} />
-        <Route path='/cadastrar' element={<Cadastrar/>} />
+        <Route path="/cadastrar" element={<Cadastrar />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

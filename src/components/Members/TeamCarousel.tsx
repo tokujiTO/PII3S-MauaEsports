@@ -188,7 +188,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} relative flex h-3/5 max-w-56 min-w-56 rounded-xl bg-white neon-box-duo border-2 border-cyan-300 transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} neon-box-duo relative flex h-3/5 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
@@ -240,13 +240,13 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
       <div className="absolute top-1/2 z-[40] flex w-full -translate-y-1/2 transform justify-between px-4">
         <button
           onClick={handleNext}
-          className="z-10 rounded-full bg-gray-300/30 p-2 shadow-md backdrop-blur-md duration-300 hover:cursor-pointer hover:bg-gray-400/30"
+          className="neon-box-duo z-10 rounded-full bg-gray-300/30 p-2 shadow-md backdrop-blur-md duration-300 hover:scale-110 hover:cursor-pointer hover:bg-gray-400/30 hover:shadow-none"
         >
           <CaretLeft size={32} />
         </button>
         <button
           onClick={handlePrevious}
-          className="z-10 rounded-full bg-gray-300/30 p-2 shadow-md backdrop-blur-md duration-300 hover:cursor-pointer hover:bg-gray-400/30"
+          className="neon-box-duo z-10 rounded-full bg-gray-300/30 p-2 shadow-md backdrop-blur-md duration-300 hover:scale-110 hover:cursor-pointer hover:bg-gray-400/30 hover:shadow-none"
         >
           <CaretRight size={32} />
         </button>

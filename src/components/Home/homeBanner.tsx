@@ -26,7 +26,7 @@ export default function HomeBanner() {
   }, []);
 
   return (
-    <div className="bg-deepBlue font-futurist relative mb-[10vh] h-[78vh] w-screen overflow-hidden">
+    <div className="bg-deepBlue font-futurist relative mb-[10vh] h-[60vh] w-screen md:min-h-[78vh]">
       <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center">
         <img
           src={logoSrc}
@@ -41,17 +41,17 @@ export default function HomeBanner() {
         />
       </div>
 
-      <div className="relative z-10 flex h-screen w-full items-center justify-center">
+      <div className="relative z-10 flex min-h-[78vh] w-full items-center justify-center">
         <h1
-          className="neon-shadow-duo mb-10 text-7xl font-bold text-center text-white uppercase 2xl:text-7xl"
+          className="neon-shadow-duo mb-10 text-center text-4xl font-bold text-white uppercase md:text-7xl 2xl:text-7xl"
           style={{
             transform: `translateY(${parallaxY}px)`,
             transition: 'opacity 0.3s, transform 0.3s',
             willChange: 'opacity, transform',
           }}
         >
-          NA MAUÁ,{' '}<br />
-          <span className="text-coolWhite text-5xl font-futurist neon-shadow-duo">
+          NA MAUÁ, <br />
+          <span className="font-futurist neon-shadow-duo text-2xl md:text-5xl">
             O JOGO NUNCA PARA!
           </span>
         </h1>

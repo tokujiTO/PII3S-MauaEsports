@@ -7,6 +7,7 @@
   --color-lightBlue: #05cfff;
   --color-deepBlue: #034685;
   --color-yellow: #e4b054;
+  --color-yellowNeon: #f0d000;
   --font-body: 'Bebas Neue', sans-serif;
   --font-futurist: 'Audiowide', sans-serif;
   --drop-shadow-neon: 0px 5px 10px 0px rgba(0, 255, 255, 0.7);
@@ -14,6 +15,10 @@
   --font-6xl: 4rem;
   --font-7xl: 5rem;
   --font-8xl: 6rem;
+}
+
+body {
+  @apply bg-coolBlack text-coolWhite font-body;
 }
 
 @layer utilities {
@@ -35,7 +40,7 @@
     flex: none; /* Evita que os cards se estiquem */
   }
 
-  .neon-shadow-duo {
+  /* .neon-shadow-duo {
     text-shadow:
       -4px 4px 5px #05cfff,
       -4px 4px 10px #05cfff,
@@ -47,6 +52,37 @@
       -12px 12px 20px #a020f0,
       -12px 12px 40px #a020f0,
       -12px 12px 80px #a020f0;
+  } */
+  .neon-shadow-duo {
+    text-shadow:
+      -4px 4px 5px #05cfff,
+      -4px 4px 10px #05cfff,
+      -4px 4px 20px #05cfff,
+      -4px 4px 40px #034685,
+      -4px 4px 80px #034685,
+      -12px 12px 5px #034685,
+      -12px 12px 10px #034685,
+      -12px 12px 20px #034685,
+      -12px 12px 40px #05cfff,
+      -12px 12px 80px #05cfff;
+  }
+
+  .neon-box-yellow {
+    box-shadow:
+      0 0 3px #f0d000,
+      0 0 6px #f0d000,
+      0 0 12px #f0d000,
+      0 0 25px #e4b054,
+      0 0 50px #e4b054;
+  }
+
+  .neon-text-yellow {
+    text-shadow:
+      -4px 4px 5px #f0d000,
+      -4px 4px 10px oklch(70.5% 0.213 47.604),
+      -4px 4px 20px #f0d000,
+      -4px 4px 40px oklch(70.5% 0.213 47.604),
+      -4px 4px 80px oklch(70.5% 0.213 47.604);
   }
 
   .neon-text-blue {

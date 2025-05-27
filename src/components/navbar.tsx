@@ -33,7 +33,7 @@ export default function Navbar() {
         <img src={logo} alt="" className="h-16 object-cover" />
         <ul className="flex items-center space-x-10">
           <li
-            className={`duration-200 hover:scale-105 hover:cursor-pointer ${isSelected('/') ? 'neon-text-pink' : ''}`}
+            className={`duration-200 hover:scale-110 hover:cursor-pointer ${isSelected('/') ? 'neon-text-yellow scale-125' : ''}`}
             onClick={() => {
               navigate('/');
               scrollTo(0, 0);
@@ -42,7 +42,7 @@ export default function Navbar() {
             Home
           </li>
           <li
-            className={`duration-200 hover:scale-105 hover:cursor-pointer ${isSelected('/membros') ? 'neon-text-pink' : ''}`}
+            className={`duration-200 hover:scale-110 hover:cursor-pointer ${isSelected('/membros') ? 'neon-text-yellow scale-125' : ''}`}
             onClick={() => {
               navigate('/membros');
               scrollTo(0, 0);
@@ -51,7 +51,7 @@ export default function Navbar() {
             Membros
           </li>
           <li
-            className={`duration-200 hover:scale-105 hover:cursor-pointer ${isSelected('/campeonatos') ? 'neon-text-pink' : ''}`}
+            className={`duration-200 hover:scale-110 hover:cursor-pointer ${isSelected('/campeonatos') ? 'neon-text-yellow scale-125' : ''}`}
             onClick={() => {
               navigate('/campeonatos');
               scrollTo(0, 0);

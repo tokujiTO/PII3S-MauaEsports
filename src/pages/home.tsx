@@ -12,13 +12,13 @@ export default function Home() {
       <Navbar />
       <HomeBanner />
       <AboutUs />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-l from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(253,224,71,0.7)]" />
       <WhatWeDo />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(251,146,60,0.7)]" />
       <Shirts />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-l from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(253,224,71,0.7)]" />
       <OurMission />
-      <div className="h-1 w-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 shadow-[0_0_20px_2px_rgba(34,211,238,0.7)]" />
+      <div className="h-1 w-full rounded-full bg-gradient-to-r from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(251,146,60,0.7)]" />
       <Footer />
     </div>
   );
