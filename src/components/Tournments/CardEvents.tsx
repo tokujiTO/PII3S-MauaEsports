@@ -26,7 +26,7 @@ export default function CardEvents() {
     <span className="text-[2.5rem] bg-gray-200 text-darkBlue font-futurist px-40 py-12 mr-[-2.5%] rounded-3xl">26 DE ABRIL</span>
   </div>
 
-  <div className="bg-darkBlue text-coolWhite px-4 py-2 rounded-3xl w-[110%] mggl-[-5%] flex justify-between items-center">
+  <div className="bg-darkBlue text-coolWhite px-4 py-2 rounded-3xl w-[110%] ml-[-5%] flex justify-between items-center">
     <span className="text-[2.5rem] font-body">
       CAMPEONATO VALORANT<br />CAMPEONATO RAINBOW SIX SIEGE
     </span>
