@@ -4,8 +4,9 @@ import { UseUser } from '../../hooks/useUser';
 import MemberCard from './memberCard';
 import { Member } from '../../hooks/useMembers';
 import { useTrains } from '../../hooks/useTrains';
-import { Pen } from '@phosphor-icons/react';
+import { Eye, Pen } from '@phosphor-icons/react';
 import Schedule from './schedule';
+import EditSchedule from './editSchedule';
 
 interface Team {
   _id: string;
@@ -22,6 +23,7 @@ export default function Captain() {
   const [team, setTeam] = useState<Team | null>(null);
   const [modalityName, setModalityName] = useState<string>('');
   const [scheduledTrainings, setScheduledTrainings] = useState<any[]>([]);
+  const [viewSchedule, setViewSchedule] = useState(false);
   const [editSchedule, setEditSchedule] = useState(false);
 
   const fetchTeam = async () => {
@@ -55,10 +57,15 @@ export default function Captain() {
 
   return (
     <div className="bg-deepBlue neon-box-duo z-50 flex min-h-[50vh] w-full flex-col gap-8 rounded-t-4xl p-10 pt-20">
-      <Schedule
+      <EditSchedule
         scheduledTrainings={scheduledTrainings}
         isOpen={editSchedule}
         onClose={() => setEditSchedule(false)}
+      />
+      <Schedule
+        scheduledTrainings={scheduledTrainings}
+        isOpen={viewSchedule}
+        onClose={() => setViewSchedule(false)}
       />
       <div className="bg-darkBlue neon-box-duo flex h-28 w-full items-end justify-between rounded-2xl border-2 border-cyan-300 p-4 text-6xl font-bold text-white">
         <div className="flex flex-col gap-2">
@@ -71,12 +78,20 @@ export default function Captain() {
             )}
           </div>
         </div>
-        <button
-          className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-blue-500"
-          onClick={() => setEditSchedule(true)}
-        >
-          <Pen size={32} />
-        </button>
+        <div className="flex items-center gap-4">
+          <button
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-orange-600"
+            onClick={() => setViewSchedule(true)}
+          >
+            <Eye size={32} />
+          </button>
+          <button
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-orange-600"
+            onClick={() => setEditSchedule(true)}
+          >
+            <Pen size={32} />
+          </button>
+        </div>
       </div>
       <div className="bg-deepBlue flex w-full flex-col items-center justify-center gap-4 rounded-2xl p-4 text-6xl font-bold text-white">
         {team && team.membros && team.membros.length > 0 ? (
