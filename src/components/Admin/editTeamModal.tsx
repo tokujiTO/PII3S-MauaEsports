@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '@phosphor-icons/react';
-import { editTeam } from '../../api/teams';
+import { editTeam, getModalities } from '../../api/teams';
 
 interface EditTeamModalProps {
   isOpen: boolean;
@@ -13,6 +13,7 @@ interface EditTeamModalProps {
     image: string;
     membros: string[];
     color?: string;
+    modality?: string;
   };
 }
 
@@ -29,8 +30,20 @@ export default function EditTeamModal({
   const [members, setMembers] = useState('');
   const [color, setColor] = useState('');
   const [loading, setLoading] = useState(false);
+  const [modalities, setModalities] = useState<any[]>([]);
+  const [modality, setSelectedModality] = useState('');
+
+  const fetchModalities = async () => {
+    const modalities = await getModalities();
+    const modalityOptions = Object.values(modalities).map((modality: any) => ({
+      value: modality.Tag,
+      label: modality.Name,
+    }));
+    setModalities(modalityOptions);
+  };
 
   useEffect(() => {
+    fetchModalities();
     setTimeout(() => {
       setVisible(isOpen);
     }, 100);
@@ -43,6 +56,7 @@ export default function EditTeamModal({
       setImage(team.image || '');
       setMembers(team.membros ? team.membros.join(', ') : '');
       setColor(team.color || '');
+      setSelectedModality(team.modality || '');
     }
   }, [team, isOpen]);
 
@@ -69,6 +83,7 @@ export default function EditTeamModal({
       image: image,
       membros: members.split(',').map((member) => member.trim()),
       color: color,
+      modality: modality,
     });
     onSave();
     handleClose();
@@ -82,37 +97,43 @@ export default function EditTeamModal({
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${visible ? 'translate-y-0' : 'translate-y-full'} gap-4 transition-transform duration-200`}
+        className={`bg-darkBlue relative flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 shadow-lg ${visible ? 'translate-y-0' : 'translate-y-full'} gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full flex-col items-start justify-center gap-4">
-          <div className="flex w-full flex-col items-start justify-center">
+          <div className="bg-darkBlue sticky top-0 flex w-full flex-col items-start justify-center px-4 pt-6">
             <h1 className="text-3xl font-bold">Editar Time</h1>
             <div className="h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
           </div>
-          <div className="flex w-full flex-col gap-4">
-            <label className="text-3xl font-medium" htmlFor="name">
-              Nome do Time
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Nome do time"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-            />
-            <label className="text-3xl font-medium" htmlFor="cap">
-              Nome do Capitão
-            </label>
-            <input
-              id="cap"
-              type="text"
-              placeholder="Nome do capitão"
-              value={cap}
-              onChange={(e) => setCap(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-            />
+          <div className="flex w-full flex-col gap-4 px-4">
+            <div className="flex w-full justify-between gap-4">
+              <div className="flex w-1/2 flex-col gap-4">
+                <label className="text-3xl font-medium" htmlFor="name">
+                  Nome do Time
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Nome do time"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+                />
+              </div>
+              <div className="flex w-1/2 flex-col gap-4">
+                <label className="text-3xl font-medium" htmlFor="cap">
+                  Nome do Capitão
+                </label>
+                <input
+                  id="cap"
+                  type="text"
+                  placeholder="Nome do capitão"
+                  value={cap}
+                  onChange={(e) => setCap(e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+                />
+              </div>
+            </div>
             <label className="text-3xl font-medium" htmlFor="image">
               Url do banner
             </label>
@@ -146,6 +167,23 @@ export default function EditTeamModal({
               onChange={(e) => setColor(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
+          </div>
+          <div className="flex w-2/5 flex-col gap-4 px-4">
+            <label htmlFor="modality" className="text-3xl font-medium">
+              Modalidade
+            </label>
+            <select
+              value={modality}
+              onChange={(e) => setSelectedModality(e.target.value)}
+              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+            >
+              <option value="">Selecione uma modalidade</option>
+              {modalities.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">

@@ -13,6 +13,7 @@ const Player = mongoose.model(
       ra: { type: String, required: true },
       area: { type: String, required: false },
       cargo: { type: String, required: true },
+      modality: { type: String, required: false },
     })
     .plugin(AutoIncrement, { inc_field: 'p_id' })
 );
@@ -26,6 +27,7 @@ const Equipes = mongoose.model(
       cap: { type: String, required: true },
       membros: { type: [String] },
       color: { type: String, required: false },
+      modality: { type: String, required: false },
     })
     .plugin(AutoIncrement, { inc_field: 'e_id' })
 );

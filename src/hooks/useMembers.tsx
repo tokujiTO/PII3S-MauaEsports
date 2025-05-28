@@ -9,6 +9,7 @@ export interface Member {
   ra: string;
   area: string;
   horas: number;
+  modality?: string;
   // role: string;
 }
 

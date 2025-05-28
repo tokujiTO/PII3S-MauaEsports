@@ -7,9 +7,11 @@ import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
 import { fetchMembers } from '../../api/user';
 import { useTrains } from '../../hooks/useTrains';
+import { UseUser } from '../../hooks/useUser';
 
 export default function Members() {
   const { members, setMembers } = useMembers();
+  const { user } = UseUser();
   const [addModal, setAddModal] = useState(false);
   const { fetchEvents } = useTrains();
   const [editModal, setEditModal] = useState(false);
@@ -23,6 +25,10 @@ export default function Members() {
     filteredMembers = members.filter((member) =>
       member.nome.toLowerCase().includes(search.toLowerCase())
     );
+  }
+  // Exclui o próprio usuário da lista
+  if (filteredMembers && user) {
+    filteredMembers = filteredMembers.filter((member) => member.ra !== user.ra);
   }
 
   const memberPageSize = 5;
@@ -109,6 +115,7 @@ export default function Members() {
               ra: member.ra,
               horas: member.horas,
             }}
+            isAdmin={true}
             onDelete={() => {
               setSelected(member);
               setDeleteModal(true);

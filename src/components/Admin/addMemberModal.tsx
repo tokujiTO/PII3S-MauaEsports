@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { addMember } from '../../api/user';
 import { Spinner } from '@phosphor-icons/react';
+import { getModalities } from '../../api/teams';
+import { toast } from 'react-toastify';
 
 interface AddMemberModalProps {
   isOpen: boolean;
@@ -20,8 +22,20 @@ export default function AddMemberModal({
   const [area, setArea] = useState('');
   const [role, setRole] = useState('user');
   const [loading, setLoading] = useState(false);
+  const [modalities, setModalities] = useState<any[]>([]);
+  const [modality, setSelectedModality] = useState('');
+
+  const fetchModalities = async () => {
+    const modalities = await getModalities();
+    const modalityOptions = Object.values(modalities).map((modality: any) => ({
+      value: modality.Tag,
+      label: modality.Name,
+    }));
+    setModalities(modalityOptions);
+  };
 
   useEffect(() => {
+    fetchModalities();
     setTimeout(() => {
       setVisible(isOpen);
     }, 100);
@@ -36,6 +50,11 @@ export default function AddMemberModal({
 
   const handleSave = async () => {
     setLoading(true);
+    if (role === 'cap' && !modality) {
+      toast.error('Por favor, selecione uma modalidade para o capitão.');
+      setLoading(false);
+      return;
+    }
     await addMember({
       nome: name,
       nickname: nickName,
@@ -58,7 +77,7 @@ export default function AddMemberModal({
       onClick={handleClose}
     >
       <div
-        className={`flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl bg-darkBlue border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
+        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
@@ -66,7 +85,7 @@ export default function AddMemberModal({
         <div className="flex w-full flex-col items-start justify-center gap-4">
           <div className="flex w-full flex-col items-start justify-center">
             <h1 className="text-3xl font-bold">Adicionar Membro</h1>
-            <div className="h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to bg-yellow-300" />
+            <div className="to h-1 w-full rounded-full bg-yellow-300 bg-gradient-to-l from-orange-600" />
           </div>
           <div className="flex w-full flex-col gap-4">
             <label className="text-3xl font-medium" htmlFor="name">
@@ -146,6 +165,25 @@ export default function AddMemberModal({
                 </select>
               </div>
             </div>
+            {role == 'cap' && (
+              <div className="mt-4 flex w-2/5 flex-col gap-4">
+                <label htmlFor="modality" className="text-3xl font-medium">
+                  Modalidade
+                </label>
+                <select
+                  value={modality}
+                  onChange={(e) => setSelectedModality(e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+                >
+                  <option value="">Selecione uma modalidade</option>
+                  {modalities.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">

@@ -48,6 +48,7 @@ app.post('/player', async (req, res) => {
   const ra = req.body.ra;
   const area = req.body.area;
   const cargo = req.body.cargo;
+  const modality = req.body.modality;
 
   const player = new connection.Player({
     nome: nome,
@@ -55,6 +56,7 @@ app.post('/player', async (req, res) => {
     ra: ra,
     area: area,
     cargo: cargo,
+    modality: modality,
   });
   await player.save();
   const players = await connection.Player.find();
@@ -63,7 +65,7 @@ app.post('/player', async (req, res) => {
 });
 
 app.put('/player', async (req, res) => {
-  const { _id, ra, nome, cargo, area, nickname } = req.body;
+  const { _id, ra, nome, cargo, area, nickname, modality } = req.body;
   const playerExists = await connection.Player.findById(_id);
   if (!playerExists) {
     return res
@@ -90,7 +92,7 @@ app.put('/player', async (req, res) => {
 
     const membroAtualizado = await connection.Player.findByIdAndUpdate(
       _id,
-      { $set: { ra, nome, cargo, area, nickname } },
+      { $set: { ra, nome, cargo, area, nickname, modality } },
       { new: true }
     );
 
@@ -124,7 +126,7 @@ app.delete('/player', async (req, res) => {
     // Se o jogador for capitão de alguma equipe, remove o capitão
     await connection.Equipes.updateMany(
       { cap: playerExists.ra },
-      { $unset: { cap: "" } }
+      { $unset: { cap: '' } }
     );
     await connection.Player.findByIdAndDelete(_id);
     res.status(200).json({ mensagem: 'Membro deletado com sucesso', id: _id });
@@ -145,11 +147,11 @@ app.get('/equipe', async (req, res) => {
       return res.status(404).json({ erro: 'Equipe não encontrada.' });
     }
     const membrosDetalhados = await connection.Player.find({
-      ra: { $in: equipe.membros || [] }
+      ra: { $in: equipe.membros || [] },
     });
     res.json({
       ...equipe.toObject(),
-      membros: membrosDetalhados
+      membros: membrosDetalhados,
     });
   } catch (err) {
     console.error('Erro ao buscar equipe pelo RA:', err);
@@ -225,7 +227,7 @@ app.get('/equipes/allPublic', async (req, res) => {
 });
 
 app.put('/equipe', async (req, res) => {
-  const { _id, nome, cap, image, membros, color } = req.body;
+  const { _id, nome, cap, image, membros, color, modality } = req.body;
   const equipeExists = await connection.Equipes.findById(_id);
   if (!equipeExists) {
     return res.status(404).json({ erro: 'Equipe não encontrada.' });
@@ -233,7 +235,7 @@ app.put('/equipe', async (req, res) => {
   try {
     const equipeAtualizada = await connection.Equipes.findByIdAndUpdate(
       _id,
-      { $set: { nome, cap, image, membros, color } },
+      { $set: { nome, cap, image, membros, color, modality } },
       { new: true }
     );
     if (!equipeAtualizada) {
@@ -251,7 +253,8 @@ app.post('/equipe', async (req, res) => {
   const cap = req.body.cap;
   const image = req.body.image;
   const membros = req.body.membros;
-  const color = req.body.color || 'gradient-to-t from-blue-500 to-white';
+  const color = req.body.color || '#ffffff';
+  const modality = req.body.modality || 'default';
 
   const equipe = new connection.Equipes({
     cap: cap,
@@ -259,6 +262,7 @@ app.post('/equipe', async (req, res) => {
     image: image,
     membros: membros,
     color: color,
+    modality: modality,
   });
   await equipe.save();
   const equipes = await connection.Equipes.find();

@@ -25,6 +25,22 @@ export const getPublicTeams = async () => {
   }
 };
 
+export const getModalities = async () => {
+  try {
+    const response = await axios.get(`/api/modality/all`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
+
+    const modalities = response.data;
+    return modalities;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw error;
+  }
+};
+
 export const getMyTeam = async (ra: string) => {
   try {
     const response = await axios.get('http://localhost:3000/equipe', {
@@ -76,6 +92,7 @@ export const editTeam = async (team: {
   image: string;
   membros: string[];
   color?: string;
+  modality?: string;
 }) => {
   try {
     const response = await axios.put('http://localhost:3000/equipe', team);
@@ -104,6 +121,7 @@ export const addTeam = async (team: {
   image: string;
   membros: string[];
   color?: string;
+  modality?: string;
 }) => {
   try {
     const response = await axios.post('http://localhost:3000/equipe', team);
