@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { editSchedule } from '../../api/teams';
+import { toast } from 'react-toastify';
 
 export default function EditSchedule({
   scheduledTrainings,
@@ -13,6 +14,7 @@ export default function EditSchedule({
   onClose: () => void;
 }) {
   const [visible, setVisible] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [trainings, setTrainings] = useState<
     {
       hour: string;
@@ -26,6 +28,9 @@ export default function EditSchedule({
   function toCronTime(hour: string, minute: string, weekDay: string): string {
     return `0 ${minute} ${hour} * * ${weekDay}`;
   }
+  useEffect(() => {
+    toast.error(error);
+  }, [error]);
 
   useEffect(() => {
     if (isOpen) {
@@ -49,7 +54,13 @@ export default function EditSchedule({
 
   const handleTrainingChange = (idx: number, field: string, value: string) => {
     setTrainings((prev) =>
-      prev.map((t, i) => (i === idx ? { ...t, [field]: value } : t))
+      prev.map((t, i) =>
+        i === idx
+          ? field === 'weekDay'
+            ? { ...t, weekDay: value, endWeekDay: value }
+            : { ...t, [field]: value }
+          : t
+      )
     );
   };
 
@@ -72,16 +83,60 @@ export default function EditSchedule({
   };
 
   const handleSave = () => {
+    // Validação dos campos
+    for (const t of trainings) {
+      if (
+        !t.hour ||
+        !t.minute ||
+        !t.weekDay ||
+        !t.endHour ||
+        !t.endMinute ||
+        !t.endWeekDay
+      ) {
+        setError(
+          'Preencha todos os campos de horário e dia da semana para todos os treinos.'
+        );
+        return;
+      }
+      if (
+        isNaN(Number(t.hour)) ||
+        isNaN(Number(t.minute)) ||
+        isNaN(Number(t.weekDay)) ||
+        isNaN(Number(t.endHour)) ||
+        isNaN(Number(t.endMinute)) ||
+        isNaN(Number(t.endWeekDay))
+      ) {
+        setError('Todos os campos devem ser números válidos.');
+        return;
+      }
+      if (
+        Number(t.hour) < 0 ||
+        Number(t.hour) > 23 ||
+        Number(t.endHour) < 0 ||
+        Number(t.endHour) > 23 ||
+        Number(t.minute) < 0 ||
+        Number(t.minute) > 59 ||
+        Number(t.endMinute) < 0 ||
+        Number(t.endMinute) > 59 ||
+        Number(t.weekDay) < 0 ||
+        Number(t.weekDay) > 6 ||
+        Number(t.endWeekDay) < 0 ||
+        Number(t.endWeekDay) > 6
+      ) {
+        setError('Horário ou dia da semana fora do intervalo permitido.');
+        return;
+      }
+    }
+    // Monta o payload para request
     const ScheduledTrainings = trainings.map((t) => ({
       Start: toCronTime(t.hour, t.minute, t.weekDay),
       End: toCronTime(t.endHour, t.endMinute, t.endWeekDay),
     }));
-    console.log('ScheduledTrainings:', ScheduledTrainings);
     const data = {
       _id: id,
       ScheduledTrainings: ScheduledTrainings,
     };
-    const response = editSchedule(data);
+    editSchedule(data);
     handleClose();
   };
 
@@ -120,6 +175,22 @@ export default function EditSchedule({
         <div className="flex w-full flex-col gap-4">
           {trainings.map((t, i) => (
             <div key={i} className="flex items-center gap-2">
+              <select
+                value={t.weekDay}
+                onChange={(e) =>
+                  handleTrainingChange(i, 'weekDay', e.target.value)
+                }
+                className="mr-6 rounded border border-gray-400 px-2 py-1 text-lg"
+              >
+                <option value="">Dia</option>
+                <option value="0">Dom</option>
+                <option value="1">Seg</option>
+                <option value="2">Ter</option>
+                <option value="3">Qua</option>
+                <option value="4">Qui</option>
+                <option value="5">Sex</option>
+                <option value="6">Sáb</option>
+              </select>
               <span className="text-cyan-200">Início:</span>
               <input
                 type="number"
@@ -144,22 +215,6 @@ export default function EditSchedule({
                 className="w-14 rounded border border-gray-400 px-2 py-1 text-lg"
                 placeholder="MM"
               />
-              <select
-                value={t.weekDay}
-                onChange={(e) =>
-                  handleTrainingChange(i, 'weekDay', e.target.value)
-                }
-                className="rounded border border-gray-400 px-2 py-1 text-lg"
-              >
-                <option value="">Dia</option>
-                <option value="0">Dom</option>
-                <option value="1">Seg</option>
-                <option value="2">Ter</option>
-                <option value="3">Qua</option>
-                <option value="4">Qui</option>
-                <option value="5">Sex</option>
-                <option value="6">Sáb</option>
-              </select>
               <span className="ml-4 text-cyan-200">Fim:</span>
               <input
                 type="number"
@@ -184,22 +239,6 @@ export default function EditSchedule({
                 className="w-14 rounded border border-gray-400 px-2 py-1 text-lg"
                 placeholder="MM"
               />
-              <select
-                value={t.endWeekDay}
-                onChange={(e) =>
-                  handleTrainingChange(i, 'endWeekDay', e.target.value)
-                }
-                className="rounded border border-gray-400 px-2 py-1 text-lg"
-              >
-                <option value="">Dia</option>
-                <option value="0">Dom</option>
-                <option value="1">Seg</option>
-                <option value="2">Ter</option>
-                <option value="3">Qua</option>
-                <option value="4">Qui</option>
-                <option value="5">Sex</option>
-                <option value="6">Sáb</option>
-              </select>
               <button
                 onClick={() => handleRemoveTraining(i)}
                 className="ml-2 rounded bg-red-500 px-2 py-1 text-white hover:bg-red-700"
