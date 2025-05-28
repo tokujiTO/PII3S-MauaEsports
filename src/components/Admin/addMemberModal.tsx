@@ -66,7 +66,7 @@ export default function AddMemberModal({
         <div className="flex w-full flex-col items-start justify-center gap-4">
           <div className="flex w-full flex-col items-start justify-center">
             <h1 className="text-3xl font-bold">Adicionar Membro</h1>
-            <div className="h-1 w-full rounded-full bg-black" />
+            <div className="h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to bg-yellow-300" />
           </div>
           <div className="flex w-full flex-col gap-4">
             <label className="text-3xl font-medium" htmlFor="name">

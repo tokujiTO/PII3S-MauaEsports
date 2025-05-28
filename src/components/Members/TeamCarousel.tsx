@@ -3,17 +3,21 @@ import { useEffect, useRef, useState } from 'react';
 import AnimatedElement from '../animatedElement';
 import { cn } from '../../utils/cn';
 
+interface TeamDataItem {
+  nome: string;
+  membros: string[];
+  color?: string;
+  image?: string;
+  members?: {
+    name: string;
+    role?: string;
+    linkedin?: string;
+  }[];
+}
+
 interface CarouselProps {
   clickable?: boolean;
-  data: {
-    image: string;
-    members?: {
-      name: string;
-      role?: string;
-      linkedin?: string;
-    }[];
-    color: string;
-  }[];
+  data: TeamDataItem[];
 }
 
 export default function TeamCarousel({ data, clickable }: CarouselProps) {
@@ -197,7 +201,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
             <div
               className={cn(
                 `flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`,
-                item.color
+                item.color || 'bg-gradient-to-t from-blue-500 to-white'
               )}
             >
               <img
@@ -205,7 +209,17 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
                 alt={'Team Logo'}
                 className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-20"
               />
-
+              {item.membros.map((member, memberIndex) => (
+                <h2
+                  key={memberIndex}
+                  className="z-10 text-center text-2xl font-bold text-black"
+                  style={{
+                    marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
+                  }}
+                >
+                  {member}
+                </h2>
+              ))}
               {item.members?.map((member, memberIndex) => (
                 <p
                   key={memberIndex}

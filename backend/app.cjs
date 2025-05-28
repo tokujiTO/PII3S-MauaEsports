@@ -111,11 +111,36 @@ app.get('/equipes', async (req, res) => {
   res.json(equipeExists);
 });
 
+app.get('/equipes/all', async (req, res) => {
+  const equipes = await connection.Equipes.find();
+  res.json(equipes);
+});
+
+app.delete('/equipe', async (req, res) => {
+  const { _id } = req.query;
+  const equipeExists = await connection.Equipes.findById(_id);
+  if (!equipeExists) {
+    return res.status(404).json({ erro: 'Equipe não encontrada.' });
+  }
+  try {
+    await connection.Equipes.findByIdAndDelete(_id);
+    res.status(200).json({ mensagem: 'Equipe deletada com sucesso', id: _id });
+  } catch (err) {
+    console.error('Erro ao apagar a equipe:', err);
+    res.status(500).json({ erro: 'Erro ao apagar a equipe.' });
+  }
+});
+
 app.post('/equipe', async (req, res) => {
   const nome = req.body.nome;
   const membros = req.body.membros;
+  const color = req.body.color || 'gradient-to-t from-blue-500 to-white';
 
-  const equipe = new connection.Equipes({ nome: nome, membros: membros });
+  const equipe = new connection.Equipes({
+    nome: nome,
+    membros: membros,
+    color: color,
+  });
   await equipe.save();
   const equipes = await connection.Equipes.find();
 

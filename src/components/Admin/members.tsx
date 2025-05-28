@@ -67,6 +67,11 @@ export default function Members() {
         onClose={() => setEditModal(false)}
         onSave={() => fetchMembers(setMembers)}
       />
+      <AddMemberModal
+        isOpen={addModal}
+        onClose={() => setAddModal(false)}
+        onSave={() => fetchMembers(setMembers)}
+      />
       <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
         <div className="flex items-center gap-4">
@@ -153,11 +158,6 @@ export default function Members() {
           </button>
         </div>
       </div>
-      <AddMemberModal
-        isOpen={addModal}
-        onClose={() => setAddModal(false)}
-        onSave={() => fetchMembers(setMembers)}
-      />
     </div>
   );
 }
