@@ -47,8 +47,8 @@ export default function Members() {
   };
 
   useEffect(() => {
-    fetchMembers(setMembers);
     fetchEvents();
+    fetchMembers(setMembers);
   }, []);
 
   return (

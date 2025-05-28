@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { fetchMembers } from '../api/user';
+import { fetchPublicMembers } from '../api/user';
 import Footer from '../components/footer';
-import Diretoria from '../components/Members/Diretoria';
+import Diretoria from '../components/Members/Diretoria'; 
 import Marketing from '../components/Members/Marketing';
 import Teams from '../components/Members/Teams';
 import Navbar from '../components/navbar';
@@ -12,7 +12,7 @@ export default function Members() {
   const { members, setMembers } = useMembers();
 
   const fetchMembersData = async () => {
-    const members = await fetchMembers(setMembers);
+    const members = await fetchPublicMembers(setMembers);
     return members;
   };
 

@@ -189,7 +189,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} neon-box-duo relative flex h-3/5 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} neon-box-duo bg-coolWhite relative flex h-3/5 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
@@ -198,21 +198,21 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
             <div
               className={cn(
                 `flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`,
-                item.color || 'bg-gradient-to-t from-blue-500 to-white'
+                `bg-gradient-to-t from-[${item.color}]/50 to-[${item.color}]/30`
               )}
             >
               <img
                 src={item.image?.toString()}
                 alt={'Team Logo'}
-                className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-20"
+                className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-90"
               />
-              <p className="text-lightBlack/60 italic` z-10 text-center text-2xl font-bold">
+              <p className="text-lightBlack/60 italic` z-10 text-center text-4xl font-bold">
                 {item.cap || item.nome}
               </p>
               {item.membros.map((member, memberIndex) => (
                 <h2
                   key={memberIndex}
-                  className="text-lightBlack/60 italic` z-10 text-center text-xl"
+                  className="text-lightBlack/60 italic` z-10 text-center text-2xl"
                   style={{
                     marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
                   }}

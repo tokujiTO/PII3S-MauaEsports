@@ -32,6 +32,19 @@ export const fetchMembers = async (setMembers: (members: Member[]) => void) => {
   }
 };
 
+export const fetchPublicMembers = async (
+  setMembers: (members: Member[]) => void
+) => {
+  try {
+    const response = await axios.get(`http://localhost:3000/player/allPublic`);
+    setMembers(response.data); // Use setMembers here
+    return response.data;
+  } catch (error) {
+    toast.error('Error fetching public members');
+    throw error;
+  }
+};
+
 export const fetchUser = async (setUser: (User: any) => void) => {
   const accessToken = localStorage.getItem('accessToken');
   try {
@@ -56,7 +69,7 @@ export const addMember = async (member: {
 }) => {
   try {
     const response = await axios.post(`/player`, member);
-  toast.success('Membro adicionado com sucesso!');
+    toast.success('Membro adicionado com sucesso!');
     return response.data;
   } catch (error) {
     console.error('Error adding member:', error);

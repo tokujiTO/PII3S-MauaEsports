@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useTeams } from '../../hooks/useTeams';
 import TeamCarousel from './TeamCarousel';
+import { fetchPublicTeams } from '../../api/teams';
 
 // const teams = [
 //   {
@@ -32,9 +33,9 @@ import TeamCarousel from './TeamCarousel';
 // ];
 
 export default function Teams() {
-  const { teams, fetchTeams } = useTeams();
+  const { teams, setTeams } = useTeams();
   useEffect(() => {
-    fetchTeams();
+    fetchPublicTeams(setTeams);
   }, []);
 
   return (

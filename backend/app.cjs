@@ -18,6 +18,19 @@ app.get('/players', async (req, res) => {
   res.json(players);
 });
 
+app.get('/player/allPublic', async (req, res) => {
+  try {
+    const players = await connection.Player.find({}, 'nome area');
+    if (!players) {
+      return res.status(404).json({ erro: 'Nenhum jogador encontrado.' });
+    }
+    res.json(players);
+  } catch (err) {
+    console.error('Erro ao buscar jogadores públicos:', err);
+    res.status(500).json({ erro: 'Erro ao buscar jogadores públicos.' });
+  }
+});
+
 app.get('/player', async (req, res) => {
   const ra = req.query.ra || req.query.raAntigo;
 
@@ -128,6 +141,55 @@ app.delete('/equipe', async (req, res) => {
   } catch (err) {
     console.error('Erro ao apagar a equipe:', err);
     res.status(500).json({ erro: 'Erro ao apagar a equipe.' });
+  }
+});
+
+app.get('/equipes/allPublic', async (req, res) => {
+  try {
+    const equipes = await connection.Equipes.find();
+    if (!equipes) {
+      return res.status(404).json({ erro: 'Nenhuma equipe encontrada.' });
+    }
+    const equipesComNomes = await Promise.all(
+      equipes.map(async (equipe) => {
+        const membrosNomes = await Promise.all(
+          (equipe.membros || []).map(async (ra) => {
+            const player = await connection.Player.findOne({ ra });
+            return player ? player.nome : 'Desconhecido';
+          })
+        );
+        return {
+          ...equipe.toObject(),
+          membros: membrosNomes,
+        };
+      })
+    );
+    res.json(equipesComNomes);
+  } catch (err) {
+    console.error('Erro ao buscar equipes públicas:', err);
+    res.status(500).json({ erro: 'Erro ao buscar equipes públicas.' });
+  }
+});
+
+app.put('/equipe', async (req, res) => {
+  const { _id, nome, cap, image, membros, color } = req.body;
+  const equipeExists = await connection.Equipes.findById(_id);
+  if (!equipeExists) {
+    return res.status(404).json({ erro: 'Equipe não encontrada.' });
+  }
+  try {
+    const equipeAtualizada = await connection.Equipes.findByIdAndUpdate(
+      _id,
+      { $set: { nome, cap, image, membros, color } },
+      { new: true }
+    );
+    if (!equipeAtualizada) {
+      return res.status(404).json({ erro: 'Equipe não encontrada.' });
+    }
+    res.status(200).json(equipeAtualizada);
+  } catch (err) {
+    console.error('Erro ao atualizar a equipe:', err);
+    res.status(500).json({ erro: 'Erro ao atualizar a equipe.' });
   }
 });
 

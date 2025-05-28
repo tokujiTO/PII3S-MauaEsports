@@ -3,11 +3,15 @@ import { Team, useTeams } from '../../hooks/useTeams';
 import TeamCard from './teamCard';
 import { CaretLeft, CaretRight, Plus } from '@phosphor-icons/react';
 import AddTeamModal from './addTeamModal';
+import EditTeamModal from './editTeamModal';
+import { fetchTeams } from '../../api/teams';
 
 export default function Teams() {
-  const { teams, fetchTeams } = useTeams();
+  const { teams, setTeams } = useTeams();
   const [currentPage, setCurrentPage] = useState(0);
   const [addModal, setAddModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [selectedTeam, setSelectedTeam] = useState<Team | undefined>(undefined);
 
   let totalPages = 0;
   let currentTeams: Team[] = [];
@@ -21,7 +25,7 @@ export default function Teams() {
   }
 
   useEffect(() => {
-    fetchTeams();
+    fetchTeams(setTeams);
   }, []);
 
   const handlePrevious = () => {
@@ -42,6 +46,27 @@ export default function Teams() {
         onClose={() => setAddModal(false)}
         onSave={() => setAddModal(false)}
       />
+      <EditTeamModal
+        isOpen={editModal}
+        team={
+          selectedTeam
+            ? {
+                ...selectedTeam,
+                membros: selectedTeam.membros.map((m: any) =>
+                  typeof m === 'string' ? m : (m._id ?? m.id ?? '')
+                ),
+              }
+            : undefined
+        }
+        onClose={() => {
+          setEditModal(false);
+          setSelectedTeam(undefined);
+        }}
+        onSave={() => {
+          fetchTeams(setTeams);
+          setSelectedTeam(undefined);
+        }}
+      />
       <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Times</h1>
         <button
@@ -60,7 +85,18 @@ export default function Teams() {
       )}
       <div className="flex flex-col gap-4 px-5">
         {currentTeams?.map((team, index) => (
-          <TeamCard team={team} key={index} />
+          <TeamCard
+            team={team}
+            key={index}
+            onEdit={() => {
+              setSelectedTeam(team);
+              setEditModal(true);
+            }}
+            onDelete={() => {
+              fetchTeams(setTeams);
+              setSelectedTeam(undefined);
+            }}
+          />
         ))}
       </div>
       <div className="flex w-full items-center justify-center">

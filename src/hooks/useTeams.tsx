@@ -60,15 +60,5 @@ export interface Team {
 export const useTeams = () => {
   const [teams, setTeams] = useState<Team[]>([]);
 
-  const fetchTeams = async () => {
-    const response = await getTeams();
-    if (response) {
-      setTeams(response);
-    } else {
-      setTeams([]);
-    }
-    return response;
-  };
-
-  return { teams, fetchTeams };
+  return { teams, setTeams };
 };
