@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Member } from './useMembers';
-import { getTeams } from '../api/teams';
 
 export interface Team {
   _id: string;

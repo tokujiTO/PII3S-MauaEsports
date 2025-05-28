@@ -1,7 +1,6 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedElement from '../animatedElement';
-import { cn } from '../../utils/cn';
 
 interface TeamDataItem {
   nome: string;
@@ -167,11 +166,6 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
       window.removeEventListener('resize', updateCardScales);
     };
   }, [scrollContainerRef]);
-
-  const isCaptain = (member: { role?: string }) => {
-    return member.role?.toLowerCase() === 'capitão';
-  };
-  console.log('datalist', datalist);
 
   return (
     <AnimatedElement
