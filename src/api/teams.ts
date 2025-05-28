@@ -47,6 +47,21 @@ export const editSchedule = async (data: {
   }
 };
 
+export const getModalityByTag = async (tag: string) => {
+  try {
+    const response = await axios.get(`/api/modality/all?Tag=${tag}`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
+    const modality = response.data;
+    return modality;
+  } catch (error) {
+    console.error('Error fetching modality by tag:', error);
+    throw error;
+  }
+};
+
 export const getModalities = async () => {
   try {
     const response = await axios.get(`/api/modality/all`, {

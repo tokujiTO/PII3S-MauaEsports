@@ -12,12 +12,11 @@ export default function Schedule({
   const [visible, setVisible] = useState(false);
 
   function parseCronTime(cron: string): string {
-    // Exemplo: "0 00 18 * * 4" => "18:00"
+    // Exemplo: "0 0 12 * * 2" => "12:00 (Ter)"
     const parts = cron.split(' ');
-    if (parts.length < 3) return cron;
+    if (parts.length < 6) return cron;
     const minute = parts[1].padStart(2, '0');
     const hour = parts[2].padStart(2, '0');
-    // Opcional: dia da semana
     const weekDayMap: Record<string, string> = {
       '0': 'Dom',
       '1': 'Seg',

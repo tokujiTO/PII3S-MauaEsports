@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getMyTeam, getModalities } from '../../api/teams';
+import { getMyTeam, getModalityByTag } from '../../api/teams';
 import { UseUser } from '../../hooks/useUser';
 import MemberCard from './memberCard';
 import { Member } from '../../hooks/useMembers';
@@ -32,19 +32,15 @@ export default function Captain() {
     const response = await getMyTeam(user.ra);
     setTeam(response);
     if (response && response.modality) {
-      const modalities = await getModalities();
-      const found = Object.values(modalities).find(
-        (mod: any) => mod.Tag === response.modality
-      );
-      setModalityName(
-        found && (found as any).Name ? (found as any).Name : response.modality
-      );
-      setId(found && (found as any)._id ? (found as any)._id : '');
-      setScheduledTrainings(
-        found && (found as any).ScheduledTrainings
-          ? (found as any).ScheduledTrainings
-          : []
-      );
+      const modalityResponse = await getModalityByTag(response.modality);
+
+      const modalityId = Object.keys(modalityResponse)[0];
+      const modality = modalityResponse[modalityId];
+
+      console.log('Modality:', modality);
+      setModalityName(modality.Name || '');
+      setId(modality._id || '');
+      setScheduledTrainings(modality.ScheduledTrainings || []);
     } else {
       setModalityName('');
       setScheduledTrainings([]);
@@ -63,7 +59,10 @@ export default function Captain() {
         id={id}
         scheduledTrainings={scheduledTrainings}
         isOpen={editSchedule}
-        onClose={() => setEditSchedule(false)}
+        onClose={() => {
+          setEditSchedule(false);
+          fetchTeam();
+        }}
       />
       <Schedule
         scheduledTrainings={scheduledTrainings}
