@@ -6,6 +6,7 @@ import Marketing from '../components/Members/Marketing';
 import Teams from '../components/Members/Teams';
 import Navbar from '../components/navbar';
 import { useMembers } from '../hooks/useMembers';
+import Event from '../components/Members/Event';
 
 export default function Members() {
   const { members, setMembers } = useMembers();
@@ -19,6 +20,7 @@ export default function Members() {
     members?.filter((member) => member.area === 'director') || [];
   const marketing =
     members?.filter((member) => member.area === 'marketing') || [];
+  const event = members?.filter((member) => member.area === 'event') || [];
 
   useEffect(() => {
     fetchMembersData();
@@ -29,6 +31,7 @@ export default function Members() {
       <Navbar />
       {diretoria?.length > 0 && <Diretoria diretoria={diretoria} />}
       {marketing?.length > 0 && <Marketing marketing={marketing} />}
+      {event?.length > 0 && <Event event={event} />}
       <Teams />
       <Footer />
     </div>
