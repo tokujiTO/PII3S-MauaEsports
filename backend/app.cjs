@@ -48,7 +48,6 @@ app.post('/player', async (req, res) => {
   const ra = req.body.ra;
   const area = req.body.area;
   const cargo = req.body.cargo;
-  const modality = req.body.modality;
 
   const player = new connection.Player({
     nome: nome,
@@ -56,7 +55,6 @@ app.post('/player', async (req, res) => {
     ra: ra,
     area: area,
     cargo: cargo,
-    modality: modality,
   });
   await player.save();
   const players = await connection.Player.find();
@@ -65,7 +63,7 @@ app.post('/player', async (req, res) => {
 });
 
 app.put('/player', async (req, res) => {
-  const { _id, ra, nome, cargo, area, nickname, modality } = req.body;
+  const { _id, ra, nome, cargo, area, nickname } = req.body;
   const playerExists = await connection.Player.findById(_id);
   if (!playerExists) {
     return res
@@ -92,7 +90,7 @@ app.put('/player', async (req, res) => {
 
     const membroAtualizado = await connection.Player.findByIdAndUpdate(
       _id,
-      { $set: { ra, nome, cargo, area, nickname, modality } },
+      { $set: { ra, nome, cargo, area, nickname } },
       { new: true }
     );
 

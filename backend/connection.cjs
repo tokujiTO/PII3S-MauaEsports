@@ -13,7 +13,6 @@ const Player = mongoose.model(
       ra: { type: String, required: true },
       area: { type: String, required: false },
       cargo: { type: String, required: true },
-      modality: { type: String, required: false },
     })
     .plugin(AutoIncrement, { inc_field: 'p_id' })
 );

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Member } from '../../hooks/useMembers';
 import { updateMember } from '../../api/user';
 import { Spinner } from '@phosphor-icons/react';
-import { getModalities } from '../../api/teams';
 
 interface MemberEditModalProps {
   isOpen: boolean;
@@ -25,8 +24,6 @@ export default function MemberEditModal({
   const [raAntigo, setRaAntigo] = useState(member?.ra || '');
   const [role, setRole] = useState(member?.cargo || '');
   const [loading, setLoading] = useState(false);
-  const [modalities, setModalities] = useState<any[]>([]);
-  const [modality, setSelectedModality] = useState(member?.modality || '');
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,17 +31,7 @@ export default function MemberEditModal({
     }, 100);
   }, [isOpen]);
 
-  const fetchModalities = async () => {
-    const modalities = await getModalities();
-    const modalityOptions = Object.values(modalities).map((modality: any) => ({
-      value: modality.Tag,
-      label: modality.Name,
-    }));
-    setModalities(modalityOptions);
-  };
-
   useEffect(() => {
-    fetchModalities();
     if (isOpen && member) {
       setNome(member.nome);
       setRaAntigo(member.ra);
@@ -52,7 +39,6 @@ export default function MemberEditModal({
       setRa(member.ra);
       setArea(member.area);
       setRole(member.cargo);
-      setSelectedModality(member.modality || '');
     }
     if (!isOpen) {
       setVisible(false);
@@ -178,25 +164,6 @@ export default function MemberEditModal({
               </select>
             </div>
           </div>
-          {role == 'cap' && (
-            <div className="flex w-2/5 flex-col">
-              <label htmlFor="modality" className="text-3xl font-medium">
-                Modalidade (se capitão)
-              </label>
-              <select
-                value={modality}
-                onChange={(e) => setSelectedModality(e.target.value)}
-                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-              >
-                <option value="">Selecione uma modalidade</option>
-                {modalities.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button
