@@ -28,7 +28,6 @@ export const fetchMembers = async (setMembers: (members: Member[]) => void) => {
     return response.data;
   } catch (error) {
     toast.error('Error fetching members');
-    console.error('Error fetching members:', error);
     throw error;
   }
 };
@@ -39,7 +38,6 @@ export const fetchUser = async (setUser: (User: any) => void) => {
     const response = await axios.post('http://localhost:3000/auth/check', {
       accessToken,
     });
-    console.log(response.data);
     if (response.data.existe) {
       setUser(response.data.usuario);
       localStorage.setItem('user', JSON.stringify(response.data.usuario));
@@ -75,7 +73,7 @@ export const updateMember = async (member: {
   raAntigo: string;
 }) => {
   try {
-    const { ra, nome, cargo, area, raAntigo } = member;
+    const { ra, nome, cargo, area, raAntigo, nickname } = member;
     const response = await axios.get(`/player`, { params: { raAntigo } });
     const _id = response.data._id;
 
@@ -83,6 +81,7 @@ export const updateMember = async (member: {
       _id,
       area,
       ra,
+      nickname,
       nome,
       cargo,
     });

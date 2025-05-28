@@ -18,12 +18,12 @@ export default function MemberEditModal({
 }: MemberEditModalProps) {
   const [visible, setVisible] = useState(false);
   const [nome, setNome] = useState(member?.nome || '');
+  const [nickname, setNickname] = useState(member?.nickname || '');
   const [ra, setRa] = useState(member?.ra || '');
   const [area, setArea] = useState(member?.area || '');
   const [raAntigo, setRaAntigo] = useState(member?.ra || '');
   const [role, setRole] = useState(member?.cargo || '');
   const [loading, setLoading] = useState(false);
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,6 +35,7 @@ export default function MemberEditModal({
     if (isOpen && member) {
       setNome(member.nome);
       setRaAntigo(member.ra);
+      setNickname(member.nickname);
       setRa(member.ra);
       setArea(member.area);
       setRole(member.cargo);
@@ -59,7 +60,7 @@ export default function MemberEditModal({
     setLoading(true);
     await updateMember({
       nome: nome,
-      nickname: member?.nickname || '',
+      nickname: nickname || '',
       ra: ra || '',
       area: area || '',
       cargo: role || '',
@@ -120,8 +121,8 @@ export default function MemberEditModal({
                 id="discord"
                 type="text"
                 placeholder="Discord"
-                value={member?.nickname}
-                onChange={(e) => setRa(e.target.value)}
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
               />
             </div>
             <div className="flex flex-col">

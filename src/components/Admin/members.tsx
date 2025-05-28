@@ -51,8 +51,6 @@ export default function Members() {
     fetchEvents();
   }, []);
 
-  console.log(members);
-
   return (
     <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
       <MemberConfirmDelete

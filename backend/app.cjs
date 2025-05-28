@@ -50,7 +50,7 @@ app.post('/player', async (req, res) => {
 });
 
 app.put('/player', async (req, res) => {
-  const { _id, ra, nome, cargo, area } = req.body;
+  const { _id, ra, nome, cargo, area, nickname } = req.body;
   const playerExists = await connection.Player.findById(_id);
   if (!playerExists) {
     return res
@@ -65,7 +65,7 @@ app.put('/player', async (req, res) => {
   try {
     const membroAtualizado = await connection.Player.findByIdAndUpdate(
       _id,
-      { $set: { ra, nome, cargo, area } },
+      { $set: { ra, nome, cargo, area, nickname } },
       { new: true }
     );
 

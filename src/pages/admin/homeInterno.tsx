@@ -75,7 +75,7 @@ export default function homeInterno() {
         </div>
         {isUser && (
           <div className="z-10 flex h-full w-1/2 flex-col items-center justify-center gap-4">
-            <HourCard hour={'30'} />
+            <HourCard />
           </div>
         )}
       </div>
