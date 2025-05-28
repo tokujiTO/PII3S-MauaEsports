@@ -51,7 +51,7 @@ export default function homeInterno() {
 
   return (
     <div
-      className={`bg-darkBlue font-body relative flex w-full flex-col items-center justify-between ${isUser ? 'h-screen overflow-hidden' : 'h-[140vh] px-0 pb-0'} font-thin`}
+      className={`bg-darkBlue font-body relative flex w-full flex-col items-center justify-between ${isUser ? 'h-screen overflow-hidden' : 'h-[160vh] px-0 pb-0'} font-thin`}
     >
       <img
         src={logo}

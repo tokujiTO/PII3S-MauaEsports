@@ -196,10 +196,10 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
             }}
           >
             <div
-              className={cn(
-                `flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`,
-                item.color // item.color should be a Tailwind class, e.g. 'bg-gradient-to-t from-[#FF4655]/50 to-[#FF4655]/30'
-              )}
+              className={`flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`}
+              style={{
+                background: `linear-gradient(to top, ${item.color}80 10%, ${item.color}33 100%)`,
+              }}
             >
               <img
                 src={item.image?.toString()}
@@ -207,7 +207,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
                 className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-90"
               />
               <p className="text-lightBlack/60 italic` z-10 text-center text-4xl font-bold">
-                {item.cap || item.nome}
+                {item.cap.split(' ')[0] + ' ' + item.cap.split(' ')[1]}
               </p>
               {item.membros.map((member, memberIndex) => (
                 <h2
@@ -217,7 +217,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
                     marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
                   }}
                 >
-                  {member}
+                  {member.split(' ')[0] + ' ' + member.split(' ')[1]}
                 </h2>
               ))}
             </div>
