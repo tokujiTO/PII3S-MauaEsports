@@ -116,6 +116,16 @@ app.delete('/player', async (req, res) => {
   }
 
   try {
+    // Remove o RA do jogador dos membros das equipes
+    await connection.Equipes.updateMany(
+      { membros: playerExists.ra },
+      { $pull: { membros: playerExists.ra } }
+    );
+    // Se o jogador for capitão de alguma equipe, remove o capitão
+    await connection.Equipes.updateMany(
+      { cap: playerExists.ra },
+      { $unset: { cap: "" } }
+    );
     await connection.Player.findByIdAndDelete(_id);
     res.status(200).json({ mensagem: 'Membro deletado com sucesso', id: _id });
   } catch (err) {
