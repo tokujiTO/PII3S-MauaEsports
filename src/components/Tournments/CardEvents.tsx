@@ -1,5 +1,3 @@
-import AnimatedElement from '../animatedElement';
-
 export default function CardEvents() {
     return (
       <section className="mt-10 flex flex-col items-center relative">
@@ -8,7 +6,7 @@ export default function CardEvents() {
     src="src/assets/logoBW.png"
     alt="Logo Mascote"
     className="absolute top-20 left-1/2 transform -translate-x-1/2 opacity-10 h-[1300px] z-[-1]"
-  />
+  />git 
 
 <h3 className="bg-darkBlue/80 text-coolWhite rounded-3xl font-futurist px-6 py-5 rounded-t-lg z-20 text-[10rem] relative -mt-20 w-[1150px] flex items-center justify-center mt-150 flex flex-col items-center relative">EVENTOS</h3>
 
