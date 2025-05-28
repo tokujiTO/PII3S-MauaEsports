@@ -21,9 +21,11 @@ const Equipes = mongoose.model(
   'Equipes',
   mongoose
     .Schema({
+      image: { type: String, required: true },
       nome: { type: String, required: true },
+      cap: { type: String, required: true },
       membros: { type: [String] },
-      color: { type: String, required: false }, // cor customizada
+      color: { type: String, required: false },
     })
     .plugin(AutoIncrement, { inc_field: 'e_id' })
 );

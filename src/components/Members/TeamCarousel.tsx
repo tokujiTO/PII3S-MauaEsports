@@ -5,14 +5,10 @@ import { cn } from '../../utils/cn';
 
 interface TeamDataItem {
   nome: string;
+  cap: string;
   membros: string[];
-  color?: string;
-  image?: string;
-  members?: {
-    name: string;
-    role?: string;
-    linkedin?: string;
-  }[];
+  color: string;
+  image: string;
 }
 
 interface CarouselProps {
@@ -175,6 +171,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
   const isCaptain = (member: { role?: string }) => {
     return member.role?.toLowerCase() === 'capitão';
   };
+  console.log('datalist', datalist);
 
   return (
     <AnimatedElement
@@ -205,46 +202,23 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
               )}
             >
               <img
-                src={item.image}
+                src={item.image?.toString()}
                 alt={'Team Logo'}
                 className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-20"
               />
+              <p className="text-lightBlack/60 italic` z-10 text-center text-2xl font-bold">
+                {item.cap || item.nome}
+              </p>
               {item.membros.map((member, memberIndex) => (
                 <h2
                   key={memberIndex}
-                  className="z-10 text-center text-2xl font-bold text-black"
+                  className="text-lightBlack/60 italic` z-10 text-center text-xl"
                   style={{
                     marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
                   }}
                 >
                   {member}
                 </h2>
-              ))}
-              {item.members?.map((member, memberIndex) => (
-                <p
-                  key={memberIndex}
-                  className={cn(
-                    `text-lightBlack/60 z-10 text-center text-xl italic`,
-                    isCaptain(member) ? 'text-2xl font-bold' : 'font-normal'
-                  )}
-                  style={{
-                    marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
-                  }}
-                >
-                  {member.name}
-                  {member.role && ` - ${member.role}`}
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="z-10 text-blue-500 hover:underline"
-                    >
-                      {' '}
-                      (LinkedIn)
-                    </a>
-                  )}
-                </p>
               ))}
             </div>
           </div>

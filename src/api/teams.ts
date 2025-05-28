@@ -26,6 +26,8 @@ export const deleteTeam = async (teamId: string) => {
 
 export const addTeam = async (team: {
   nome: string;
+  cap: string;
+  image: string;
   membros: string[];
   color?: string;
 }) => {

@@ -133,11 +133,15 @@ app.delete('/equipe', async (req, res) => {
 
 app.post('/equipe', async (req, res) => {
   const nome = req.body.nome;
+  const cap = req.body.cap;
+  const image = req.body.image;
   const membros = req.body.membros;
   const color = req.body.color || 'gradient-to-t from-blue-500 to-white';
 
   const equipe = new connection.Equipes({
+    cap: cap,
     nome: nome,
+    image: image,
     membros: membros,
     color: color,
   });

@@ -3,9 +3,12 @@ import { Member } from './useMembers';
 import { getTeams } from '../api/teams';
 
 export interface Team {
-  _id?: string;
+  _id: string;
   nome: string;
   membros: Member[];
+  cap: string;
+  image: string;
+  color: string;
 }
 
 // const mockTeams: Team[] = Array.from({ length: 14 }, (_, index) => ({

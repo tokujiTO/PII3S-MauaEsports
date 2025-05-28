@@ -14,7 +14,9 @@ export default function AddTeamModal({
   onSave,
 }: AddTeamModalProps) {
   const [visible, setVisible] = useState(false);
-  const [name, setName] = useState('');
+  const [nome, setNome] = useState('');
+  const [cap, setCap] = useState('');
+  const [image, setImage] = useState('');
   const [members, setMembers] = useState('');
   const [color, setColor] = useState('');
   const [loading, setLoading] = useState(false);
@@ -29,7 +31,9 @@ export default function AddTeamModal({
     setVisible(false);
     setTimeout(() => {
       onClose();
-      setName('');
+      setNome('');
+      setImage('');
+      setCap('');
       setMembers('');
       setLoading(false);
     }, 100);
@@ -38,7 +42,9 @@ export default function AddTeamModal({
   const handleSave = async () => {
     setLoading(true);
     await addTeam({
-      nome: name,
+      nome: nome,
+      cap: cap,
+      image: image,
       membros: members.split(',').map((member) => member.trim()),
       color: color.toLowerCase(),
     });
@@ -70,8 +76,30 @@ export default function AddTeamModal({
               id="name"
               type="text"
               placeholder="Nome do time"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+            />
+            <label className="text-3xl font-medium" htmlFor="name">
+              Nome do Captão
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Nome do time"
+              value={cap}
+              onChange={(e) => setCap(e.target.value)}
+              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+            />
+            <label className="text-3xl font-medium" htmlFor="name">
+              Url do banner
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Nome do time"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
             <label className="text-3xl font-medium" htmlFor="members">
