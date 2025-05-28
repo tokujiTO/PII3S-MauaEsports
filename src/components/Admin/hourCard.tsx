@@ -6,12 +6,12 @@ import { UseUser } from '../../hooks/useUser';
 export default function HourCard() {
   const [horas, setHoras] = useState<number | null>(null);
   const { user } = UseUser();
-  const { events } = useTrains();
-
+  const { fetchEvents } = useTrains();
   const fetchHours = async () => {
+    const events = await fetchEvents();
     let totalMilliseconds = 0;
 
-    events.forEach((event: Events) => {
+    events?.forEach((event: Events) => {
       event.AttendedPlayers?.forEach((player: Player) => {
         if (player.PlayerId === user?.nickname) {
           totalMilliseconds += player.ExitTimestamp - player.EntranceTimestamp;

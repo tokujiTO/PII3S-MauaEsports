@@ -2,7 +2,7 @@ import logo from '../../assets/logoColored.png';
 import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { loginRequest } from '../../auth/auth-config';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import microsoft from '../../assets/microsoft.png';
 import { UseUser } from '../../hooks/useUser';
 import { fetchUser } from '../../api/user';
 import { toast } from 'react-toastify';
@@ -58,11 +58,11 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-100 font-thin text-black">
-      <div className="bg-darkBlue flex h-full w-2/5 items-center justify-center">
+      <div className="bg-deepBlue flex h-full w-2/5 items-center justify-center">
         image
       </div>
-      <div className="bg-deepBlue flex h-full w-3/5 flex-col items-center justify-center">
-        <div className="bg-coolWhite relative flex h-1/2 w-3/5 flex-col items-center gap-10 rounded-xl py-4">
+      <div className="bg-darkBlue neon-box-duo z-10 flex h-full w-3/5 flex-col items-center justify-center">
+        <div className="bg-deepBlue neon-box-duo relative flex h-1/2 w-3/5 flex-col items-center gap-10 rounded-xl border-2 border-cyan-300 py-4 text-white">
           <img
             src={logo}
             alt="Logo"
@@ -71,28 +71,18 @@ export default function Login() {
           <div className="z-10 flex items-center justify-between px-10 text-4xl">
             <h1>Mauá eSports</h1>
           </div>
-          <form
-            className="z-10 flex w-full flex-col items-center justify-between gap-4"
-            // onSubmit={onSubmit}
-          >
-            <div className="flex w-full flex-col items-start justify-center px-10">
-              <label htmlFor="username" className="text-2xl">
-                E-mail:
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Coloque o Email Mauá"
-                className="flex h-12 w-full items-center rounded-lg border-2 border-black bg-white px-4 text-2xl shadow-xl outline-none"
-              />
-            </div>
+          <form className="z-10 flex h-full w-full flex-col items-center justify-center gap-4">
             <button
               type="button"
-              className="bg-deepBlue hover:bg-darkBlue h-12 w-4/5 rounded-lg text-white shadow-xl duration-300 outline-none hover:cursor-pointer hover:shadow-2xl"
+              className="text-darkBlue relative flex h-20 w-4/5 items-center justify-center rounded-lg bg-white p-4 text-4xl shadow-xl duration-300 outline-none hover:cursor-pointer hover:bg-gray-200 hover:shadow-2xl"
               onClick={handleLogin}
             >
-              Login Microsoft
+              <img
+                src={microsoft}
+                alt=""
+                className="absolute left-2 h-16 w-16 self-center"
+              />
+              <p>Login Microsoft</p>
             </button>
           </form>
         </div>

@@ -39,8 +39,8 @@ export default function AddMemberModal({
     await addMember({
       nome: name,
       nickname: nickName,
-      ra,
-      area,
+      ra: ra,
+      area: area,
       cargo: role,
     });
     onSave();
@@ -58,7 +58,7 @@ export default function AddMemberModal({
       onClick={handleClose}
     >
       <div
-        className={`flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl bg-white px-4 py-6 shadow-lg ${
+        className={`flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl bg-darkBlue border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}

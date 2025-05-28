@@ -10,7 +10,7 @@ export default function EventCard({ event }: EventCardProps) {
 
   return (
     <div className="w-full">
-      <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
+      <div className="bg-darkBlue border-2 border-cyan-300 flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
         <h1 className="">{event.name}</h1>
         <div className="flex items-center justify-between gap-8">
           <h1>{date}</h1>

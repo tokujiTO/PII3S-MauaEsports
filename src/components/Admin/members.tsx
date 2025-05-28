@@ -52,7 +52,7 @@ export default function Members() {
   }, []);
 
   return (
-    <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
+    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-10 pb-10">
       <MemberConfirmDelete
         isOpen={deleteModal}
         member={selected}
@@ -67,7 +67,7 @@ export default function Members() {
         onClose={() => setEditModal(false)}
         onSave={() => fetchMembers(setMembers)}
       />
-      <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
+      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
         <div className="flex items-center gap-4">
           <input
@@ -87,7 +87,7 @@ export default function Members() {
           </button>
         </div>
       </div>
-      <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
+      <div className="bg-darkBlue neon-box-duo flex w-full items-center justify-between rounded-2xl border-2 border-cyan-300 p-4 text-4xl font-bold text-white">
         <h1>Nome</h1>
         <h1>RA</h1>
         <h1>Cargo</h1>

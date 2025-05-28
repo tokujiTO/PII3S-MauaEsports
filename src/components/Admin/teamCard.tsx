@@ -7,7 +7,7 @@ export default function TeamCard({
   team: { name: string; members: Member[] };
 }) {
   return (
-    <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-2xl text-white">
+    <div className="bg-darkBlue border-2 border-cyan-300 flex w-full items-center justify-between rounded-2xl p-4 text-2xl text-white">
       <div className="flex flex-col gap-2">
         <h1 className="font-bold">{team.name}</h1>
       </div>

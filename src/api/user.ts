@@ -56,7 +56,7 @@ export const addMember = async (member: {
 }) => {
   try {
     const response = await axios.post(`/player`, member);
-    toast.success('Membro adicionado com sucesso!');
+  toast.success('Membro adicionado com sucesso!');
     return response.data;
   } catch (error) {
     console.error('Error adding member:', error);

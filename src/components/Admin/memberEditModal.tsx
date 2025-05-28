@@ -73,13 +73,13 @@ export default function MemberEditModal({
 
   return (
     <div
-      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 text-black backdrop-blur-md ${
+      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 text-white backdrop-blur-md ${
         visible ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-200`}
       onClick={handleClose}
     >
       <div
-        className={`flex h-4/5 w-3/4 flex-col items-start justify-start overflow-y-scroll rounded-3xl bg-white px-4 py-6 shadow-lg ${
+        className={`flex h-4/5 w-3/4 flex-col items-start justify-start overflow-y-scroll rounded-3xl bg-darkBlue border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}

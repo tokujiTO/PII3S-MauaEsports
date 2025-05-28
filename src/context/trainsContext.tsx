@@ -20,7 +20,7 @@ interface Player {
 interface TrainsContextProps {
   events: Events[];
   loading: boolean;
-  fetchEvents: () => Promise<void>;
+  fetchEvents: () => Promise<Events[] | undefined>;
 }
 
 export const TrainsContext = createContext<TrainsContextProps | undefined>(
@@ -37,6 +37,7 @@ export const TrainsProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       const fetchedEvents = await getEvents();
       setEvents(fetchedEvents);
+      return fetchedEvents;
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {

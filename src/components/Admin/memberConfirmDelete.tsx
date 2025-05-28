@@ -40,7 +40,7 @@ export default function MemberConfirmDelete({
   };
 
   const handleConfirm = async () => {
-    const response = await deleteMember(id);
+    await deleteMember(id);
     onConfirm();
     handleClose();
   };
@@ -53,13 +53,13 @@ export default function MemberConfirmDelete({
       onClick={handleClose}
     >
       <div
-        className={`flex h-1/3 w-1/3 flex-col items-center justify-between rounded-3xl bg-white px-6 py-8 shadow-lg ${
+        className={`flex h-1/3 w-1/3 flex-col items-center justify-between rounded-3xl bg-darkBlue px-6 py-8 shadow-lg border-l-8 border-cyan-300  ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className="text-2xl font-bold">Confirmar Exclusão</h1>
-        <p className="text-center text-lg text-gray-600">
+        <p className="text-center text-lg text-gray-300">
           Tem certeza de que deseja excluir {member?.nome}? Esta ação não pode
           ser desfeita.
         </p>

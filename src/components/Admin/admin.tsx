@@ -6,12 +6,12 @@ import Site from './site';
 export default function Admin() {
   const [menu, setMenu] = useState('gerenciar-membros');
   return (
-    <div className="z-50 flex min-h-screen w-full flex-col rounded-t-4xl bg-white p-0 text-black">
+    <div className="z-50 flex min-h-screen w-full flex-col rounded-t-4xl neon-box-duo  bg-deepBlue p-0 text-white">
       <nav className="flex w-full items-center justify-between">
         <ul className="flex w-full items-center justify-evenly gap-10">
           <li
             className={`cursor-pointer text-2xl font-bold ${
-              menu === 'gerenciar-membros' ? 'text-blue-500' : ''
+              menu === 'gerenciar-membros' ? 'neon-text-yellow scale-125' : ''
             }`}
             onClick={() => setMenu('gerenciar-membros')}
           >
@@ -19,7 +19,7 @@ export default function Admin() {
           </li>
           <li
             className={`cursor-pointer text-2xl font-bold ${
-              menu === 'gerenciar-times' ? 'text-blue-500' : ''
+              menu === 'gerenciar-times' ? 'neon-text-yellow scale-125' : ''
             }`}
             onClick={() => setMenu('gerenciar-times')}
           >
@@ -27,7 +27,7 @@ export default function Admin() {
           </li>
           <li
             className={`cursor-pointer text-2xl font-bold ${
-              menu === 'gerenciar-site' ? 'text-blue-500' : ''
+              menu === 'gerenciar-site' ? 'neon-text-yellow scale-125' : ''
             }`}
             onClick={() => setMenu('gerenciar-site')}
           >

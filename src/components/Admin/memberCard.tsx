@@ -46,7 +46,7 @@ export default function MemberCard({
   }, [events]);
 
   return (
-    <div className="bg-deepBlue flex h-24 w-full items-center justify-between rounded-lg p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
+    <div className="bg-darkBlue flex h-24 w-full items-center justify-between rounded-lg border-2 border-cyan-300 p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
       <h1 className="mt-auto mb-auto flex w-1/5">
         {member.nome.split(' ')[0]}
       </h1>

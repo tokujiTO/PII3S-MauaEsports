@@ -51,7 +51,7 @@ export default function homeInterno() {
 
   return (
     <div
-      className={`bg-yellow font-body relative flex w-full flex-col items-center justify-center ${isUser ? 'h-screen overflow-hidden' : 'h-[188vh] px-0 pb-0'} font-thin`}
+      className={`bg-darkBlue font-body relative flex w-full flex-col items-center justify-center ${isUser ? 'h-screen overflow-hidden' : 'h-[188vh] px-0 pb-0'} font-thin`}
     >
       <img
         src={logo}
@@ -59,7 +59,7 @@ export default function homeInterno() {
         className={`absolute ${isCap ? 'top-1/38' : isAdmin ? 'top-1/8' : 'top-1/4'} left-1/2 z-0 w-4/5 -translate-x-1/2 opacity-10`}
       />
       <div
-        className="absolute top-4 left-[92%] z-50 flex h-fit w-fit items-center justify-center rounded-lg bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer"
+        className="neon-box-yellow absolute top-4 left-[92%] z-50 flex h-fit w-fit items-center justify-center rounded-lg border-2 border-yellow bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer"
         onClick={logout}
       >
         <p className="text-4xl text-red-400">Sair</p>
@@ -69,8 +69,8 @@ export default function homeInterno() {
       >
         <div className="z-10 flex w-1/2 flex-col items-center justify-center gap-4 text-7xl text-white">
           <h1 className="font-bold">bem vindo</h1>
-          <h2 className="font-semibold">
-            {user?.nome.split(' ')[0] + ' ' + user?.nome.split(' ')[1]}!
+          <h2 className="neon-text-yellow font-semibold">
+            {user?.nome.split(' ')[0] + ' ' + user?.nome.split(' ')[1]}
           </h2>
         </div>
         {isUser && (

@@ -30,22 +30,22 @@ export default function Teams() {
   };
 
   return (
-    <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
-      <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
+    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-10 pb-10">
+      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Times</h1>
       </div>
+      {currentTeams.length === 0 && (
+        <div className="flex h-96 w-full items-center justify-center">
+          <h1 className="text-4xl font-bold text-white">
+            Nenhum time encontrado
+          </h1>
+        </div>
+      )}
       <div className="flex flex-col gap-4 px-5">
         {currentTeams.map((team, index) => (
           <TeamCard team={team} key={index} />
         ))}
       </div>
-      {currentTeams.length === 0 && (
-        <div className="flex h-96 w-full items-center justify-center">
-          <h1 className="text-4xl font-bold text-gray-500">
-            Nenhum membro encontrado
-          </h1>
-        </div>
-      )}
       <div className="flex w-full items-center justify-center">
         <div className={`${currentPage === 0 ? 'invisible' : ''}`}>
           <button
