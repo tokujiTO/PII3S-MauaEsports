@@ -12,12 +12,14 @@ interface MemberCardProps {
     nickname: string;
   };
   onDelete?: () => void;
+  isAdmin?: boolean;
   onEdit?: () => void;
 }
 
 export default function MemberCard({
   member,
   onDelete,
+  isAdmin = false,
   onEdit,
 }: MemberCardProps) {
   const [horas, setHoras] = useState<number | null>(null);
@@ -53,23 +55,29 @@ export default function MemberCard({
       <h2 className="mt-auto mb-auto flex w-1/5">
         {member.ra || 'sem RA cadastrado'}
       </h2>
-      <h2 className="mt-auto mb-auto flex w-1/5">
-        {member.cargo || 'sem cargo cadastrado'}
-      </h2>
+      {isAdmin && (
+        <h2 className="mt-auto mb-auto flex w-1/5">
+          {member.cargo || 'sem cargo cadastrado'}
+        </h2>
+      )}
 
       <div className="flex h-full w-1/5 items-center justify-between gap-2">
-        <button
-          onClick={onEdit}
-          className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-blue-500"
-        >
-          <Pen size={32} />
-        </button>
-        <button
-          onClick={onDelete}
-          className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-red-500"
-        >
-          <Trash size={32} />
-        </button>
+        {isAdmin && (
+          <button
+            onClick={onEdit}
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-blue-500"
+          >
+            <Pen size={32} />
+          </button>
+        )}
+        {isAdmin && (
+          <button
+            onClick={onDelete}
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-red-500"
+          >
+            <Trash size={32} />
+          </button>
+        )}
         <div className="flex h-full w-3/4 items-center justify-center rounded-lg bg-white text-4xl text-black">
           <div className="flex items-end gap-2 text-black">
             <p>

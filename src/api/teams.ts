@@ -25,6 +25,20 @@ export const getPublicTeams = async () => {
   }
 };
 
+export const getMyTeam = async (ra: string) => {
+  try {
+    const response = await axios.get('http://localhost:3000/equipe', {
+      params: { ra },
+    });
+
+    const team = response.data;
+    return team;
+  } catch (error) {
+    console.error('Error fetching my team:', error);
+    throw error;
+  }
+};
+
 export const fetchPublicTeams = async (setTeams: (teams: Team[]) => void) => {
   try {
     const response = await getPublicTeams();

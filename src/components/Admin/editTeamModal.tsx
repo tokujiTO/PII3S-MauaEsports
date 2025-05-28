@@ -68,7 +68,7 @@ export default function EditTeamModal({
       cap: cap,
       image: image,
       membros: members.split(',').map((member) => member.trim()),
-      color: color.toLowerCase(),
+      color: `gradient-to-t from-[${color}]/50 to-[${color}]/30`,
     });
     onSave();
     handleClose();

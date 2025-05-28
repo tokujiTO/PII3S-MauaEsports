@@ -76,6 +76,18 @@ app.put('/player', async (req, res) => {
   }
 
   try {
+    if (playerExists.ra !== ra) {
+      await connection.Equipes.updateMany(
+        { cap: playerExists.ra },
+        { $set: { cap: ra } }
+      );
+      await connection.Equipes.updateMany(
+        { membros: playerExists.ra },
+        { $set: { 'membros.$[elem]': ra } },
+        { arrayFilters: [{ elem: playerExists.ra }] }
+      );
+    }
+
     const membroAtualizado = await connection.Player.findByIdAndUpdate(
       _id,
       { $set: { ra, nome, cargo, area, nickname } },
@@ -109,6 +121,29 @@ app.delete('/player', async (req, res) => {
   } catch (err) {
     console.error('Erro em apagar o membro:', err);
     res.status(500).json({ erro: 'Erro em apagar o membro.' });
+  }
+});
+
+app.get('/equipe', async (req, res) => {
+  const ra = req.query.ra;
+  if (!ra) {
+    return res.status(400).json({ erro: 'RA não fornecido.' });
+  }
+  try {
+    const equipe = await connection.Equipes.findOne({ cap: ra });
+    if (!equipe) {
+      return res.status(404).json({ erro: 'Equipe não encontrada.' });
+    }
+    const membrosDetalhados = await connection.Player.find({
+      ra: { $in: equipe.membros || [] }
+    });
+    res.json({
+      ...equipe.toObject(),
+      membros: membrosDetalhados
+    });
+  } catch (err) {
+    console.error('Erro ao buscar equipe pelo RA:', err);
+    res.status(500).json({ erro: 'Erro ao buscar equipe.' });
   }
 });
 
@@ -152,15 +187,23 @@ app.get('/equipes/allPublic', async (req, res) => {
     }
     const equipesComNomes = await Promise.all(
       equipes.map(async (equipe) => {
+        // Busca nomes dos membros
         const membrosNomes = await Promise.all(
           (equipe.membros || []).map(async (ra) => {
             const player = await connection.Player.findOne({ ra });
             return player ? player.nome : 'Desconhecido';
           })
         );
+        // Busca nome do capitão
+        let capNome = 'Desconhecido';
+        if (equipe.cap) {
+          const capPlayer = await connection.Player.findOne({ ra: equipe.cap });
+          if (capPlayer) capNome = capPlayer.nome;
+        }
         return {
           ...equipe.toObject(),
           membros: membrosNomes,
+          cap: capNome,
         };
       })
     );

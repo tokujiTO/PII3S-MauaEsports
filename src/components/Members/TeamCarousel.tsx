@@ -198,7 +198,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
             <div
               className={cn(
                 `flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`,
-                `bg-gradient-to-t from-[${item.color}]/50 to-[${item.color}]/30`
+                item.color // item.color should be a Tailwind class, e.g. 'bg-gradient-to-t from-[#FF4655]/50 to-[#FF4655]/30'
               )}
             >
               <img
