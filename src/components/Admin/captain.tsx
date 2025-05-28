@@ -24,6 +24,7 @@ export default function Captain() {
   const [modalityName, setModalityName] = useState<string>('');
   const [scheduledTrainings, setScheduledTrainings] = useState<any[]>([]);
   const [viewSchedule, setViewSchedule] = useState(false);
+  const [id, setId] = useState<string>('');
   const [editSchedule, setEditSchedule] = useState(false);
 
   const fetchTeam = async () => {
@@ -38,6 +39,7 @@ export default function Captain() {
       setModalityName(
         found && (found as any).Name ? (found as any).Name : response.modality
       );
+      setId(found && (found as any)._id ? (found as any)._id : '');
       setScheduledTrainings(
         found && (found as any).ScheduledTrainings
           ? (found as any).ScheduledTrainings
@@ -58,6 +60,7 @@ export default function Captain() {
   return (
     <div className="bg-deepBlue neon-box-duo z-50 flex min-h-[50vh] w-full flex-col gap-8 rounded-t-4xl p-10 pt-20">
       <EditSchedule
+        id={id}
         scheduledTrainings={scheduledTrainings}
         isOpen={editSchedule}
         onClose={() => setEditSchedule(false)}

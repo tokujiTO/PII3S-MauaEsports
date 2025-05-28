@@ -25,6 +25,28 @@ export const getPublicTeams = async () => {
   }
 };
 
+interface ScheduledTraining {
+  Start: string;
+  End: string;
+}
+
+export const editSchedule = async (data: {
+  _id: string;
+  ScheduledTrainings: ScheduledTraining[];
+}) => {
+  try {
+    const response = await axios.patch(`/api/modality`, data, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error editing schedule:', error);
+    throw error;
+  }
+};
+
 export const getModalities = async () => {
   try {
     const response = await axios.get(`/api/modality/all`, {

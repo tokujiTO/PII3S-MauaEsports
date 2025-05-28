@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { editSchedule } from '../../api/teams';
 
 export default function EditSchedule({
   scheduledTrainings,
+  id,
   isOpen,
   onClose,
 }: {
+  id: string;
   scheduledTrainings: { Start: string; End: string }[];
   isOpen: boolean;
   onClose: () => void;
@@ -20,39 +23,12 @@ export default function EditSchedule({
       endWeekDay: string;
     }[]
   >([]);
-
-  function parseCronTime(cron: string): string {
-    // Exemplo: "0 00 18 * * 4" => "18:00"
-    const parts = cron.split(' ');
-    if (parts.length < 3) return cron;
-    const minute = parts[1].padStart(2, '0');
-    const hour = parts[2].padStart(2, '0');
-    // Opcional: dia da semana
-    const weekDayMap: Record<string, string> = {
-      '0': 'Dom',
-      '1': 'Seg',
-      '2': 'Ter',
-      '3': 'Qua',
-      '4': 'Qui',
-      '5': 'Sex',
-      '6': 'Sáb',
-    };
-    const weekDay = parts[5] ? weekDayMap[parts[5]] || '' : '';
-    return `${hour}:${minute}${weekDay ? ` (${weekDay})` : ''}`;
-  }
-
-  // Função para converter hora, minuto e dia da semana para cron
   function toCronTime(hour: string, minute: string, weekDay: string): string {
-    // Exemplo: "20", "00", "2" => "0 20 00 * * 2"
-    // O cron do backend é: minuto hora dia-mês mês dia-semana
-    // Para treinos, normalmente dia-mês e mês são *, então:
-    // "minuto hora * * dia-semana"
-    return `${minute} ${hour} * * ${weekDay}`;
+    return `0 ${minute} ${hour} * * ${weekDay}`;
   }
 
   useEffect(() => {
     if (isOpen) {
-      // Preenche os campos com os treinos atuais ao abrir
       setTrainings(
         scheduledTrainings.map((t) => {
           const startParts = t.Start.split(' ');
@@ -96,13 +72,16 @@ export default function EditSchedule({
   };
 
   const handleSave = () => {
-    // Monta o payload para request
     const ScheduledTrainings = trainings.map((t) => ({
       Start: toCronTime(t.hour, t.minute, t.weekDay),
       End: toCronTime(t.endHour, t.endMinute, t.endWeekDay),
     }));
-    // Aqui você pode chamar a função de update passando ScheduledTrainings
-    // Exemplo: onSave(ScheduledTrainings)
+    console.log('ScheduledTrainings:', ScheduledTrainings);
+    const data = {
+      _id: id,
+      ScheduledTrainings: ScheduledTrainings,
+    };
+    const response = editSchedule(data);
     handleClose();
   };
 
@@ -129,7 +108,7 @@ export default function EditSchedule({
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex overflow-y-scroll h-[90vh] w-2/3 flex-col items-center justify-between gap-6 rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 ${
+        className={`bg-darkBlue flex h-[90vh] w-2/3 flex-col items-center justify-between gap-6 overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 ${
           visible ? 'translate-y-0' : 'translate-y-full'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -254,12 +233,3 @@ export default function EditSchedule({
     </div>
   );
 }
-
-// Exemplo de uso para montar o payload para request:
-// const payload = {
-//   _id: teamId,
-//   ScheduledTrainings: [
-//     { Start: toCronTime('20', '00', '2'), End: toCronTime('23', '00', '2') },
-//     ...
-//   ]
-// }
