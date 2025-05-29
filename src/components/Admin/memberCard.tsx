@@ -12,17 +12,18 @@ interface MemberCardProps {
     nickname: string;
   };
   onDelete?: () => void;
+  isAdmin?: boolean;
   onEdit?: () => void;
 }
 
 export default function MemberCard({
   member,
   onDelete,
+  isAdmin = false,
   onEdit,
 }: MemberCardProps) {
   const [horas, setHoras] = useState<number | null>(null);
   const { events } = useTrains();
-  console.log('Events:', events);
 
   const fetchHours = async () => {
     let totalMilliseconds = 0;
@@ -47,30 +48,36 @@ export default function MemberCard({
   }, [events]);
 
   return (
-    <div className="bg-deepBlue flex h-24 w-full items-center justify-between rounded-lg p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
+    <div className="bg-darkBlue flex h-24 w-full items-center justify-between rounded-lg border-2 border-cyan-300 p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
       <h1 className="mt-auto mb-auto flex w-1/5">
         {member.nome.split(' ')[0]}
       </h1>
       <h2 className="mt-auto mb-auto flex w-1/5">
         {member.ra || 'sem RA cadastrado'}
       </h2>
-      <h2 className="mt-auto mb-auto flex w-1/5">
-        {member.cargo || 'sem cargo cadastrado'}
-      </h2>
+      {isAdmin && (
+        <h2 className="mt-auto mb-auto flex w-1/5">
+          {member.cargo || 'sem cargo cadastrado'}
+        </h2>
+      )}
 
       <div className="flex h-full w-1/5 items-center justify-between gap-2">
-        <button
-          onClick={onEdit}
-          className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-blue-500"
-        >
-          <Pen size={32} />
-        </button>
-        <button
-          onClick={onDelete}
-          className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-red-500"
-        >
-          <Trash size={32} />
-        </button>
+        {isAdmin && (
+          <button
+            onClick={onEdit}
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-blue-500"
+          >
+            <Pen size={32} />
+          </button>
+        )}
+        {isAdmin && (
+          <button
+            onClick={onDelete}
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-red-500"
+          >
+            <Trash size={32} />
+          </button>
+        )}
         <div className="flex h-full w-3/4 items-center justify-center rounded-lg bg-white text-4xl text-black">
           <div className="flex items-end gap-2 text-black">
             <p>

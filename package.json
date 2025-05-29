@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite & node index.cjs",
+    "dev": "run-p backend frontend",
+    "backend": "node index.cjs",
+    "frontend": "vite",
     "start": "node index.cjs;",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -30,6 +32,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.1",
+    "react-toastify": "^11.0.5",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.4"
   },
@@ -43,6 +46,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "supertest": "^7.1.1",

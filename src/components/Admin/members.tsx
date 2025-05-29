@@ -7,14 +7,39 @@ import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
 import { fetchMembers } from '../../api/user';
 import { useTrains } from '../../hooks/useTrains';
+import { UseUser } from '../../hooks/useUser';
 
 export default function Members() {
   const { members, setMembers } = useMembers();
+  const { user } = UseUser();
   const [addModal, setAddModal] = useState(false);
   const { fetchEvents } = useTrains();
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [selected, setSelected] = useState<Member | undefined>(undefined);
+  const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
+
+  let filteredMembers = members;
+  if (search && members) {
+    filteredMembers = members.filter((member) =>
+      member.nome.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+  // Exclui o próprio usuário da lista
+  if (filteredMembers && user) {
+    filteredMembers = filteredMembers.filter((member) => member.ra !== user.ra);
+  }
+
+  const memberPageSize = 5;
+  const totalPages = filteredMembers
+    ? Math.ceil(filteredMembers.length / memberPageSize)
+    : 0;
+  const startIndex = currentPage * memberPageSize;
+  const endIndex = startIndex + memberPageSize;
+  const currentMembers = filteredMembers
+    ? filteredMembers.slice(startIndex, endIndex)
+    : [];
 
   const handlePrevious = () => {
     if (currentPage > 0) {
@@ -27,27 +52,13 @@ export default function Members() {
     }
   };
 
-  let totalPages = 0;
-  const [currentPage, setCurrentPage] = useState(0);
-  let currentMembers: Member[] = [];
-
-  if (members) {
-    const memberPageSize = 5;
-    totalPages = Math.ceil(members.length / memberPageSize);
-    const startIndex = currentPage * memberPageSize;
-    const endIndex = startIndex + memberPageSize;
-    currentMembers = members.slice(startIndex, endIndex);
-  }
-
   useEffect(() => {
-    fetchMembers(setMembers);
     fetchEvents();
+    fetchMembers(setMembers);
   }, []);
 
-  console.log(members);
-
   return (
-    <div className="z-50 flex w-full flex-col gap-8 rounded-t-4xl bg-white px-10 pb-10">
+    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-10 pb-10">
       <MemberConfirmDelete
         isOpen={deleteModal}
         member={selected}
@@ -60,11 +71,22 @@ export default function Members() {
         isOpen={editModal}
         member={selected}
         onClose={() => setEditModal(false)}
-        onSave={() => window.location.reload()}
+        onSave={() => fetchMembers(setMembers)}
       />
-      <div className="bg-deepBlue flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
+      <AddMemberModal
+        isOpen={addModal}
+        onClose={() => setAddModal(false)}
+        onSave={() => fetchMembers(setMembers)}
+      />
+      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
         <h1 className="b">Gerenciar Membros</h1>
         <div className="flex items-center gap-4">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="text-deepBlue rounded-lg bg-white px-4 py-2 text-lg outline-none focus:ring-2"
+          />
           <button className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer">
             <Funnel size={32} />
           </button>
@@ -76,7 +98,7 @@ export default function Members() {
           </button>
         </div>
       </div>
-      <div className="bg-deepBlue flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
+      <div className="bg-darkBlue neon-box-duo flex w-full items-center justify-between rounded-2xl border-2 border-cyan-300 p-4 text-4xl font-bold text-white">
         <h1>Nome</h1>
         <h1>RA</h1>
         <h1>Cargo</h1>
@@ -93,6 +115,7 @@ export default function Members() {
               ra: member.ra,
               horas: member.horas,
             }}
+            isAdmin={true}
             onDelete={() => {
               setSelected(member);
               setDeleteModal(true);
@@ -142,11 +165,6 @@ export default function Members() {
           </button>
         </div>
       </div>
-      <AddMemberModal
-        isOpen={addModal}
-        onClose={() => setAddModal(false)}
-        onSave={() => fetchMembers(setMembers)}
-      />
     </div>
   );
 }

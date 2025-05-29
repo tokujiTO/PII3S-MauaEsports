@@ -39,8 +39,8 @@ export default function AddMemberModal({
     await addMember({
       nome: name,
       nickname: nickName,
-      ra,
-      area,
+      ra: ra,
+      area: area,
       cargo: role,
     });
     onSave();
@@ -58,7 +58,7 @@ export default function AddMemberModal({
       onClick={handleClose}
     >
       <div
-        className={`flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl bg-white px-4 py-6 shadow-lg ${
+        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
@@ -66,7 +66,7 @@ export default function AddMemberModal({
         <div className="flex w-full flex-col items-start justify-center gap-4">
           <div className="flex w-full flex-col items-start justify-center">
             <h1 className="text-3xl font-bold">Adicionar Membro</h1>
-            <div className="h-1 w-full rounded-full bg-black" />
+            <div className="to h-1 w-full rounded-full bg-yellow-300 bg-gradient-to-l from-orange-600" />
           </div>
           <div className="flex w-full flex-col gap-4">
             <label className="text-3xl font-medium" htmlFor="name">
@@ -120,6 +120,7 @@ export default function AddMemberModal({
                     Selecione uma opção
                   </option>
                   <option value="player">Jogador</option>
+                  <option value="event">Eventos</option>
                   <option value="marketing">Marketing</option>
                   <option value="director">Diretoria</option>
                 </select>
@@ -128,14 +129,21 @@ export default function AddMemberModal({
                 <label className="text-3xl font-medium" htmlFor="role">
                   Cargo
                 </label>
-                <input
-                  id="ra"
-                  type="text"
-                  placeholder="Capitão, mid, suporte, etc"
+                <select
+                  id="role"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
+                  defaultValue={'none'}
                   className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-                />
+                >
+                  <option value="none" disabled>
+                    Selecione uma opção
+                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="cap">Capitão</option>
+                  <option value="dna">Não se aplica</option>
+                  <option value="player">Jogador</option>
+                </select>
               </div>
             </div>
           </div>

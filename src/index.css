@@ -76,6 +76,24 @@ body {
       0 0 50px #e4b054;
   }
 
+  .neon-text-white {
+    text-shadow:
+      -4px 4px 5px #fdfdfe,
+      -4px 4px 10px #fdfdfe,
+      -4px 4px 20px #fdfdfe,
+      -4px 4px 40px #000618,
+      -4px 4px 80px #000618;
+  }
+
+  .neon-text-red {
+    text-shadow:
+      -4px 4px 5px #ff0000,
+      -4px 4px 10px #ff0000,
+      -4px 4px 20px #ff0000,
+      -4px 4px 40px #800000,
+      -4px 4px 80px #800000;
+  }
+
   .neon-text-yellow {
     text-shadow:
       -4px 4px 5px #e4b054,

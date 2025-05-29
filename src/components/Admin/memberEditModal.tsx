@@ -18,9 +18,11 @@ export default function MemberEditModal({
 }: MemberEditModalProps) {
   const [visible, setVisible] = useState(false);
   const [nome, setNome] = useState(member?.nome || '');
+  const [nickname, setNickname] = useState(member?.nickname || '');
   const [ra, setRa] = useState(member?.ra || '');
+  const [area, setArea] = useState(member?.area || '');
   const [raAntigo, setRaAntigo] = useState(member?.ra || '');
-  const [cargo, setcargo] = useState(member?.cargo || '');
+  const [role, setRole] = useState(member?.cargo || '');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -30,13 +32,19 @@ export default function MemberEditModal({
   }, [isOpen]);
 
   useEffect(() => {
-    if (member) {
+    if (isOpen && member) {
       setNome(member.nome);
       setRaAntigo(member.ra);
+      setNickname(member.nickname);
       setRa(member.ra);
-      setcargo(member.cargo);
+      setArea(member.area);
+      setRole(member.cargo);
     }
-  }, [member]);
+    if (!isOpen) {
+      setVisible(false);
+      setLoading(false);
+    }
+  }, [isOpen, member]);
 
   if (!isOpen) return null;
 
@@ -52,11 +60,11 @@ export default function MemberEditModal({
     setLoading(true);
     await updateMember({
       nome: nome,
-      nickname: member?.nickname || '',
+      nickname: nickname || '',
       ra: ra || '',
-      area: member?.area || '',
-      cargo: cargo || '',
-      raAntigo: raAntigo
+      area: area || '',
+      cargo: role || '',
+      raAntigo: raAntigo,
     });
     setLoading(false);
     onSave();
@@ -65,13 +73,13 @@ export default function MemberEditModal({
 
   return (
     <div
-      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${
+      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 text-white backdrop-blur-md ${
         visible ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-200`}
       onClick={handleClose}
     >
       <div
-        className={`flex h-4/5 w-3/4 flex-col items-start justify-start overflow-y-scroll rounded-3xl bg-white px-4 py-6 shadow-lg ${
+        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-start overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
@@ -103,28 +111,59 @@ export default function MemberEditModal({
             onChange={(e) => setRa(e.target.value)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
-          <label htmlFor="discord" className='text-xl font-medium'>
-            Discord
-          </label>
-          <input 
-          className='w-full rounded-lg border border-gray-300 p-2 text-xl'
-          id="discord"
-          type="text"
-          placeholder="Discord"
-          value={member?.nickname}
-          onChange={(e) => setRa(e.target.value)}
-          />
-          <label className="text-xl font-medium" htmlFor="cargo">
-            Função
-          </label>
-          <input
-            id="cargo"
-            type="text"
-            placeholder="Função"
-            value={cargo}
-            onChange={(e) => setcargo(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-          />
+          <div className="mb-4 flex w-4/5 justify-between">
+            <div className="flex flex-col">
+              <label htmlFor="discord" className="text-xl font-medium">
+                Discord
+              </label>
+              <input
+                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+                id="discord"
+                type="text"
+                placeholder="Discord"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-xl font-medium" htmlFor="cargo">
+                Area
+              </label>
+              <select
+                id="area"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+              >
+                <option value="none" disabled>
+                  Selecione uma opção
+                </option>
+                <option value="player">Jogador</option>
+                <option value="event">Eventos</option>
+                <option value="marketing">Marketing</option>
+                <option value="director">Diretoria</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-xl font-medium" htmlFor="cargo">
+                Cargo
+              </label>
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+              >
+                <option value="none" disabled>
+                  Selecione uma opção
+                </option>
+                <option value="admin">Admin</option>
+                <option value="cap">Capitão</option>
+                <option value="dna">Não se aplica</option>
+                <option value="player">Jogador</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button

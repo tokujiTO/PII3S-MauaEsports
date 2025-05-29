@@ -1,19 +1,18 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedElement from '../animatedElement';
-import { cn } from '../../utils/cn';
+
+interface TeamDataItem {
+  nome: string;
+  cap: string;
+  membros: string[];
+  color: string;
+  image: string;
+}
 
 interface CarouselProps {
   clickable?: boolean;
-  data: {
-    image: string;
-    members?: {
-      name: string;
-      role?: string;
-      linkedin?: string;
-    }[];
-    color: string;
-  }[];
+  data: TeamDataItem[];
 }
 
 export default function TeamCarousel({ data, clickable }: CarouselProps) {
@@ -168,10 +167,6 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
     };
   }, [scrollContainerRef]);
 
-  const isCaptain = (member: { role?: string }) => {
-    return member.role?.toLowerCase() === 'capitão';
-  };
-
   return (
     <AnimatedElement
       direction="bottom"
@@ -188,49 +183,36 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} neon-box-duo relative flex h-3/5 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card ${clickable ? 'hover:scale-[1.05] hover:cursor-pointer' : ''} neon-box-duo bg-coolWhite relative flex h-3/5 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
             }}
           >
             <div
-              className={cn(
-                `flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`,
-                item.color
-              )}
+              className={`flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat pt-14`}
+              style={{
+                background: `linear-gradient(to top, ${item.color}80 10%, ${item.color}33 100%)`,
+              }}
             >
               <img
-                src={item.image}
+                src={item.image?.toString()}
                 alt={'Team Logo'}
-                className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-20"
+                className="absolute top-1/5 z-0 mb-2 h-32 w-32 -translate-y-1/2 object-contain opacity-90"
               />
-
-              {item.members?.map((member, memberIndex) => (
-                <p
+              <p className="text-lightBlack/60 italic` z-10 text-center text-4xl font-bold">
+                {item.cap.split(' ')[0] + ' ' + item.cap.split(' ')[1]}
+              </p>
+              {item.membros.map((member, memberIndex) => (
+                <h2
                   key={memberIndex}
-                  className={cn(
-                    `text-lightBlack/60 z-10 text-center text-xl italic`,
-                    isCaptain(member) ? 'text-2xl font-bold' : 'font-normal'
-                  )}
+                  className="text-lightBlack/60 italic` z-10 text-center text-2xl"
                   style={{
                     marginTop: memberIndex === 0 ? '0.5rem' : '0.25rem',
                   }}
                 >
-                  {member.name}
-                  {member.role && ` - ${member.role}`}
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="z-10 text-blue-500 hover:underline"
-                    >
-                      {' '}
-                      (LinkedIn)
-                    </a>
-                  )}
-                </p>
+                  {member.split(' ')[0] + ' ' + member.split(' ')[1]}
+                </h2>
               ))}
             </div>
           </div>

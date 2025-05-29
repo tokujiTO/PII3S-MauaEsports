@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
+import { useIsAuthenticated, useMsal } from '@azure/msal-react';
+import { loginRequest } from '../auth/auth-config';
 import HomeBanner from '../components/Home/homeBanner';
 import AboutUs from '../components/Home/aboutUs';
 import WhatWeDo from '../components/Home/whatWeDo';
@@ -7,6 +10,27 @@ import OurMission from '../components/Home/ourMission';
 import Shirts from '../components/Home/shirts';
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { instance } = useMsal();
+  const auth = useIsAuthenticated();
+
+  const fetchAccessToken = async () => {
+    const accounts = instance.getAllAccounts();
+    const accessToken = (
+      await instance.acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+    ).accessToken;
+    localStorage.setItem('accessToken', accessToken);
+    return accessToken;
+  };
+
+  if (auth) {
+    navigate('/pi-home');
+    fetchAccessToken();
+  }
+
   return (
     <div className="bg-deepBlue min-h-screen overflow-x-hidden pt-20 text-white">
       <Navbar />
