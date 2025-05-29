@@ -43,8 +43,14 @@ export default function Teams() {
     <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-10 pb-10">
       <AddTeamModal
         isOpen={addModal}
-        onClose={() => setAddModal(false)}
-        onSave={() => setAddModal(false)}
+        onClose={() => {
+          setAddModal(false);
+          fetchTeams(setTeams);
+        }}
+        onSave={() => {
+          setAddModal(false);
+          fetchTeams(setTeams);
+        }}
       />
       <EditTeamModal
         isOpen={editModal}

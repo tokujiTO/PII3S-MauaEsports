@@ -59,7 +59,7 @@ export default function homeInterno() {
         className={`absolute ${isCap ? 'top-1/38' : isAdmin ? 'top-1/8' : 'top-1/4'} left-1/2 z-0 w-3/5 -translate-x-1/2 opacity-10`}
       />
       <div
-        className="neon-box-yellow border-yellow absolute top-4 left-[92%] z-50 flex h-fit w-fit items-center justify-center rounded-lg border-2 bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer"
+        className="neon-box-yellow border-yellow absolute top-4 left-[92%] z-50 flex h-fit w-fit items-center justify-center rounded-lg border-2 bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer hover:shadow-none"
         onClick={logout}
       >
         <p className="text-4xl text-red-400">Sair</p>

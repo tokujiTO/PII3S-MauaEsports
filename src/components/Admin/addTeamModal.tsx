@@ -65,6 +65,13 @@ export default function AddTeamModal({
     handleClose();
   };
 
+  const handleChangeColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.slice(0, 7);
+    if (/^#?[0-9a-fA-F]*$/i.test(value)) {
+      setColor(value);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -132,15 +139,23 @@ export default function AddTeamModal({
               onChange={(e) => setMembers(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
-            <label className="text-3xl font-medium" htmlFor="members">
+            <label className="flex text-3xl font-medium" htmlFor="members">
               Cor
+              <div className="ml-4 h-8 w-10 bg-white text-xl">
+                <div
+                  className="h-full w-full text-xl"
+                  style={{
+                    background: `linear-gradient(to top, ${color}80 10%, ${color}33 100%)`,
+                  }}
+                />
+              </div>
             </label>
             <input
               id="members"
               type="text"
-              placeholder="Ex: gradient-to-t from-blue-500 to-white"
+              placeholder="Ex: #000000"
               value={color}
-              onChange={(e) => setColor(e.target.value)}
+              onChange={(e) => handleChangeColor(e)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
             <label htmlFor="modality" className="text-3xl font-medium">
