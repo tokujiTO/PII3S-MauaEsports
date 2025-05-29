@@ -56,6 +56,11 @@ export default function MemberEditModal({
     }, 100);
   };
 
+  const onChangeRa = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9.-]/g, '');
+    setRa(value);
+  };
+
   const handleSave = async () => {
     setLoading(true);
     await updateMember({
@@ -108,19 +113,19 @@ export default function MemberEditModal({
             type="text"
             placeholder="RA"
             value={ra}
-            onChange={(e) => setRa(e.target.value)}
+            onChange={(e) => onChangeRa(e)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
           <div className="mb-4 flex w-4/5 justify-between">
             <div className="flex flex-col">
               <label htmlFor="discord" className="text-xl font-medium">
-                Discord
+                Id do Discord
               </label>
               <input
                 className="w-full rounded-lg border border-gray-300 p-2 text-xl"
                 id="discord"
                 type="text"
-                placeholder="Discord"
+                placeholder="Id do Discord"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
               />

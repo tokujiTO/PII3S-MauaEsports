@@ -76,7 +76,7 @@ export default function Schedule({
         ) : (
           <span className="text-gray-300">Nenhum treino cadastrado</span>
         )}
-        <div className="bg-darkBlue sticky bottom-0 mt-8 flex w-full justify-end gap-6 text-2xl">
+        <div className="bg-darkBlue sticky bottom-0 mt-8 flex w-full justify-end gap-6 p-2 text-2xl">
           <button
             onClick={handleClose}
             className="flex w-1/3 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600"

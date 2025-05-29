@@ -28,6 +28,7 @@ export default function App() {
           rtl={false}
           pauseOnFocusLoss
           draggable
+          theme="colored"
           pauseOnHover
         />
         <Routes>

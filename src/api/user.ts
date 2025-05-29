@@ -40,7 +40,6 @@ export const fetchPublicMembers = async (
     setMembers(response.data); // Use setMembers here
     return response.data;
   } catch (error) {
-    toast.error('Error fetching public members');
     throw error;
   }
 };
@@ -56,7 +55,9 @@ export const fetchUser = async (setUser: (User: any) => void) => {
       localStorage.setItem('user', JSON.stringify(response.data.usuario));
     }
   } catch (err) {
-    toast('Erro ao verificar usuário.');
+    toast.error('Erro ao verificar usuário.');
+    console.error('Error fetching user:', err);
+    throw err;
   }
 };
 
@@ -118,6 +119,7 @@ export const getEvents = async () => {
     const events: Events[] = response.data;
     return events;
   } catch (error) {
+    toast.error('Error fetching events');
     console.error('Error fetching events:', error);
     throw error;
   }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { addMember } from '../../api/user';
 import { Spinner } from '@phosphor-icons/react';
+import { toast } from 'react-toastify';
 
 interface AddMemberModalProps {
   isOpen: boolean;
@@ -17,8 +18,8 @@ export default function AddMemberModal({
   const [name, setName] = useState('');
   const [nickName, setNickName] = useState('');
   const [ra, setRa] = useState('');
-  const [area, setArea] = useState('');
-  const [role, setRole] = useState('user');
+  const [area, setArea] = useState('none');
+  const [role, setRole] = useState('none');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -26,6 +27,11 @@ export default function AddMemberModal({
       setVisible(isOpen);
     }, 100);
   }, [isOpen]);
+
+  const onChangeRa = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9.-]/g, '');
+    setRa(value);
+  };
 
   const handleClose = () => {
     setVisible(false);
@@ -36,6 +42,11 @@ export default function AddMemberModal({
 
   const handleSave = async () => {
     setLoading(true);
+    if (!name || !ra || area === 'none' || role === 'none') {
+      toast.error('Por favor, preencha todos os campos corretamente.');
+      setLoading(false);
+      return;
+    }
     await addMember({
       nome: name,
       nickname: nickName,
@@ -81,12 +92,12 @@ export default function AddMemberModal({
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
             <label className="text-3xl font-medium" htmlFor="nickName">
-              NickName
+              Id do Discord
             </label>
             <input
               id=""
               type="nickName"
-              placeholder="Nickname do Discord"
+              placeholder="Id do Discord"
               value={nickName}
               onChange={(e) => setNickName(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
@@ -101,7 +112,7 @@ export default function AddMemberModal({
                   type="text"
                   placeholder="00.0000-0"
                   value={ra}
-                  onChange={(e) => setRa(e.target.value)}
+                  onChange={(e) => onChangeRa(e)}
                   className="w-full rounded-lg border border-gray-300 p-2 text-xl"
                 />
               </div>
