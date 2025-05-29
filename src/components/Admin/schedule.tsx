@@ -53,17 +53,17 @@ export default function Schedule({
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex min-h-[200px] w-1/3 flex-col items-center justify-between gap-6 rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 ${
+        className={`bg-darkBlue flex h-[60vh] min-h-[200px] w-[50vw] flex-col items-center justify-between gap-6 overflow-scroll rounded-3xl border-l-8 border-cyan-300 text-4xl shadow-lg transition-transform duration-200 ${
           visible ? 'translate-y-0' : 'translate-y-full'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="mb-2 text-3xl font-bold text-white">
+        <h1 className="bg-darkBlue sticky top-0 mb-2 w-full px-8 pt-8 font-bold text-white">
           Horários de Treino
+          <div className="mb-4 h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
         </h1>
-        <div className="mb-4 h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
         {scheduledTrainings.length > 0 ? (
-          <div className="flex w-full flex-col gap-2 text-lg text-cyan-100">
+          <div className="flex w-full flex-col gap-2 text-center text-cyan-100">
             {scheduledTrainings.map((t, i) => (
               <span key={i} className="rounded bg-cyan-900/30 px-4 py-2">
                 <span className="font-semibold">Início:</span>{' '}
@@ -76,7 +76,7 @@ export default function Schedule({
         ) : (
           <span className="text-gray-300">Nenhum treino cadastrado</span>
         )}
-        <div className="mt-8 flex w-full justify-end gap-6 text-2xl">
+        <div className="bg-darkBlue sticky bottom-0 mt-8 flex w-full justify-end gap-6 text-2xl">
           <button
             onClick={handleClose}
             className="flex w-1/3 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600"

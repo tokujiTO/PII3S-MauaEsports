@@ -14,7 +14,6 @@ export default function EditSchedule({
   onClose: () => void;
 }) {
   const [visible, setVisible] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [trainings, setTrainings] = useState<
     {
       hour: string;
@@ -28,9 +27,6 @@ export default function EditSchedule({
   function toCronTime(hour: string, minute: string, weekDay: string): string {
     return `0 ${minute} ${hour} * * ${weekDay}`;
   }
-  useEffect(() => {
-    toast.error(error);
-  }, [error]);
 
   useEffect(() => {
     if (isOpen) {
@@ -83,7 +79,6 @@ export default function EditSchedule({
   };
 
   const handleSave = () => {
-    // Validação dos campos
     for (const t of trainings) {
       if (
         !t.hour ||
@@ -93,9 +88,7 @@ export default function EditSchedule({
         !t.endMinute ||
         !t.endWeekDay
       ) {
-        setError(
-          'Preencha todos os campos de horário e dia da semana para todos os treinos.'
-        );
+        toast.error('Todos os campos devem ser preenchidos.');
         return;
       }
       if (
@@ -106,7 +99,7 @@ export default function EditSchedule({
         isNaN(Number(t.endMinute)) ||
         isNaN(Number(t.endWeekDay))
       ) {
-        setError('Todos os campos devem ser números válidos.');
+        toast.error('Todos os campos devem ser números válidos.');
         return;
       }
       if (
@@ -123,7 +116,7 @@ export default function EditSchedule({
         Number(t.endWeekDay) < 0 ||
         Number(t.endWeekDay) > 6
       ) {
-        setError('Horário ou dia da semana fora do intervalo permitido.');
+        toast.error('Horário ou dia da semana fora do intervalo permitido.');
         return;
       }
     }
@@ -163,16 +156,28 @@ export default function EditSchedule({
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-[90vh] w-2/3 flex-col items-center justify-between gap-6 overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 ${
+        className={`bg-darkBlue flex h-[90vh] w-2/3 flex-col items-center justify-between gap-6 overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 md:text-4xl ${
           visible ? 'translate-y-0' : 'translate-y-full'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="mb-2 text-3xl font-bold text-white">
+        <h1 className="mb-2 w-full text-5xl font-bold text-white">
           Horários de Treino
+          <div className="mb-4 h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
         </h1>
-        <div className="mb-4 h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
-        <div className="flex w-full flex-col gap-4">
+        <div className="flex w-full flex-col items-center gap-4">
+          <div className="mb-2 flex w-full justify-evenly">
+            <span className="w-1/3 text-end font-semibold text-cyan-100">
+              Dia da Semana
+            </span>
+            <span className="w-1/3 text-center font-semibold text-cyan-100">
+              Início (HH:MM)
+            </span>
+            <span className="w-1/3 text-start font-semibold text-cyan-100">
+              Fim (HH:MM)
+            </span>
+            <span className="w-24"></span>
+          </div>
           {trainings.map((t, i) => (
             <div key={i} className="flex items-center gap-2">
               <select
@@ -241,7 +246,7 @@ export default function EditSchedule({
               />
               <button
                 onClick={() => handleRemoveTraining(i)}
-                className="ml-2 rounded bg-red-500 px-2 py-1 text-white hover:bg-red-700"
+                className="ml-2 rounded bg-red-500 px-2 py-1 text-white duration-200 hover:cursor-pointer hover:bg-red-700"
               >
                 Remover
               </button>
@@ -249,7 +254,7 @@ export default function EditSchedule({
           ))}
           <button
             onClick={handleAddTraining}
-            className="mt-2 w-fit rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
+            className="mt-2 w-fit rounded bg-blue-500 px-4 py-2 text-white duration-200 hover:cursor-pointer hover:bg-blue-700"
           >
             Adicionar treino
           </button>
