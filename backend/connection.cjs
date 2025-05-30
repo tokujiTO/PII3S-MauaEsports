@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const USUARIO = process.env.USUARIO;
@@ -40,6 +41,14 @@ const Evento = mongoose.model(
   })
 );
 
+const Achivement = mongoose.model(
+  'Achivement',
+  mongoose.Schema({
+    year: {type: Int16Array, required: true},
+    achivements: {type: [Stirng], required: true}
+  })
+)
+
 async function connectToMongo() {
   try {
     await mongoose.connect(
@@ -55,3 +64,4 @@ module.exports.connectToMongo = connectToMongo;
 module.exports.Player = Player;
 module.exports.Equipes = Equipes;
 module.exports.Evento = Evento;
+module.exports.Achivement = Achivement;
