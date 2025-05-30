@@ -39,6 +39,10 @@ app.get('/player', async (req, res) => {
     return res.status(401).json({ mensagem: 'Usuário não existe' });
   }
 
+  // agora é saber se vamos pegar o id do discord e retornar o usuario
+  // ou pegar o usuario e retornar o id
+  // o trabalho dificil ja foi feito pelo menos :)
+
   res.json(playerExists);
 });
 

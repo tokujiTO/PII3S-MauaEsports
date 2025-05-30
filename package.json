@@ -28,6 +28,7 @@
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.1",
     "mongoose-sequence": "^6.0.1",
+    "node-fetch": "^2.7.0",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
