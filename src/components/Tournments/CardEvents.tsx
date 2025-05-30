@@ -2,7 +2,7 @@ import EventsList from './EventsList';
 
 const eventsMock = [
   {
-    nome: 'CAMPEONATO CSGO2',
+    nome: 'CAMPEONATO CSGO',
     data: '1716422400',
     link: 'https://www.twitch.tv/valorantbrasil',
   },
