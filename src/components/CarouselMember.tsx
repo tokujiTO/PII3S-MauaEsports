@@ -163,7 +163,7 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
   return (
     <AnimatedElement
       direction="bottom"
-      className="relative flex h-[60vh] w-full flex-col"
+      className="relative flex h-[40vh] sm:h-[60vh] w-full flex-col"
     >
       <div
         ref={scrollContainerRef}
@@ -182,15 +182,6 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
               opacity: 0.5 + (calculateScale(index) - 0.8) / 0.8,
               zIndex: Math.round(calculateScale(index) * 10),
             }}
-            // onClick={() => {
-            //   if (clickable) {
-            //     if (item.linkedin) {
-            //       window.open(item.linkedin, '_blank');
-            //     } else {
-            //       alert('LinkedIn não disponível');
-            //     }
-            //   }
-            // }}
           >
             {item.image && (
               <img
@@ -199,7 +190,7 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
                 className="mb-2 h-32 w-32 rounded-full object-contain"
               />
             )}
-            <h2 className="text-lightBlack/80 text-sm font-bold lg:text-3xl">
+            <h2 className="text-lightBlack/80 text-2xl font-bold lg:text-3xl">
               {item.nome.split(' ')[0] + ' ' + item.nome.split(' ')[1]}
             </h2>
             {item.cargo && (
@@ -207,11 +198,6 @@ export default function CarouselMember({ data, clickable }: CarouselProps) {
                 {item.cargo.split('<br />')[0]}
               </p>
             )}
-            {/* {item.area && (
-              <p className="lg:text-md text-lightBlack/60 text-center text-xs italic">
-                {item.area.split('<br />')[0]}
-              </p>
-            )} */}
           </div>
         ))}
       </div>

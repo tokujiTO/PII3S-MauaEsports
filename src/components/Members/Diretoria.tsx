@@ -7,8 +7,8 @@ interface DiretoriaProps {
 
 export default function Diretoria({ diretoria }: DiretoriaProps) {
   return (
-    <div className="from-darkBlue font-body to-deepBlue flex flex-col items-center justify-center bg-gradient-to-t py-8 text-black">
-      <h1 className="neon-shadow-duo mb-4 text-7xl font-bold text-white">
+    <div className="from-darkBlue font-body to-deepBlue flex flex-col items-center justify-center bg-gradient-to-t pt-8 text-black">
+      <h1 className="neon-shadow-duo sm:mb-4 text-7xl font-bold text-white">
         Diretoria
       </h1>
       {diretoria != undefined ? (

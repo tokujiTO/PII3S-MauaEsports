@@ -1,44 +1,37 @@
+import EventsList from './EventsList';
+
+const eventsMock = [
+  {
+    nome: 'CAMPEONATO CSGO2',
+    data: '1716422400',
+    link: 'https://www.twitch.tv/valorantbrasil',
+  },
+  {
+    nome: 'CAMPEONATO VALORANT / CAMPEONATO RAINBOW SIX SIEGE',
+    data: '1714089600',
+    link: 'https://www.twitch.tv/rainbowsixbrasil',
+  },
+  {
+    nome: 'CAMPEONATO VALORANT / CAMPEONATO RAINBOW SIX SIEGE',
+    data: '1717372800',
+    link: 'https://www.twitch.tv/valorantbrasil',
+  },
+  {
+    nome: 'CAMPEONATO VALORANT / CAMPEONATO RAINBOW SIX SIEGE',
+    data: '1765497600',
+    link: 'https://www.twitch.tv/rainbowsixbrasil',
+  },
+];
+
 export default function CardEvents() {
-    return (
-      <section className="mt-10 flex flex-col items-center relative">
-  {/* Logo em background */}
-  <img
-    src="src/assets/logoBW.png"
-    alt="Logo Mascote"
-    className="absolute top-20 left-1/2 transform -translate-x-1/2 opacity-10 h-[1300px] z-[-1]"
-  />git 
-
-<h3 className="bg-darkBlue/80 text-coolWhite rounded-3xl font-futurist px-6 py-5 rounded-t-lg z-20 text-[10rem] relative -mt-20 w-[1150px] flex items-center justify-center mt-150 flex flex-col items-center relative">EVENTOS</h3>
-
-<div className="mb-50 rounded-3xl bg-coolWhite text-darkBlue w-2/3 px-6 pt-50 pb-12 rounded-b-lg z-10 relative flex flex-col gap-15 -mt-21">
-
-  <div className="bg-darkBlue text-coolWhite px-4 py-2 rounded-3xl w-[110%] ml-[-5%] flex justify-between items-center">
-    <span className="text-[2.5rem] font-body">CAMPEONATO CSGO2</span>
-    <span className="text-[2.5rem] bg-gray-200 text-darkBlue font-futurist px-40 py-12 mr-[-2.5%] rounded-3xl">23 DE MAIO</span>
-  </div>
-
-  <div className="bg-darkBlue text-coolWhite px-4 py-2 rounded-3xl w-[110%] ml-[-5%] flex justify-between items-center">
-    <span className="text-[2.5rem] font-body">
-      CAMPEONATO VALORANT<br />CAMPEONATO RAINBOW SIX SIEGE
-    </span>
-    <span className="text-[2.5rem] bg-gray-200 text-darkBlue font-futurist px-40 py-12 mr-[-2.5%] rounded-3xl">26 DE ABRIL</span>
-  </div>
-
-  <div className="bg-darkBlue text-coolWhite px-4 py-2 rounded-3xl w-[110%] ml-[-5%] flex justify-between items-center">
-    <span className="text-[2.5rem] font-body">
-      CAMPEONATO VALORANT<br />CAMPEONATO RAINBOW SIX SIEGE
-    </span>
-    <span className="text-[2.5rem] bg-gray-200 text-darkBlue font-futurist px-40 py-12 mr-[-2.5%] rounded-3xl">3 DE JUNHO</span>
-  </div>
-
-  <div className="bg-darkBlue text-coolWhite px-4 py-2 rounded-3xl w-[110%] ml-[-5%] flex justify-between items-center">
-    <span className="text-[2.5rem] font-body ">
-      CAMPEONATO VALORANT<br />CAMPEONATO RAINBOW SIX SIEGE
-    </span>
-    <span className="text-[2.5rem] bg-gray-200 text-darkBlue font-futurist px-40 py-12 mr-[-2.5%] rounded-3xl ">12 DE DEZEMBRO</span>
-  </div>
-</div>
-</section>
-
-    );
-  }
+  return (
+    <section className="relative mt-10 flex flex-col items-center">
+      <h3 className="bg-darkBlue/90 neon-box-yellow text-coolWhite font-futurist relative z-20 flex w-7/8 flex-col items-center justify-center rounded-3xl rounded-t-lg px-6 py-5 text-4xl backdrop-blur-xl lg:text-8xl">
+        EVENTOS
+      </h3>
+      <div className="bg-coolWhite neon-box-duo text-darkBlue relative z-10  sm:-mt-21 mb-50 flex w-2/3 flex-col gap-15 rounded-3xl rounded-b-lg px-6 pt-20 sm:pt-50 pb-12">
+        <EventsList Event={eventsMock} />
+      </div>
+    </section>
+  );
+}

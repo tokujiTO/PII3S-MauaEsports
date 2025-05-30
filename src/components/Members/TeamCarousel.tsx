@@ -170,7 +170,7 @@ export default function TeamCarousel({ data, clickable }: CarouselProps) {
   return (
     <AnimatedElement
       direction="bottom"
-      className="relative flex h-[90vh] w-full flex-col"
+      className="relative flex h-[76vh] sm:h-[90vh] w-full flex-col"
     >
       <div
         ref={scrollContainerRef}
