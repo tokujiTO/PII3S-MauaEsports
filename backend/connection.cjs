@@ -36,7 +36,7 @@ const Evento = mongoose.model(
   mongoose.Schema({
     titulo: { type: String, required: true },
     data: { type: Date, required: true },
-    descricao: { type: String, required: true },
+    link: { type: String, required: true },
   })
 );
 
