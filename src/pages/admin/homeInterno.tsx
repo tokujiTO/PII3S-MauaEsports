@@ -7,12 +7,10 @@ import { loginRequest } from '../../auth/auth-config';
 import { useEffect } from 'react';
 import { UseUser } from '../../hooks/useUser';
 import { fetchUser } from '../../api/user';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 export default function homeInterno() {
-  // const role = localStorage.getItem('role');
-  // const isAdmin = role === 'admin';
-  // const isCap = role === 'cap';
-  // const isUser = !isAdmin && !isCap;
   const { user, setUser } = UseUser();
   const { instance } = useMsal();
 
@@ -29,9 +27,6 @@ export default function homeInterno() {
   const isCap = role === 'cap';
   const isUser = !isAdmin && !isCap;
 
-  // if (!NickName) {
-  //   window.location.href = '/';
-  // }
   const fetchAccessToken = async () => {
     const accounts = instance.getAllAccounts();
     const accessToken = (
@@ -45,8 +40,22 @@ export default function homeInterno() {
   };
 
   useEffect(() => {
-    fetchAccessToken();
-    fetchUser(setUser);
+    const checkUser = async () => {
+      await fetchAccessToken();
+      const response = await fetchUser(setUser);
+      if (response && typeof response === 'object') {
+        if (
+          'mensagem' in response &&
+          response.mensagem === 'Usuário não encontrado.'
+        ) {
+          logout();
+        } else if ('existe' in response && response.existe === false) {
+          logout();
+        }
+      }
+    };
+    checkUser();
+    // eslint-disable-next-line
   }, []);
 
   return (

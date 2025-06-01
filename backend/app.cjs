@@ -4,6 +4,7 @@ const connection = require('./connection.cjs');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const eventoRoutes = require('./routes/evento.route.cjs');
+const achivementsRoutes = require('./routes/achivements.route.cjs');
 
 const PORT = process.env.PORT || 3000;
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', eventoRoutes);
+app.use('/', achivementsRoutes);
 
 // player
 app.get('/players', async (req, res) => {

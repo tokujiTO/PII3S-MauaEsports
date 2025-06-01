@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Member } from '../hooks/useMembers';
 import { toast } from 'react-toastify';
 
@@ -57,7 +57,7 @@ export const fetchUser = async (setUser: (User: any) => void) => {
   } catch (err) {
     toast.error('Erro ao verificar usuário.');
     console.error('Error fetching user:', err);
-    throw err;
+    return (err as AxiosError).response?.data;
   }
 };
 
