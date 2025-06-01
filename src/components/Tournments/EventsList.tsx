@@ -16,6 +16,13 @@ export default function EventsList({ Events }: EventsListProps) {
       month: 'long',
     });
   };
+  const hour = (date: string) => {
+    const formated = new Date(Number(date));
+    return formated.toLocaleTimeString('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
 
   return (
     <div className="relative flex flex-col items-center justify-center gap-6 sm:gap-10">
@@ -32,8 +39,9 @@ export default function EventsList({ Events }: EventsListProps) {
           <span className="font-body text-md w-full text-center sm:w-1/2 sm:text-2xl lg:text-4xl">
             {event.titulo}
           </span>
-          <span className="text-darkBlue font-futurist from-lightBlue to-deepBlue flex w-full justify-center rounded-3xl bg-gray-200 py-2 text-xs group-hover:bg-gradient-to-r group-hover:text-white sm:w-1/3 sm:py-12 sm:text-sm lg:text-2xl">
-            {date(event.data)}
+          <span className="text-darkBlue font-futurist from-lightBlue to-deepBlue flex w-full flex-col justify-center rounded-3xl bg-gray-200 py-2 text-center text-xs group-hover:bg-gradient-to-r group-hover:text-white sm:w-1/3 sm:py-12 sm:text-sm lg:text-2xl">
+            {date(event.data)} <br />
+            <span className="w-full text-center">{hour(event.data)}</span>
           </span>
         </div>
       ))}

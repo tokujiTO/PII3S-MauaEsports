@@ -164,7 +164,7 @@ export default function CarouselTornments({ data }: CarouselProps) {
   return (
     <AnimatedElement
       direction="bottom"
-      className="relative flex h-[50vh] sm:h-[90vh] w-full flex-col"
+      className="relative flex h-[50vh] w-full flex-col sm:h-[70vh]"
     >
       <div
         ref={scrollContainerRef}
@@ -177,7 +177,7 @@ export default function CarouselTornments({ data }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card neon-box-duo relative flex min-h-56 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card neon-box-duo relative flex min-h-72 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
