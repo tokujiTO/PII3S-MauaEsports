@@ -105,12 +105,12 @@ export default function AddTeamModal({
               </div>
               <div className="flex w-1/2 flex-col gap-4">
                 <label className="text-3xl font-medium" htmlFor="cap">
-                  Nome do Capitão
+                  RA do Capitão
                 </label>
                 <input
                   id="cap"
                   type="text"
-                  placeholder="Nome do capitão"
+                  placeholder="RA do capitão"
                   value={cap}
                   onChange={(e) => setCap(e.target.value)}
                   className="w-full rounded-lg border border-gray-300 p-2 text-xl"
@@ -123,18 +123,18 @@ export default function AddTeamModal({
             <input
               id="name"
               type="text"
-              placeholder="Nome do time"
+              placeholder="URL do banner"
               value={image}
               onChange={(e) => setImage(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
             <label className="text-3xl font-medium" htmlFor="members">
-              Membros (RA ou nome, separados por vírgula)
+              Membros (RA dos membros, separados por vírgula)
             </label>
             <input
               id="members"
               type="text"
-              placeholder="Ex: João, Maria, 24-00000-0, 24-00001-0"
+              placeholder="Ex: 24-00000-0, 24-00001-0"
               value={members}
               onChange={(e) => setMembers(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
