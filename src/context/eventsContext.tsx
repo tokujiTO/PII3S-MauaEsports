@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import { getEvents } from '../api/events';
 
 interface EventContext {
-  events: any[];
+  events: Event[];
   setEvents: (events: any[]) => void;
 }
 

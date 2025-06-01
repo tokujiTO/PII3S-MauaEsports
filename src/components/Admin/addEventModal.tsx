@@ -83,19 +83,22 @@ export default function AddEventModal({
               placeholder="Título do evento"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
+              className="w-full rounded-lg border border-gray-300 p-2 text-xl text-white"
             />
             <label className="text-3xl font-medium" htmlFor="date">
               Data e Hora
             </label>
-            <input
-              id="date"
-              type="datetime-local"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 p-2 text-xl"
-              min={new Date().toISOString().slice(0, 16)}
-            />
+            <div className="relative w-full">
+              <input
+                id="date"
+                type="datetime-local"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="bg-darkBlue w-full appearance-none rounded-lg border border-gray-300 p-2 text-xl text-white"
+                min={new Date().toISOString().slice(0, 16)}
+                style={{ colorScheme: 'dark' }}
+              />
+            </div>
             <label className="text-3xl font-medium" htmlFor="link">
               Link (opcional)
             </label>

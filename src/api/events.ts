@@ -19,6 +19,23 @@ export const getEvents = async (setEvents: (Events: Event[]) => void) => {
   }
 };
 
+export const getEventsPublic = async (setEvents: (Events: Event[]) => void) => {
+  try {
+    const response = await fetch('http://localhost:3000/eventosPublicos');
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch public events');
+    }
+
+    const events = await response.json();
+    setEvents(events);
+    return events;
+  } catch (error) {
+    console.error('Error fetching public events:', error);
+    throw error;
+  }
+};
+
 export const addEvent = async (event: {
   titulo: string;
   data: string;

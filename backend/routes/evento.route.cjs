@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../connection.cjs');
 
-router.get('/eventosPublic', async (req, res) => {
+router.get('/eventosPublicos', async (req, res) => {
   const now = Date.now();
   const eventos = await connection.Evento.find({ data: { $gte: now } })
     .sort({ data: 1 })
