@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useEvents } from '../../hooks/useEvents';
 import EventCard from './eventCard';
+import { useEvents } from '../../hooks/useNextEvents';
 
 interface CampeonatosModalProps {
   isOpen: boolean;

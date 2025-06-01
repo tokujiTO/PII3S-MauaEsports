@@ -7,8 +7,6 @@ import { loginRequest } from '../../auth/auth-config';
 import { useEffect } from 'react';
 import { UseUser } from '../../hooks/useUser';
 import { fetchUser } from '../../api/user';
-import { AxiosError } from 'axios';
-import { toast } from 'react-toastify';
 
 export default function homeInterno() {
   const { user, setUser } = UseUser();

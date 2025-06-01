@@ -1,17 +1,17 @@
 import { ArrowSquareOut, Trash } from '@phosphor-icons/react';
-import { Events } from '../../hooks/useEvents';
+import { Event } from '../../context/eventsContext';
 
 interface EventCardProps {
-  event: Events;
+  event: Event;
 }
 
 export default function EventCard({ event }: EventCardProps) {
-  const date = new Date(Number(event.date)).toLocaleDateString('pt-BR');
+  const date = new Date(Number(event.data)).toLocaleDateString('pt-BR');
 
   return (
     <div className="w-full">
-      <div className="bg-darkBlue border-2 border-cyan-300 flex w-full items-center justify-between rounded-2xl p-4 text-4xl font-bold text-white">
-        <h1 className="">{event.name}</h1>
+      <div className="bg-darkBlue flex w-full items-center justify-between rounded-2xl border-2 border-cyan-300 p-4 text-4xl font-bold text-white">
+        <h1 className="">{event.titulo}</h1>
         <div className="flex items-center justify-between gap-8">
           <h1>{date}</h1>
           <div className="flex gap-4">
