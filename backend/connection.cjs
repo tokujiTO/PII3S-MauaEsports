@@ -36,16 +36,16 @@ const Evento = mongoose.model(
   'Evento',
   mongoose.Schema({
     titulo: { type: String, required: true },
-    data: { type: Date, required: true },
-    link: { type: String, required: true },
+    data: { type: String, required: true },
+    link: { type: String, required: false },
   })
 );
 
 const Achivement = mongoose.model(
   'Achivement',
   mongoose.Schema({
-    year: {type: Number, required: true},
-    achivements: {type: [String], required: true}
+    year: { type: Number, required: true },
+    achivements: { type: [String], required: true },
   })
 );
 

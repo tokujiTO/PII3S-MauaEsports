@@ -1,12 +1,19 @@
 import { ArrowSquareOut, Trash } from '@phosphor-icons/react';
 import { Event } from '../../context/eventsContext';
+import { deleteEvent } from '../../api/events';
 
 interface EventCardProps {
   event: Event;
+  onDelete: () => void;
 }
 
-export default function EventCard({ event }: EventCardProps) {
+export default function EventCard({ event, onDelete }: EventCardProps) {
   const date = new Date(Number(event.data)).toLocaleDateString('pt-BR');
+
+  const handleDelete = async () => {
+    await deleteEvent(event._id);
+    onDelete();
+  };
 
   return (
     <div className="w-full">
@@ -23,9 +30,12 @@ export default function EventCard({ event }: EventCardProps) {
             >
               <ArrowSquareOut size={32} />
             </div>
-            <div className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-red-500">
+            <button
+              onClick={handleDelete}
+              className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-red-500"
+            >
               <Trash size={32} />
-            </div>
+            </button>
           </div>
         </div>
       </div>
