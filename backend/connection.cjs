@@ -44,10 +44,10 @@ const Evento = mongoose.model(
 const Achivement = mongoose.model(
   'Achivement',
   mongoose.Schema({
-    year: {type: Int16Array, required: true},
-    achivements: {type: [Stirng], required: true}
+    year: {type: Number, required: true},
+    achivements: {type: [String], required: true}
   })
-)
+);
 
 async function connectToMongo() {
   try {
