@@ -1,15 +1,17 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedElement from '../animatedElement';
+import { Achievment } from '../../api/achievments';
 
 interface CarouselProps {
-  data: {
-    year: number;
-    achievements: string[];
-  }[];
+  data: Achievment[];
+  handleClick?: (achiev: Achievment) => void;
 }
 
-export default function CarouselTornments({ data }: CarouselProps) {
+export default function CarouselTornments({
+  data,
+  handleClick,
+}: CarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [cardPositions, setCardPositions] = useState<number[]>([]);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -182,6 +184,7 @@ export default function CarouselTornments({ data }: CarouselProps) {
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
             }}
+            onClick={() => handleClick && handleClick(item)}
           >
             <div
               className={`my-auto flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat`}
@@ -192,7 +195,7 @@ export default function CarouselTornments({ data }: CarouselProps) {
               >
                 {item.year}
               </h1>
-              {item.achievements?.map((achiev, achievIndex) => (
+              {item.achivements?.map((achiev, achievIndex) => (
                 <p
                   key={achievIndex}
                   className={`text-lightBlack/60 z-10 text-center text-xl italic`}

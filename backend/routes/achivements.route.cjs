@@ -17,6 +17,43 @@ router.get('/achivements', async (req, res) => {
   }
 });
 
+router.delete('/achiviment', async (req, res) => {
+  const id = req.query.id;
+  try {
+    const achivement = await connection.Achivement.findByIdAndDelete(id);
+    if (!achivement) {
+      return res.status(404).json({ mensagem: 'Achivement não encontrado.' });
+    }
+    res.json({ mensagem: 'Achivement deletado com sucesso.' });
+  } catch (err) {
+    console.error('Erro ao deletar achivement:', err);
+    res.status(500).json({ mensagem: 'Erro ao deletar achivement.' });
+  }
+});
+
+router.put('/achiviment', async (req, res) => {
+  const id = req.query.id;
+  const year = req.body.year;
+  const achivements = req.body.achivements;
+
+  try {
+    const achivement = await connection.Achivement.findByIdAndUpdate(
+      id,
+      { year: year, achivements: achivements },
+      { new: true }
+    );
+
+    if (!achivement) {
+      return res.status(404).json({ mensagem: 'Achivement não encontrado.' });
+    }
+
+    res.json(achivement);
+  } catch (err) {
+    console.error('Erro ao atualizar achivement:', err);
+    res.status(500).json({ mensagem: 'Erro ao atualizar achivement.' });
+  }
+});
+
 router.post('/achiviment', async (req, res) => {
   const year = req.body.year;
   const achivements = req.body.achivements;

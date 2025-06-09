@@ -17,7 +17,7 @@ export default function Site() {
         className="bg-darkBlue neon-box-duo hover:bg-darkBlue h-1/2 w-1/4 rounded-4xl border-cyan-300 px-4 py-2 text-white transition duration-300 hover:cursor-pointer"
         onClick={() => setSelected('campeonatos')}
       >
-        Campeonatos
+        Conquistas
       </button>
       <button
         className="bg-darkBlue neon-box-duo hover:bg-darkBlue h-1/2 w-1/4 rounded-4xl border-cyan-300 px-4 py-2 text-white transition duration-300 hover:cursor-pointer"

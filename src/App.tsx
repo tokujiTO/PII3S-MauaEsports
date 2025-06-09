@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from './context/userContext';
 import { EventsProvider } from './context/eventsContext';
+import { AchievementsProvider } from './context/achievmentsContext';
 
 export default function App() {
   const auth = useIsAuthenticated();
@@ -21,28 +22,30 @@ export default function App() {
     <BrowserRouter>
       <UserProvider>
         <EventsProvider>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            limit={3}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            theme="colored"
-            pauseOnHover
-          />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/membros" element={<Members />} />
-            <Route path="/campeonatos" element={<Tournments />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/pi-home" element={<HomeInterno />} />
-            <Route path="/cadastrar" element={<Cadastrar />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AchievementsProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              limit={3}
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              theme="colored"
+              pauseOnHover
+            />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/membros" element={<Members />} />
+              <Route path="/campeonatos" element={<Tournments />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/pi-home" element={<HomeInterno />} />
+              <Route path="/cadastrar" element={<Cadastrar />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AchievementsProvider>
         </EventsProvider>
       </UserProvider>
     </BrowserRouter>

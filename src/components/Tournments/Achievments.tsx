@@ -1,45 +1,32 @@
+import { useEffect } from 'react';
+import { useAchievments } from '../../hooks/useAchievments';
 import CarouselTournments from './CarouselTournments';
-
-type Achievement = {
-  year: number;
-  achievements: string[];
-};
-
-const achievementsData: Achievement[] = [
-  {
-    year: 2021,
-    achievements: [
-      'Campeão do Torneio Universitário',
-      'Vice-campeão da Liga Estadual',
-    ],
-  },
-  {
-    year: 2022,
-    achievements: ['Top 4 no Campeonato Nacional', 'Melhor equipe revelação'],
-  },
-  {
-    year: 2023,
-    achievements: ['Campeão da Copa Regional', 'Participação internacional'],
-  },
-];
+import { getAchievments } from '../../api/achievments';
 
 export default function Achievments() {
-  if (achievementsData.length === 0) {
+  const { achievements, setAchievements } = useAchievments();
+  const fetchAchievements = async () => {
+    await getAchievments(setAchievements);
+  };
+  useEffect(() => {
+    fetchAchievements;
+  }, []);
+  if (achievements.length === 0) {
     return (
       <div className="flex h-screen flex-col items-center justify-center">
-        <h1 className="mb-4 text-4xl font-bold">Achievements</h1>
+        <h1 className="mb-4 text-4xl font-bold">Conquistas</h1>
         <p className="text-lg text-gray-600">
-          Achievements will be displayed here soon!
+          Conquistas aparecerão aqui em breve! Fique ligado!
         </p>
       </div>
     );
   }
   return (
-    <div className="flex h-[60vh]  sm:h-screen flex-col items-center justify-center">
-      <h1 className="neon-shadow-duo mt-20 text-5xl sm:text-7xl font-bold text-white">
+    <div className="flex h-[60vh] flex-col items-center justify-center sm:h-screen">
+      <h1 className="neon-shadow-duo mt-20 text-5xl font-bold text-white sm:text-7xl">
         Nossas Conquistas
       </h1>
-      <CarouselTournments data={achievementsData} />
+      <CarouselTournments data={achievements} />
     </div>
   );
 }
