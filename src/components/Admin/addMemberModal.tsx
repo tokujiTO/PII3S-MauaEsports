@@ -63,13 +63,13 @@ export default function AddMemberModal({
 
   return (
     <div
-      className={`fixed inset-0 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${
+      className={`fixed inset-0 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md max-md:px-2 ${
         visible ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-200`}
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
+        className={`bg-darkBlue flex h-4/5 w-full flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg md:w-3/4 ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
@@ -102,8 +102,8 @@ export default function AddMemberModal({
               onChange={(e) => setNickName(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
-            <div className="flex w-full items-center gap-8">
-              <div className="flex w-1/3 items-center gap-2">
+            <div className="flex w-full flex-wrap items-center gap-8">
+              <div className="flex w-full items-center gap-2 md:w-1/3">
                 <label className="text-3xl font-medium" htmlFor="ra">
                   RA
                 </label>
@@ -116,7 +116,7 @@ export default function AddMemberModal({
                   className="w-full rounded-lg border border-gray-300 p-2 text-xl"
                 />
               </div>
-              <div className="flex w-1/3 items-center gap-2">
+              <div className="flex w-full items-center gap-2 md:w-1/3">
                 <label className="text-3xl font-medium" htmlFor="area">
                   Área
                 </label>
@@ -136,7 +136,7 @@ export default function AddMemberModal({
                   <option value="director">Diretoria</option>
                 </select>
               </div>
-              <div className="flex w-1/3 items-center gap-2">
+              <div className="flex w-full items-center gap-2 md:w-1/3">
                 <label className="text-3xl font-medium" htmlFor="role">
                   Cargo
                 </label>
@@ -162,13 +162,13 @@ export default function AddMemberModal({
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button
             onClick={handleClose}
-            className="flex w-1/5 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600"
+            className="flex min-w-1/4 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600 md:w-1/5"
           >
             Cancelar
           </button>
           <button
             onClick={handleSave}
-            className="flex w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
+            className="flex min-w-1/4 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600 md:w-1/5"
           >
             {loading ? (
               <Spinner size={32} className="animate-spin" />

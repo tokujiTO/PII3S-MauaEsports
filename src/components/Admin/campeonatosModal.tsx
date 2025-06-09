@@ -47,7 +47,7 @@ export default function CampeonatosModal({
 
   return (
     <div
-      className={`fixed inset-0 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${visible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
+      className={`fixed inset-0 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md max-md:px-2 ${visible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
       onClick={handleClose}
     >
       <AddAchievementsModal
@@ -77,32 +77,32 @@ export default function CampeonatosModal({
       )}
 
       <div
-        className={`bg-darkBlue relative flex h-4/5 w-3/4 flex-col items-start justify-start rounded-3xl border-l-8 border-cyan-300 shadow-lg ${visible ? 'translate-y-0' : 'translate-y-full'} gap-4 transition-transform duration-200`}
+        className={`bg-darkBlue relative flex h-4/5 w-full flex-col items-start justify-start rounded-3xl border-l-8 border-cyan-300 shadow-lg md:w-3/4 ${visible ? 'translate-y-0' : 'translate-y-full'} gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="bg-darkBlue sticky top-0 flex w-full flex-col items-start justify-center px-4 pt-6">
+        <div className="bg-darkBlue sticky top-0 flex w-full flex-col items-start justify-center gap-2 px-4 pt-6">
           <div className="flex w-full items-center justify-between">
             <h1>Conquistas</h1>
-            <button
-              className="bg-yellow flex h-10 w-10 justify-center rounded-xl shadow-xl hover:cursor-pointer"
-              onClick={() => {
-                setAddModal(true);
-              }}
-            >
-              +
-            </button>
+            <div className="flex items-center gap-4">
+              <button
+                className="bg-yellow flex h-10 w-10 justify-center rounded-xl shadow-xl hover:cursor-pointer"
+                onClick={() => {
+                  setAddModal(true);
+                }}
+              >
+                +
+              </button>
+              <button
+                className="flex min-w-1/4 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600 md:min-w-1/5"
+                onClick={handleClose}
+              >
+                Fechar
+              </button>
+            </div>
           </div>
           <div className="h-1 w-full rounded-full bg-gradient-to-l from-yellow-300 to-orange-600" />
         </div>
         <CarouselTournments data={achievements} handleClick={handleClickCard} />
-        <div className="sticky bottom-0 flex w-full justify-end gap-6 px-4 py-6 text-2xl">
-          <button
-            className="flex w-1/5 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600"
-            onClick={handleClose}
-          >
-            Fechar
-          </button>
-        </div>
       </div>
     </div>
   );

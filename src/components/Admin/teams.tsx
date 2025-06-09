@@ -40,7 +40,7 @@ export default function Teams() {
   };
 
   return (
-    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-10 pb-10">
+    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-2 md:px-10 pb-10">
       <AddTeamModal
         isOpen={addModal}
         onClose={() => {
@@ -73,8 +73,8 @@ export default function Teams() {
           setSelectedTeam(undefined);
         }}
       />
-      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
-        <h1 className="b">Gerenciar Times</h1>
+      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-4xl  md:text-6xl font-bold text-white">
+        <h1 className="">Gerenciar Times</h1>
         <button
           className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer"
           onClick={() => setAddModal(true)}

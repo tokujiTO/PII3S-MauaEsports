@@ -58,11 +58,11 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-100 font-thin text-black">
-      <div className="bg-deepBlue flex h-full w-2/5 items-center justify-center">
+      <div className="bg-deepBlue hidden h-full items-center justify-center md:flex md:w-2/5">
         image
       </div>
-      <div className="bg-darkBlue neon-box-duo z-10 flex h-full w-3/5 flex-col items-center justify-center">
-        <div className="bg-deepBlue neon-box-duo relative flex h-1/2 w-3/5 flex-col items-center gap-10 rounded-xl border-2 border-cyan-300 py-4 text-white">
+      <div className="bg-darkBlue neon-box-duo z-10 flex h-full w-full flex-col items-center justify-center md:w-3/5">
+        <div className="bg-deepBlue neon-box-duo relative flex h-1/2 w-4/5 flex-col items-center gap-10 rounded-xl border-2 border-cyan-300 py-4 text-white md:w-3/5">
           <img
             src={logo}
             alt="Logo"
@@ -71,16 +71,16 @@ export default function Login() {
           <div className="z-10 flex items-center justify-between px-10 text-4xl">
             <h1>Mauá eSports</h1>
           </div>
-          <form className="z-10 flex h-full w-full flex-col items-center justify-center gap-4">
+          <form className="z-10 flex h-full w-full flex-col items-center justify-center gap-4 max-md:px-2">
             <button
               type="button"
-              className="text-darkBlue relative flex h-20 w-4/5 items-center justify-center rounded-lg bg-white p-4 text-4xl shadow-xl duration-300 outline-none hover:cursor-pointer hover:bg-gray-200 hover:shadow-2xl"
+              className="text-darkBlue relative flex h-20 w-full items-center justify-start max-md:gap-4 px-2 rounded-lg bg-white text-4xl shadow-xl duration-300 outline-none hover:cursor-pointer hover:bg-gray-200 hover:shadow-2xl max-md:text-3xl md:w-4/5 md:justify-center md:p-4"
               onClick={handleLogin}
             >
               <img
                 src={microsoft}
                 alt=""
-                className="absolute left-2 h-16 w-16 self-center"
+                className="h-16 w-16 self-center md:absolute md:left-2"
               />
               <p>Login Microsoft</p>
             </button>

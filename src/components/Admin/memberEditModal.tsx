@@ -78,20 +78,20 @@ export default function MemberEditModal({
 
   return (
     <div
-      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 text-white backdrop-blur-md ${
+      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 text-white backdrop-blur-md max-md:px-2 ${
         visible ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-200`}
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-start overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${
+        className={`bg-darkBlue flex h-4/5 w-full flex-col items-start justify-start overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg md:w-3/4 ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full flex-col items-start justify-center">
           <h1 className="text-3xl font-bold">Editar Membro</h1>
-          <div className="h-1 w-full rounded-full bg-black" />
+          <div className="h-1 w-full rounded-full bg-yellow-300 bg-gradient-to-l from-orange-600" />
         </div>
         <div className="flex w-full flex-col gap-4">
           <label className="text-xl font-medium" htmlFor="nome">
@@ -116,7 +116,7 @@ export default function MemberEditModal({
             onChange={(e) => onChangeRa(e)}
             className="w-full rounded-lg border border-gray-300 p-2 text-xl"
           />
-          <div className="mb-4 flex w-4/5 justify-between">
+          <div className="mb-4 flex max-md:gap-4 w-full flex-wrap justify-between md:w-4/5">
             <div className="flex flex-col">
               <label htmlFor="discord" className="text-xl font-medium">
                 Id do Discord
@@ -173,13 +173,13 @@ export default function MemberEditModal({
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button
             onClick={handleClose}
-            className="flex w-1/5 items-center justify-center rounded-xl bg-gray-300 p-2 duration-200 hover:cursor-pointer hover:bg-gray-400"
+            className="flex min-w-1/4 md:w-1/5 items-center justify-center rounded-xl bg-gray-300 p-2 duration-200 hover:cursor-pointer hover:bg-gray-400"
           >
             Cancelar
           </button>
           <button
             onClick={handleSave}
-            className="flex w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
+            className="flex min-w-1/4 md:w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
           >
             {loading ? (
               <Spinner size={32} className="animate-spin" />

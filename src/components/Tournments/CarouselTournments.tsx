@@ -166,7 +166,7 @@ export default function CarouselTornments({
   return (
     <AnimatedElement
       direction="bottom"
-      className="relative flex h-[50vh] w-full flex-col sm:h-[70vh]"
+      className={`relative flex w-full flex-col sm:h-[70vh] ${handleClick ? 'min-h-[60vh]' : 'h-[70vh]'}`}
     >
       <div
         ref={scrollContainerRef}

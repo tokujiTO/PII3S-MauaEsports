@@ -47,13 +47,13 @@ export default function MemberConfirmDelete({
 
   return (
     <div
-      className={`fixed inset-0 z-[999] flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${
+      className={`fixed inset-0 z-[999] max-md:px-2 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${
         visible ? 'opacity-100' : 'opacity-0'
       } transition-opacity duration-200`}
       onClick={handleClose}
     >
       <div
-        className={`flex h-1/3 w-1/3 flex-col items-center justify-between rounded-3xl bg-darkBlue px-6 py-8 shadow-lg border-l-8 border-cyan-300  ${
+        className={`flex h-1/3 w-full md:w-1/3 flex-col items-center justify-between rounded-3xl bg-darkBlue px-6 py-8 shadow-lg border-l-8 border-cyan-300  ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}

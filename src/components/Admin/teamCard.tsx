@@ -26,7 +26,7 @@ export default function TeamCard({ team, onEdit, onDelete }: TeamCardProps) {
       <div className="flex flex-col gap-2">
         <h1 className="font-bold">{team.nome}</h1>
       </div>
-      <div className="flex w-2/5 flex-col gap-2">
+      <div className="flex w-2/5 flex-col gap-2 max-md:hidden">
         <p>total de membros: {team.membros.length}</p>
       </div>
       <div className="flex w-1/5 items-center justify-end gap-4">

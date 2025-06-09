@@ -58,7 +58,7 @@ export default function homeInterno() {
 
   return (
     <div
-      className={`bg-darkBlue font-body relative flex w-full flex-col items-center justify-between ${isUser ? 'h-screen overflow-hidden' : 'h-[140vh] px-0 pb-0'} font-thin`}
+      className={`bg-darkBlue font-body relative flex w-full flex-col items-center justify-between overflow-x-hidden ${isUser ? 'h-screen overflow-hidden' : isAdmin ? 'h-[140vh] px-0 pb-0' : 'h-[100vh] px-0 pb-0 md:h-[140vh]'} font-thin`}
     >
       <img
         src={logo}
@@ -66,22 +66,22 @@ export default function homeInterno() {
         className={`absolute ${isCap ? 'top-1/38' : isAdmin ? 'top-1/8' : 'top-1/4'} left-1/2 z-0 w-3/5 -translate-x-1/2 opacity-10`}
       />
       <div
-        className="neon-box-yellow border-yellow absolute top-4 left-[92%] z-50 flex h-fit w-fit items-center justify-center rounded-lg border-2 bg-white p-4 duration-300 hover:scale-125 hover:cursor-pointer hover:shadow-none"
+        className="neon-box-yellow border-yellow absolute top-4 left-[80%] z-50 flex h-fit w-fit items-center justify-center rounded-lg border-2 bg-white p-2 duration-300 hover:scale-125 hover:cursor-pointer hover:shadow-none md:left-[92%] md:p-4"
         onClick={logout}
       >
-        <p className="text-4xl text-red-400">Sair</p>
+        <p className="text-xl text-red-400 md:text-4xl">Sair</p>
       </div>
       <div
-        className={`flex w-full items-center justify-center gap-10 ${isUser ? 'h-full' : 'h-3/5'}`}
+        className={`flex h-screen w-full items-center justify-center gap-10 max-md:flex-col ${isUser ? 'md:h-full' : 'md:h-3/5'}`}
       >
-        <div className="z-10 flex w-1/2 flex-col items-center justify-center gap-4 text-7xl text-white">
+        <div className="z-10 flex w-full flex-col items-center justify-center gap-4 text-4xl text-white md:w-1/2 md:text-7xl">
           <h1 className="font-bold">bem vindo</h1>
           <h2 className="neon-text-yellow font-semibold">
             {user?.nome.split(' ')[0] + ' ' + user?.nome.split(' ')[1]}
           </h2>
         </div>
         {isUser && (
-          <div className="z-10 flex h-full w-1/2 flex-col items-center justify-center gap-4">
+          <div className="z-10 flex w-1/2 flex-col items-center justify-center gap-4 md:h-full">
             <HourCard />
           </div>
         )}
