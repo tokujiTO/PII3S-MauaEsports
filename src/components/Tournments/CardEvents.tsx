@@ -5,12 +5,22 @@ import EventsList from './EventsList';
 
 export default function CardEvents() {
   const { events, setEvents } = useEvents();
-  const fetchEvens = async () => {
+  const fetchEvents = async () => {
     await getEventsPublic(setEvents);
   };
   useEffect(() => {
-    fetchEvens();
+    fetchEvents();
   }, []);
+
+  if (events.length === 0) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center">
+        <h1 className="text-darkBlue text-4xl font-bold">
+          Nenhum evento encontrado!
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <section className="relative mt-10 flex flex-col items-center">
