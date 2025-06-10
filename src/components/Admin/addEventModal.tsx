@@ -63,7 +63,7 @@ export default function AddEventModal({
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-4/5 w-full flex-col items-start justify-between rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg md:h-3/5 md:w-2/3 ${
+        className={`bg-darkBlue flex h-4/5 w-full flex-col items-start justify-between rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg md:min-h-3/5 md:w-2/3 ${
           visible ? 'translate-y-0' : 'translate-y-full'
         } gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}

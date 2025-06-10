@@ -161,13 +161,13 @@ export default function EditSchedule({
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="mb-2 w-full text-5xl font-bold text-white">
+        <h1 className="mb-2 w-full text-3xl font-bold text-white md:text-5xl">
           Horários de Treino
           <div className="mb-4 h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
         </h1>
-        <div className="flex w-full flex-col items-center gap-4">
-          <div className="mb-2 flex w-full justify-evenly">
-            <span className="w-1/3 text-end font-semibold text-cyan-100">
+        <div className="flex w-full flex-col gap-4 overflow-x-scroll md:items-center">
+          <div className="mb-2 hidden w-full md:flex md:justify-evenly">
+            <span className="w-1/3 font-semibold text-cyan-100">
               Dia da Semana
             </span>
             <span className="w-1/3 text-center font-semibold text-cyan-100">
