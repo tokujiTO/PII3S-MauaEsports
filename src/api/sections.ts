@@ -24,8 +24,18 @@ export const getSections = async (
 
 export const editSection = async (section: Section) => {
   try {
-    const response = await axios.put('http://localhost:3000/sections', section);
-    toast.success('Seção atualizada com sucesso!');
+    const response = await axios.put(
+      'http://localhost:3000/section',
+      {
+        title: section.title,
+        content: section.content,
+        image: section.image,
+      },
+      {
+        params: { _id: section._id },
+      }
+    );
+    toast.success('Sessão atualizada com sucesso!');
     return response.data;
   } catch (error) {
     toast.error('Erro ao atualizar seção');

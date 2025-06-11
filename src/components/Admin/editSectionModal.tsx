@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Section } from '../../api/sections';
+import { editSection, Section } from '../../api/sections';
 import { toast } from 'react-toastify';
 import { Spinner } from '@phosphor-icons/react';
 
@@ -20,12 +20,21 @@ export default function EditSectionModal({
   const [image, setImage] = useState(section?.image || '');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setLoading(true);
     if (!title || !content || !image) {
       toast.error('Por favor, preencha todos os campos.');
       setLoading(false);
       return;
+    }
+    if (section) {
+      await editSection({
+        _id: section._id,
+        title,
+        content,
+        image,
+        sectionNumber: section.sectionNumber,
+      });
     }
     setLoading(false);
     onClose();

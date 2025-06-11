@@ -8,33 +8,12 @@ router.get('/sections', async (req, res) => {
     res.json(sections);
   } catch (err) {
     console.log(err);
-  }
-});
-
-router.post('/section', async (req, res) => {
-  const sectionNumber = req.body.sectionNumber;
-  const title = req.body.title;
-  const content = req.body.content;
-  const image = req.body.image;
-
-  try {
-    const section = new connection.Section({
-      sectionNumber: sectionNumber,
-      title: title,
-      content: content,
-      image: image,
-    });
-    await section.save();
-    const sections = await connection.Section.find();
-
-    res.json(sections);
-  } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: 'Erro ao buscar seções' });
   }
 });
 
 router.put('/section', async (req, res) => {
-  id = req.query.id;
+  const id = req.query._id;
   const title = req.body.title;
   const content = req.body.content;
   const image = req.body.image;
@@ -47,12 +26,13 @@ router.put('/section', async (req, res) => {
     );
 
     if (!section) {
-      return res.status(404);
+      return res.status(404).json({ error: 'Seção não encontrada' });
     }
 
     res.json(section);
   } catch (err) {
     console.log(err);
+    res.status(500).json({ error: 'Erro ao atualizar seção' });
   }
 });
 

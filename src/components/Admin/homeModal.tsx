@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSections } from '../../hooks/useSections';
-import { Section } from '../../api/sections';
+import { getSections, Section } from '../../api/sections';
 import EditSectionModal from './editSectionModal';
 
 interface HomeModalProps {
@@ -10,11 +10,18 @@ interface HomeModalProps {
 
 export default function HomeModal({ isOpen, onClose }: HomeModalProps) {
   const [visible, setVisible] = useState(false);
-  const { sections } = useSections();
+  const { sections, setSections } = useSections();
   const [modal, setModal] = useState(false);
   const [selectedSection, setSelectedSection] = useState<Section | null>(null);
 
+  const fetchSections = async () => {
+    await getSections(setSections);
+  };
+
   useEffect(() => {
+    if (isOpen) {
+      fetchSections();
+    }
     setTimeout(() => {
       setVisible(isOpen);
     }, 100);
@@ -43,6 +50,7 @@ export default function HomeModal({ isOpen, onClose }: HomeModalProps) {
         isOpen={modal}
         onClose={() => {
           setModal(false);
+          fetchSections();
           setSelectedSection(null);
         }}
         section={selectedSection}
