@@ -43,9 +43,3 @@ pnpm i
 pnpm run dev
 ```
 
-### 3. Inicie o servidor
-```bash
-node index.cjs
-```
-
-
