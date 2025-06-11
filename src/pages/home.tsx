@@ -8,11 +8,16 @@ import AboutUs from '../components/Home/aboutUs';
 import WhatWeDo from '../components/Home/whatWeDo';
 import OurMission from '../components/Home/ourMission';
 import Shirts from '../components/Home/shirts';
+import { useSections } from '../hooks/useSections';
 
 export default function Home() {
   const navigate = useNavigate();
   const { instance } = useMsal();
   const auth = useIsAuthenticated();
+  const { sections } = useSections();
+  const firstSection = sections.find((section) => section.sectionNumber === 1);
+  const secondSection = sections.find((section) => section.sectionNumber === 2);
+  const thirdSection = sections.find((section) => section.sectionNumber === 3);
 
   const fetchAccessToken = async () => {
     const accounts = instance.getAllAccounts();
@@ -35,13 +40,13 @@ export default function Home() {
     <div className="bg-deepBlue min-h-screen overflow-x-hidden pt-20 text-white">
       <Navbar />
       <HomeBanner />
-      <AboutUs />
+      <AboutUs section={firstSection} />
       <div className="h-1 w-full rounded-full bg-gradient-to-l from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(253,224,71,0.7)]" />
-      <WhatWeDo />
+      <WhatWeDo section={secondSection} />
       <div className="h-1 w-full rounded-full bg-gradient-to-r from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(251,146,60,0.7)]" />
       <Shirts />
       <div className="h-1 w-full rounded-full bg-gradient-to-l from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(253,224,71,0.7)]" />
-      <OurMission />
+      <OurMission section={thirdSection} />
       <div className="h-1 w-full rounded-full bg-gradient-to-r from-yellow-300 to-orange-500 shadow-[0_0_20px_2px_rgba(251,146,60,0.7)]" />
       <Footer />
     </div>

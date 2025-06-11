@@ -10,26 +10,26 @@ const mockSections: Section[] = [
   {
     _id: '1',
     sectionNumber: 1,
-    title: 'Introduction to React',
+    title: 'Quem Somos',
     content:
-      'Learn the basics of React, a JavaScript library for building user interfaces.',
-    image: 'https://example.com/react-intro.jpg',
+      'A Mauá eSports é mais do que um grupo de jogadores. Somos uma comunidade apaixonada por games, tecnologia e competição saudável dentro do Instituto Mauá de Tecnologia. Nascemos da iniciativa de alunos que enxergam nos eSports uma ponte entre diversão, amizade e crescimento pessoal. Aqui, todo mundo tem espaço: dos casuais aos tryhards, do bronze ao challenger.',
+    image: './src/assets/logoBW.png',
   },
   {
     _id: '2',
     sectionNumber: 2,
-    title: 'State Management with Redux',
+    title: 'O Que Fazemos',
     content:
-      'Understand how to manage state in React applications using Redux.',
-    image: 'https://example.com/redux-state-management.jpg',
+      'Criamos experiências. Organizamos torneios internos que viram clássicos, treinamentos que desafiam o meta e eventos que conectam mentes criativas. Também representamos a Mauá em campeonatos universitários, sempre com garra, respeito e aquele hype que só a gente sabe fazer. Tudo 100% digital, inclusivo e acessível.',
+    image: './src/assets/logoBW.png',
   },
   {
     _id: '3',
     sectionNumber: 3,
-    title: 'Routing with React Router',
+    title: 'Nossa Missão',
     content:
-      'Explore how to implement routing in React applications using React Router.',
-    image: 'https://example.com/react-router.jpg',
+      'Transformar paixão em propósito. Usamos os eSports como uma ferramenta de evolução: técnica, tática e social. Queremos desenvolver líderes, analistas, estrategistas e, claro, bons companheiros de equipe. O nosso jogo é coletivo. Juntos, fortalecemos uma comunidade que leva o nome Mauá com orgulho para o mundo.',
+    image: './src/assets/logoBW.png',
   },
 ];
 
