@@ -48,6 +48,15 @@ const Achivement = mongoose.model(
     achivements: { type: [String], required: true },
   })
 );
+const Section = mongoose.model(
+  'Section',
+  mongoose.Schema({
+    sectionNumber: {type: Number, required: true},
+    title: {type: String, required: true},
+    content: {type: String, required: true},
+    image: {type: String, required: true}
+  })
+);
 
 async function connectToMongo() {
   try {
@@ -65,3 +74,4 @@ module.exports.Player = Player;
 module.exports.Equipes = Equipes;
 module.exports.Evento = Evento;
 module.exports.Achivement = Achivement;
+module.exports.Section = Section;
