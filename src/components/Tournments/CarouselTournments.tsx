@@ -1,15 +1,17 @@
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useEffect, useRef, useState } from 'react';
 import AnimatedElement from '../animatedElement';
+import { Achievment } from '../../api/achievments';
 
 interface CarouselProps {
-  data: {
-    year: number;
-    achievements: string[];
-  }[];
+  data: Achievment[];
+  handleClick?: (achiev: Achievment) => void;
 }
 
-export default function CarouselTornments({ data }: CarouselProps) {
+export default function CarouselTornments({
+  data,
+  handleClick,
+}: CarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [cardPositions, setCardPositions] = useState<number[]>([]);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -164,7 +166,7 @@ export default function CarouselTornments({ data }: CarouselProps) {
   return (
     <AnimatedElement
       direction="bottom"
-      className="relative flex h-[50vh] sm:h-[90vh] w-full flex-col"
+      className={`relative flex w-full flex-col sm:h-[70vh] ${handleClick ? 'min-h-[60vh]' : 'h-[70vh]'}`}
     >
       <div
         ref={scrollContainerRef}
@@ -177,11 +179,12 @@ export default function CarouselTornments({ data }: CarouselProps) {
         {datalist.map((item, index) => (
           <div
             key={index}
-            className={`carousel-card neon-box-duo relative flex min-h-56 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
+            className={`carousel-card neon-box-duo relative flex min-h-72 max-w-56 min-w-56 rounded-xl border-2 border-cyan-300 bg-white text-black transition-transform duration-75 ease-in-out lg:max-w-80 lg:min-w-80 lg:rounded-lg`}
             style={{
               transform: `scale(${calculateScale(index)})`,
               zIndex: Math.round(calculateScale(index) * 10),
             }}
+            onClick={() => handleClick && handleClick(item)}
           >
             <div
               className={`my-auto flex h-full w-full flex-col items-center justify-center rounded-lg bg-cover bg-center bg-no-repeat`}
@@ -192,7 +195,7 @@ export default function CarouselTornments({ data }: CarouselProps) {
               >
                 {item.year}
               </h1>
-              {item.achievements?.map((achiev, achievIndex) => (
+              {item.achivements?.map((achiev, achievIndex) => (
                 <p
                   key={achievIndex}
                   className={`text-lightBlack/60 z-10 text-center text-xl italic`}

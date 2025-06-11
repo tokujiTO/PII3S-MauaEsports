@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Member, useMembers } from '../../hooks/useMembers';
 import MemberCard from './memberCard';
-import { CaretLeft, CaretRight, Funnel, Plus } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight, Plus } from '@phosphor-icons/react';
 import AddMemberModal from './addMemberModal';
 import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
@@ -58,7 +58,7 @@ export default function Members() {
   }, []);
 
   return (
-    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-10 pb-10">
+    <div className="bg-deepBlue z-50 flex w-full flex-col gap-8 rounded-t-4xl px-2 pb-10 md:px-10">
       <MemberConfirmDelete
         isOpen={deleteModal}
         member={selected}
@@ -78,18 +78,18 @@ export default function Members() {
         onClose={() => setAddModal(false)}
         onSave={() => fetchMembers(setMembers)}
       />
-      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-6xl font-bold text-white">
+      <div className="bg-darkBlue neon-box-duo mt-6 flex h-28 w-full items-end justify-between rounded-2xl p-4 text-4xl font-bold text-white md:text-6xl">
         <h1 className="b">Gerenciar Membros</h1>
         <div className="flex items-center gap-4">
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="text-deepBlue rounded-lg bg-white px-4 py-2 text-lg outline-none focus:ring-2"
+            className="text-deepBlue hidden rounded-lg bg-white px-4 py-2 text-lg outline-none focus:ring-2 md:flex"
           />
-          <button className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer">
+          {/* <button className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer">
             <Funnel size={32} />
-          </button>
+          </button> */}
           <button
             className="text-deepBlue flex h-12 w-12 items-center justify-center rounded-lg bg-white duration-300 hover:scale-125 hover:cursor-pointer"
             onClick={() => setAddModal(true)}
@@ -98,13 +98,13 @@ export default function Members() {
           </button>
         </div>
       </div>
-      <div className="bg-darkBlue neon-box-duo flex w-full items-center justify-between rounded-2xl border-2 border-cyan-300 p-4 text-4xl font-bold text-white">
+      <div className="bg-darkBlue neon-box-duo hidden w-full items-center justify-between rounded-2xl border-2 border-cyan-300 p-4 text-4xl font-bold text-white md:flex">
         <h1>Nome</h1>
         <h1>RA</h1>
         <h1>Cargo</h1>
         <h1>Horas</h1>
       </div>
-      <div className="flex flex-col gap-4 px-5">
+      <div className="flex flex-col gap-4 overflow-hidden px-2  md:px-5">
         {currentMembers.map((member) => (
           <MemberCard
             key={member.ra}

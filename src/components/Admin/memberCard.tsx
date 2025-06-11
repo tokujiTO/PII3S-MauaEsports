@@ -48,20 +48,22 @@ export default function MemberCard({
   }, [events]);
 
   return (
-    <div className="bg-darkBlue flex h-24 w-full items-center justify-between rounded-lg border-2 border-cyan-300 p-4 text-4xl text-white duration-150 hover:scale-105 hover:cursor-pointer">
-      <h1 className="mt-auto mb-auto flex w-1/5">
-        {member.nome.split(' ')[0]}
-      </h1>
-      <h2 className="mt-auto mb-auto flex w-1/5">
-        {member.ra || 'sem RA cadastrado'}
-      </h2>
-      {isAdmin && (
-        <h2 className="mt-auto mb-auto flex w-1/5">
-          {member.cargo || 'sem cargo cadastrado'}
+    <div className="bg-darkBlue flex h-24 w-full items-center justify-between rounded-lg border-2 border-cyan-300 p-2 text-xl text-white duration-150 hover:scale-105 hover:cursor-pointer md:p-4 md:text-4xl">
+      <div className="flex w-1/3 flex-col items-center justify-between max-md:gap-2 md:w-2/3 md:flex-row">
+        <h1 className="mt-auto mb-auto flex  md:w-1/5">
+          {member.nome.split(' ')[0]}
+        </h1>
+        <h2 className="mt-auto mb-auto flex  md:w-1/5">
+          {member.ra || 'sem RA cadastrado'}
         </h2>
-      )}
+        {isAdmin && (
+          <h2 className="mt-auto mb-auto hidden  md:flex md:w-1/5">
+            {member.cargo || 'sem cargo cadastrado'}
+          </h2>
+        )}
+      </div>
 
-      <div className="flex h-full w-1/5 items-center justify-between gap-2">
+      <div className="flex h-full w-3/4 items-center justify-between gap-2 md:w-1/5">
         {isAdmin && (
           <button
             onClick={onEdit}

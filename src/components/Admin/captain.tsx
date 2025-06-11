@@ -54,7 +54,7 @@ export default function Captain() {
   }, [user?.ra]);
 
   return (
-    <div className="bg-deepBlue neon-box-duo z-50 flex min-h-[50vh] w-full flex-col gap-8 rounded-t-4xl p-10 pt-20">
+    <div className="bg-deepBlue neon-box-duo z-50 flex min-h-[50vh] w-full flex-col gap-8 rounded-t-4xl md:p-10 md:pt-20">
       <EditSchedule
         id={id}
         scheduledTrainings={scheduledTrainings}
@@ -69,12 +69,12 @@ export default function Captain() {
         isOpen={viewSchedule}
         onClose={() => setViewSchedule(false)}
       />
-      <div className="bg-darkBlue neon-box-duo flex h-28 w-full items-end justify-between rounded-2xl border-2 border-cyan-300 p-4 text-6xl font-bold text-white">
+      <div className="bg-darkBlue neon-box-duo flex h-28 w-full items-end justify-between rounded-2xl border-2 border-cyan-300 p-4 text-4xl md:text-6xl font-bold text-white">
         <div className="flex flex-col gap-2">
           <div className="flex items-end gap-5">
             <h1 className="b">{team ? team.nome : 'Time'}</h1>
             {modalityName && (
-              <span className="text-2xl font-normal text-cyan-200">
+              <span className="text-xl md:text-2xl font-normal text-cyan-200">
                 {modalityName}
               </span>
             )}

@@ -7,7 +7,7 @@ import CardEvents from '../components/Tournments/CardEvents';
 
 export default function Tournments() {
   return (
-    <div className="relative pt-20">
+    <div className="relative min-h-screen gap-4 pt-20">
       <img
         className="absolute inset-0 top-1/2 -z-10 flex -translate-y-1/2 items-center justify-center opacity-20"
         src={logo}

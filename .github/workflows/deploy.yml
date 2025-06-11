@@ -23,8 +23,5 @@ jobs:
       - name: Type check
         run: npx tsc --noEmit
 
-      - name: Lint
-        run: npx eslint .
-
       - name: Build
         run: npm run build

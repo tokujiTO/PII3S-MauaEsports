@@ -76,11 +76,11 @@ export default function AddTeamModal({
 
   return (
     <div
-      className={`fixed inset-0 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md ${visible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
+      className={`fixed inset-0 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md max-md:px-2 ${visible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200`}
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-4/5 w-3/4 flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg ${visible ? 'translate-y-0' : 'translate-y-full'} gap-4 transition-transform duration-200`}
+        className={`bg-darkBlue flex h-4/5 w-full flex-col items-start justify-between overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-4 py-6 shadow-lg md:w-3/4 ${visible ? 'translate-y-0' : 'translate-y-full'} gap-4 transition-transform duration-200`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full flex-col items-start justify-center gap-4">
@@ -105,12 +105,12 @@ export default function AddTeamModal({
               </div>
               <div className="flex w-1/2 flex-col gap-4">
                 <label className="text-3xl font-medium" htmlFor="cap">
-                  Nome do Capitão
+                  RA do Capitão
                 </label>
                 <input
                   id="cap"
                   type="text"
-                  placeholder="Nome do capitão"
+                  placeholder="RA do capitão"
                   value={cap}
                   onChange={(e) => setCap(e.target.value)}
                   className="w-full rounded-lg border border-gray-300 p-2 text-xl"
@@ -123,18 +123,18 @@ export default function AddTeamModal({
             <input
               id="name"
               type="text"
-              placeholder="Nome do time"
+              placeholder="URL do banner"
               value={image}
               onChange={(e) => setImage(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
             />
             <label className="text-3xl font-medium" htmlFor="members">
-              Membros (RA ou nome, separados por vírgula)
+              Membros (RA dos membros, separados por vírgula)
             </label>
             <input
               id="members"
               type="text"
-              placeholder="Ex: João, Maria, 24-00000-0, 24-00001-0"
+              placeholder="Ex: 24-00000-0, 24-00001-0"
               value={members}
               onChange={(e) => setMembers(e.target.value)}
               className="w-full rounded-lg border border-gray-300 p-2 text-xl"
@@ -178,13 +178,13 @@ export default function AddTeamModal({
         <div className="flex w-full justify-end gap-6 text-2xl">
           <button
             onClick={handleClose}
-            className="flex w-1/5 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600"
+            className="flex min-w-1/4 md:w-1/5 items-center justify-center rounded-xl bg-red-400 p-2 duration-200 hover:cursor-pointer hover:bg-red-600"
           >
             Cancelar
           </button>
           <button
             onClick={handleSave}
-            className="flex w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
+            className="flex min-w-1/4 md:w-1/5 items-center justify-center rounded-xl bg-blue-400 p-2 duration-200 hover:cursor-pointer hover:bg-blue-600"
           >
             {loading ? (
               <Spinner size={32} className="animate-spin" />

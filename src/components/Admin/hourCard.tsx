@@ -31,12 +31,12 @@ export default function HourCard() {
   }, []);
 
   return (
-    <div className="bg-darkBlue neon-box-duo border-4 border-cyan-300 flex h-[200px] w-[360px] flex-col items-center justify-between rounded-lg p-4 text-4xl text-white">
+    <div className="bg-darkBlue neon-box-duo min-w-[180px] min-h-[100px] flex flex-col items-center justify-between rounded-lg border-4 border-cyan-300 p-4 text-2xl text-white md:h-[200px] md:min-w-[360px] md:text-4xl">
       <h1 className="mt-auto mb-auto flex">Você tem:</h1>
-      <div className="flex h-2/3 w-full items-center justify-center rounded-lg bg-white text-7xl text-black">
+      <div className="flex h-2/3 w-full items-center justify-center rounded-lg bg-white text-4xl text-black md:text-7xl">
         <div className="flex items-end gap-2 text-black">
           <p>
-            {horas} <span className="text-4xl">horas</span>
+            {horas} <span className="text-2xl md:text-4xl">horas</span>
           </p>
         </div>
       </div>

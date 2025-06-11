@@ -47,13 +47,13 @@ export default function Schedule({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md transition-opacity duration-200 ${
+      className={`fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md transition-opacity duration-200 max-md:px-2 ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-[60vh] min-h-[200px] w-[50vw] flex-col items-center justify-between gap-6 overflow-scroll rounded-3xl border-l-8 border-cyan-300 text-4xl shadow-lg transition-transform duration-200 ${
+        className={`bg-darkBlue flex h-4/5 min-h-[200px] w-full flex-col items-center justify-between gap-6 overflow-scroll rounded-3xl border-l-8 border-cyan-300 text-4xl shadow-lg transition-transform duration-200 md:h-[60vh] md:w-[50vw] ${
           visible ? 'translate-y-0' : 'translate-y-full'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -65,11 +65,16 @@ export default function Schedule({
         {scheduledTrainings.length > 0 ? (
           <div className="flex w-full flex-col gap-2 text-center text-cyan-100">
             {scheduledTrainings.map((t, i) => (
-              <span key={i} className="rounded bg-cyan-900/30 px-4 py-2">
-                <span className="font-semibold">Início:</span>{' '}
-                {parseCronTime(t.Start)}{' '}
-                <span className="ml-4 font-semibold">Fim:</span>{' '}
-                {parseCronTime(t.End)}
+              <span
+                key={i}
+                className="flex rounded bg-cyan-900/30 px-4 py-2 max-md:flex-col"
+              >
+                <span className="font-semibold">
+                  Início: {parseCronTime(t.Start)}
+                </span>
+                <span className="ml-4 font-semibold">
+                  Fim: {parseCronTime(t.End)}
+                </span>
               </span>
             ))}
           </div>

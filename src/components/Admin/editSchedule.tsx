@@ -150,24 +150,24 @@ export default function EditSchedule({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md transition-opacity duration-200 ${
+      className={`fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/30 backdrop-blur-md transition-opacity duration-200 max-md:px-2 ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
       onClick={handleClose}
     >
       <div
-        className={`bg-darkBlue flex h-[90vh] w-2/3 flex-col items-center justify-between gap-6 overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 md:text-4xl ${
+        className={`bg-darkBlue flex h-[90vh] w-full flex-col items-center justify-between gap-6 overflow-y-scroll rounded-3xl border-l-8 border-cyan-300 px-8 py-8 shadow-lg transition-transform duration-200 md:w-2/3 md:text-4xl ${
           visible ? 'translate-y-0' : 'translate-y-full'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="mb-2 w-full text-5xl font-bold text-white">
+        <h1 className="mb-2 w-full text-3xl font-bold text-white md:text-5xl">
           Horários de Treino
           <div className="mb-4 h-1 w-full rounded-full bg-gradient-to-l from-orange-600 to-yellow-400" />
         </h1>
-        <div className="flex w-full flex-col items-center gap-4">
-          <div className="mb-2 flex w-full justify-evenly">
-            <span className="w-1/3 text-end font-semibold text-cyan-100">
+        <div className="flex w-full flex-col gap-4 overflow-x-scroll md:items-center">
+          <div className="mb-2 hidden w-full md:flex md:justify-evenly">
+            <span className="w-1/3 font-semibold text-cyan-100">
               Dia da Semana
             </span>
             <span className="w-1/3 text-center font-semibold text-cyan-100">

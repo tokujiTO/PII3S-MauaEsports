@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const USUARIO = process.env.USUARIO;
@@ -35,8 +36,25 @@ const Evento = mongoose.model(
   'Evento',
   mongoose.Schema({
     titulo: { type: String, required: true },
-    data: { type: Date, required: true },
-    descricao: { type: String, required: true },
+    data: { type: String, required: true },
+    link: { type: String, required: false },
+  })
+);
+
+const Achivement = mongoose.model(
+  'Achivement',
+  mongoose.Schema({
+    year: { type: Number, required: true },
+    achivements: { type: [String], required: true },
+  })
+);
+const Section = mongoose.model(
+  'Section',
+  mongoose.Schema({
+    sectionNumber: {type: Number, required: true},
+    title: {type: String, required: true},
+    content: {type: String, required: true},
+    image: {type: String, required: true}
   })
 );
 
@@ -55,3 +73,5 @@ module.exports.connectToMongo = connectToMongo;
 module.exports.Player = Player;
 module.exports.Equipes = Equipes;
 module.exports.Evento = Evento;
+module.exports.Achivement = Achivement;
+module.exports.Section = Section;

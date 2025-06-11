@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const connection = require('./connection.cjs');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const eventoRoutes = require('./routes/evento.route.cjs');
+const achivementsRoutes = require('./routes/achivements.route.cjs');
+const sectionsRoutes = require('./routes/sections.route.cjs');
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,6 +14,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
+app.use('/', eventoRoutes);
+app.use('/', achivementsRoutes);
+app.use('/', sectionsRoutes);
 
 // player
 app.get('/players', async (req, res) => {
