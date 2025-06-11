@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Member, useMembers } from '../../hooks/useMembers';
 import MemberCard from './memberCard';
-import { CaretLeft, CaretRight, Funnel, Plus } from '@phosphor-icons/react';
+import { CaretLeft, CaretRight, Plus } from '@phosphor-icons/react';
 import AddMemberModal from './addMemberModal';
 import MemberConfirmDelete from './memberConfirmDelete';
 import MemberEditModal from './memberEditModal';
