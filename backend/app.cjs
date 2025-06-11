@@ -131,7 +131,6 @@ app.delete('/player', async (req, res) => {
       { membros: playerExists.ra },
       { $pull: { membros: playerExists.ra } }
     );
-    // Se o jogador for capitão de alguma equipe, remove o capitão
     await connection.Equipes.updateMany(
       { cap: playerExists.ra },
       { $unset: { cap: '' } }
@@ -144,6 +143,7 @@ app.delete('/player', async (req, res) => {
   }
 });
 
+// equipes
 app.get('/equipe', async (req, res) => {
   const ra = req.query.ra;
   if (!ra) {
@@ -167,7 +167,6 @@ app.get('/equipe', async (req, res) => {
   }
 });
 
-// equipes
 app.get('/equipes', async (req, res) => {
   const e_id = req.body.e_id;
 
@@ -207,14 +206,12 @@ app.get('/equipes/allPublic', async (req, res) => {
     }
     const equipesComNomes = await Promise.all(
       equipes.map(async (equipe) => {
-        // Busca nomes dos membros
         const membrosNomes = await Promise.all(
           (equipe.membros || []).map(async (ra) => {
             const player = await connection.Player.findOne({ ra });
             return player ? player.nome : 'Desconhecido';
           })
         );
-        // Busca nome do capitão
         let capNome = 'Desconhecido';
         if (equipe.cap) {
           const capPlayer = await connection.Player.findOne({ ra: equipe.cap });
@@ -288,15 +285,10 @@ app.post('/auth/check', async (req, res) => {
     if (!decoded) {
       return res.status(400).json({ erro: 'Token inválido.' });
     }
-
-    // O campo do RA pode variar, ajuste conforme o token da sua instituição
-    // Exemplos comuns: preferred_username, unique_name, upn, email
     const ra = decoded.unique_name.split('@')[0];
     if (!ra) {
       return res.status(400).json({ erro: 'RA não encontrado no token.' });
     }
-
-    // Procura o usuário pelo RA
     const user = await connection.Player.findOne({ ra: ra });
     if (!user) {
       return res
