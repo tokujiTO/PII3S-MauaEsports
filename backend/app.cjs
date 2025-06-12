@@ -59,6 +59,11 @@ app.post('/player', async (req, res) => {
   const area = req.body.area;
   const cargo = req.body.cargo;
 
+  const existingPlayer = await connection.Player.findOne({ ra: ra });
+  if (existingPlayer) {
+    return res.status(400).json({ erro: 'Já existe um usuário com esse RA.' });
+  }
+
   const player = new connection.Player({
     nome: nome,
     nickname: nickname,

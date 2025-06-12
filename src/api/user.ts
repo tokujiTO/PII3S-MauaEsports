@@ -27,7 +27,7 @@ export const fetchMembers = async (setMembers: (members: Member[]) => void) => {
     setMembers(response.data); // Use setMembers here
     return response.data;
   } catch (error) {
-    toast.error('Error fetching members');
+    toast.error('Erro ao buscar membros.');
     throw error;
   }
 };
@@ -73,7 +73,7 @@ export const addMember = async (member: {
     toast.success('Membro adicionado com sucesso!');
     return response.data;
   } catch (error) {
-    console.error('Error adding member:', error);
+    toast.error('Erro ao adicionar membro');
     throw error;
   }
 };
@@ -119,7 +119,7 @@ export const getEvents = async () => {
     const events: Events[] = response.data;
     return events;
   } catch (error) {
-    toast.error('Error fetching events');
+    toast.error('Erro ao buscar eventos.');
     console.error('Error fetching events:', error);
     throw error;
   }

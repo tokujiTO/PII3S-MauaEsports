@@ -9,7 +9,7 @@ export const getTeams = async () => {
     const teams = response.data;
     return teams;
   } catch (error) {
-    toast.error('Error fetching events');
+    toast.error('Erro ao buscar equipes');
     console.error('Error fetching teams:', error);
     throw error;
   }
@@ -45,7 +45,7 @@ export const editSchedule = async (data: {
     toast.success('Schedule edited successfully!');
     return response.data;
   } catch (error) {
-    toast.error('Error editing schedule');
+    toast.error('Erro ao editar o cronograma');
     console.error('Error editing schedule:', error);
     throw error;
   }
@@ -61,7 +61,7 @@ export const getModalityByTag = async (tag: string) => {
     const modality = response.data;
     return modality;
   } catch (error) {
-    toast.error('Error fetching modality by tag');
+    toast.error('Erro ao buscar modalidade por tag');
     console.error('Error fetching modality by tag:', error);
     throw error;
   }
@@ -78,7 +78,7 @@ export const getModalities = async () => {
     const modalities = response.data;
     return modalities;
   } catch (error) {
-    toast.error('Error fetching modalities');
+    toast.error('Erro ao bucar modalidades');
     console.error('Error fetching events:', error);
     throw error;
   }
@@ -93,7 +93,7 @@ export const getMyTeam = async (ra: string) => {
     const team = response.data;
     return team;
   } catch (error) {
-    toast.error('Error fetching my team');
+    toast.error('Erro ao buscar minha equipe');
     console.error('Error fetching my team:', error);
     throw error;
   }
@@ -124,7 +124,7 @@ export const fetchTeams = async (setTeams: (teams: Team[]) => void) => {
     }
     return response;
   } catch (error) {
-    toast.error('Error fetching teams');
+    toast.error('Erro ao buscar equipes');
     console.error('Error fetching teams:', error);
     throw error;
   }
@@ -141,10 +141,10 @@ export const editTeam = async (team: {
 }) => {
   try {
     const response = await axios.put('http://localhost:3000/equipe', team);
-    toast.success('Team edited successfully!');
+    toast.success('Time editado com sucesso!');
     return response.data;
   } catch (error) {
-    toast.error('Error editing team');
+    toast.error('Erro ao editar equipe');
     console.error('Error editing team:', error);
     throw error;
   }
@@ -155,10 +155,10 @@ export const deleteTeam = async (teamId: string) => {
     const response = await axios.delete(`http://localhost:3000/equipe`, {
       params: { _id: teamId },
     });
-    toast.success('Team deleted successfully!');
+    toast.success('Time deletado com sucesso!');
     return response.data;
   } catch (error) {
-    toast.error('Error deleting team');
+    toast.error('Erro ao deletar equipe');
     console.error('Error deleting team:', error);
     throw error;
   }
@@ -174,10 +174,10 @@ export const addTeam = async (team: {
 }) => {
   try {
     const response = await axios.post('http://localhost:3000/equipe', team);
-    toast.success('Team added successfully!');
+    toast.success('Time adicionado com sucesso!');
     return response.data;
   } catch (error) {
-    toast.error('Error adding team');
+    toast.error('Erro ao adicionar equipe');
     console.error('Error adding team:', error);
     throw error;
   }
