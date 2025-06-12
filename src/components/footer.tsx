@@ -10,7 +10,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="font-body overflow-hidden  bg-darkBlue relative flex h-fit w-full flex-col gap-6 p-4 text-white lg:h-[360px] lg:gap-0">
+    <div className="font-body bg-darkBlue relative flex h-fit w-full flex-col gap-6 overflow-hidden p-4 text-white lg:h-[360px] lg:gap-0">
       <div className="absolute top-0 z-0 flex h-[360px] w-full justify-center overflow-hidden">
         <img
           src={logo}
@@ -26,13 +26,31 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex w-full flex-row justify-evenly text-xl md:w-1/3">
-          <div className="neon-box-yellow flex items-center justify-center rounded-md border-2 border-yellow-500 bg-gradient-to-tr from-yellow-300 to-orange-500 p-1 text-white duration-300 hover:scale-110 hover:cursor-pointer hover:shadow-none">
+          <div
+            className="neon-box-yellow flex items-center justify-center rounded-md border-2 border-yellow-500 bg-gradient-to-tr from-yellow-300 to-orange-500 p-1 text-white duration-300 hover:scale-110 hover:cursor-pointer hover:shadow-none"
+            onClick={() => {
+              window.open('https://www.twitch.tv/mauaesports', '_blank');
+            }}
+          >
             <TwitchLogo size={42} />
           </div>
-          <div className="neon-box-yellow flex items-center justify-center rounded-md border-2 border-yellow-500 bg-gradient-to-tr from-yellow-300 to-orange-500 p-1 text-white duration-300 hover:scale-110 hover:cursor-pointer hover:shadow-none">
+          <div
+            className="neon-box-yellow flex items-center justify-center rounded-md border-2 border-yellow-500 bg-gradient-to-tr from-yellow-300 to-orange-500 p-1 text-white duration-300 hover:scale-110 hover:cursor-pointer hover:shadow-none"
+            onClick={() => {
+              window.open(
+                'https://www.linkedin.com/company/mauaesports/posts/?feedView=all',
+                '_blank'
+              );
+            }}
+          >
             <LinkedinLogo size={42} />
           </div>
-          <div className="neon-box-yellow flex items-center justify-center rounded-md border-2 border-yellow-500 bg-gradient-to-tr from-yellow-300 to-orange-500 p-1 text-white duration-300 hover:scale-110 hover:cursor-pointer hover:shadow-none">
+          <div
+            className="neon-box-yellow flex items-center justify-center rounded-md border-2 border-yellow-500 bg-gradient-to-tr from-yellow-300 to-orange-500 p-1 text-white duration-300 hover:scale-110 hover:cursor-pointer hover:shadow-none"
+            onClick={() => {
+              window.open('https://www.instagram.com/esportsmaua/', '_blank');
+            }}
+          >
             <InstagramLogo size={42} />
           </div>
         </div>
