@@ -104,7 +104,7 @@ export default function Members() {
         <h1>Cargo</h1>
         <h1>Horas</h1>
       </div>
-      <div className="flex flex-col gap-4 overflow-hidden px-2  md:px-5">
+      <div className="flex flex-col gap-4 overflow-hidden px-2 md:px-5">
         {currentMembers.map((member) => (
           <MemberCard
             key={member.ra}
@@ -144,17 +144,18 @@ export default function Members() {
           </button>
         </div>
         <div>
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index)}
-              className={`mx-2 rounded-lg px-4 py-2 ${
-                currentPage === index ? 'bg-blue-500 text-white' : ''
-              } duration-300 hover:cursor-pointer hover:bg-blue-300 hover:text-white`}
-            >
-              {index + 1}
-            </button>
-          ))}
+          {totalPages > 1 &&
+            Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index)}
+                className={`mx-2 rounded-lg px-4 py-2 ${
+                  currentPage === index ? 'bg-blue-500 text-white' : ''
+                } duration-300 hover:cursor-pointer hover:bg-blue-300 hover:text-white`}
+              >
+                {index + 1}
+              </button>
+            ))}
         </div>
         <div className={`${currentPage === totalPages - 1 ? 'invisible' : ''}`}>
           <button
