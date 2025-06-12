@@ -20,7 +20,7 @@ export default function Footer() {
       </div>
       <div className="z-10 flex h-3/4 flex-col items-start justify-evenly gap-6 md:flex-row lg:gap-16 lg:px-16 lg:pt-24">
         <div className="neon-text-blue flex w-full flex-col items-center gap-6 text-sm md:w-1/3 md:items-start md:text-2xl">
-          <ul className="flex w-full list-inside list-none justify-evenly md:list-disc md:flex-col">
+          <ul className="flex w-full font-futurist list-inside list-none justify-evenly md:list-disc md:flex-col">
             <li>esports@maua.br</li>
             <li>11 11111-1111</li>
           </ul>
