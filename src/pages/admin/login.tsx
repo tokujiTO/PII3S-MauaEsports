@@ -58,11 +58,9 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-100 font-thin text-black">
-      <div className="bg-deepBlue hidden h-full items-center justify-center md:flex md:w-2/5">
-        image
-      </div>
-      <div className="bg-darkBlue neon-box-duo z-10 flex h-full w-full flex-col items-center justify-center md:w-3/5">
-        <div className="bg-deepBlue neon-box-duo relative flex h-1/2 w-4/5 flex-col items-center gap-10 rounded-xl border-2 border-cyan-300 py-4 text-white md:w-3/5">
+      {/* <div className="bg-deepBlue hidden h-full items-center justify-center md:flex md:w-2/5" /> */}
+      <div className="bg-darkBlue neon-box-duo z-10 flex h-full w-full flex-col items-center justify-center md:w-full">
+        <div className="bg-deepBlue neon-box-duo relative flex h-1/2 w-4/5 flex-col items-center gap-10 rounded-xl border-2 border-cyan-300 py-4 text-white md:w-2/5">
           <img
             src={logo}
             alt="Logo"
@@ -74,7 +72,7 @@ export default function Login() {
           <form className="z-10 flex h-full w-full flex-col items-center justify-center gap-4 max-md:px-2">
             <button
               type="button"
-              className="text-darkBlue relative flex h-20 w-full items-center justify-start max-md:gap-4 px-2 rounded-lg bg-white text-4xl shadow-xl duration-300 outline-none hover:cursor-pointer hover:bg-gray-200 hover:shadow-2xl max-md:text-3xl md:w-4/5 md:justify-center md:p-4"
+              className="text-darkBlue relative flex h-20 w-full items-center justify-start rounded-lg bg-white px-2 text-4xl shadow-xl duration-300 outline-none hover:cursor-pointer hover:bg-gray-200 hover:shadow-2xl max-md:gap-4 max-md:text-3xl md:w-4/5 md:justify-center md:p-4"
               onClick={handleLogin}
             >
               <img
