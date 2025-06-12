@@ -48,7 +48,7 @@ export default function MemberCard({
   }, [events]);
 
   return (
-    <div className="bg-darkBlue flex h-24 w-full items-center justify-between rounded-lg border-2 border-cyan-300 p-2 text-xl text-white duration-150 hover:scale-105 hover:cursor-pointer md:p-4 md:text-4xl">
+    <div className="bg-darkBlue flex h-24 w-full items-center justify-between rounded-lg border-2 border-cyan-300 p-2 text-xl text-white duration-150  md:p-4 md:text-4xl">
       <div className="flex w-1/3 flex-col items-center justify-between max-md:gap-2 md:w-2/3 md:flex-row">
         <h1 className="mt-auto mb-auto flex  md:w-1/5">
           {member.nome.split(' ')[0]}
@@ -67,7 +67,7 @@ export default function MemberCard({
         {isAdmin && (
           <button
             onClick={onEdit}
-            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-blue-500"
+            className="flex flex-col gap-2 duration-300 hover:cursor-pointer hover:text-orange-600"
           >
             <Pen size={32} />
           </button>

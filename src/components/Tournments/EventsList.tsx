@@ -29,7 +29,7 @@ export default function EventsList({ Events }: EventsListProps) {
       {Events.map((event, index) => (
         <div
           key={index}
-          className={`group from-darkBlue to-darkBlue text-coolWhite flex w-[110%] flex-col bg-gradient-to-l sm:flex-row ${index == 0 ? 'neon-box-duo scale-110 hover:scale-125' : 'scale-100'} transition-[color, transform] hover:from-darkBlue hover:via-deepBlue hover:to-darkBlue items-center justify-between gap-6 rounded-2xl border-r-2 border-b-8 border-l-4 border-cyan-300 px-4 py-2 duration-200 hover:scale-105 hover:cursor-pointer hover:bg-gradient-to-tr`}
+          className={`group from-darkBlue to-darkBlue text-coolWhite flex w-[110%] flex-col bg-gradient-to-l sm:flex-row ${index == 0 ? 'neon-box-duo scale-110 hover:scale-125' : 'scale-100'} transition-[color, transform] hover:from-darkBlue hover:via-deepBlue hover:to-darkBlue items-center justify-between gap-6 rounded-2xl border-r-2 border-b-8 border-l-4 border-cyan-300 px-4 py-2 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:bg-gradient-to-tr`}
           onClick={() => {
             if (event.link) {
               window.open(event.link, '_blank');

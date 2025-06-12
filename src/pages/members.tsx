@@ -33,9 +33,9 @@ export default function Members() {
   const filteredTeams = teams.filter(
     (team) =>
       team.membros.length > 0 &&
-      typeof team.cap !== 'undefined' &&
+      team.cap != 'Desconhecido' &&
       team.membros.every(
-        (member: any) => typeof member !== 'undefined' && member !== ''
+        (member: any) => member != 'Desconhecido' && member !== ''
       )
   );
 
