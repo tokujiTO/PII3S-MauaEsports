@@ -80,7 +80,7 @@ export default function EditSectionModal({
                 type="text"
                 defaultValue={section.title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="text-darkBlue rounded-lg bg-gray-200 p-2 max-md:text-xl"
+                className="text-darkBlue rounded-lg bg-gray-200 p-2 font-serif max-md:text-xl"
               />
             </div>
             <div className="flex flex-col">
@@ -88,7 +88,7 @@ export default function EditSectionModal({
               <textarea
                 defaultValue={section.content}
                 onChange={(e) => setContent(e.target.value)}
-                className="text-darkBlue rounded-lg bg-gray-200 p-2 text-lg md:text-xl"
+                className="text-darkBlue rounded-lg bg-gray-200 p-2 font-serif text-lg md:text-xl"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -97,7 +97,7 @@ export default function EditSectionModal({
                 type="text"
                 defaultValue={section.image}
                 onChange={(e) => setImage(e.target.value)}
-                className="text-darkBlue rounded-lg bg-gray-200 p-2 max-md:text-xl"
+                className="text-darkBlue rounded-lg bg-gray-200 p-2 font-serif max-md:text-xl"
               />
             </div>
           </div>
